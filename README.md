@@ -48,7 +48,7 @@ tensorboard
 2025.01.04: The paper has been accepted.
 2025.01.04: Upload the EEG-based system code in Github (v.01).
 2025.01.06: Update paper citation.
-2025.02.26: Updated documentation, added some comments to the code.
+2025.02.26: Update documentation, add some comments to the code.
 ```
 
 #### Code created by *Genn* [v.01 || 2025/01/04]
