@@ -1,6 +1,7 @@
 # EEG-based Attention Detection Systems
 ### Versatile Machine Learning Based Brain Attention Detection Systems
 
+This project is also available on Google Drive: https://drive.google.com/drive/folders/1Z89ymeonrMSFGty8u5G3HkOIpvEE7eFW?usp=drive_link
 
 ## Reference Citation
 [1] Wang, J.; Kim, S.-K. Novel Machine Learning-Based Brain Attention Detection Systems. Information 2025, 16, 25. https://doi.org/10.3390/info16010025
@@ -21,6 +22,8 @@ torch == 2.5.1 with CUDA runtime == 12.4
 torchaudio == 2.5.1
 
 torchvision == 0.20.1
+
+BaselineRemoval
 
 matplotlib
 
@@ -45,6 +48,7 @@ tensorboard
 2025.01.04: The paper has been accepted.
 2025.01.04: Upload the EEG-based system code in Github (v.01).
 2025.01.06: Update paper citation.
+2025.02.26: Updated documentation, added some comments to the code.
 ```
 
 #### Code created by *Genn* [v.01 || 2025/01/04]
