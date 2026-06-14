@@ -1,0 +1,13 @@
+{
+  "model": "googlenet",
+  "variant": "pca",
+  "epoch": 50,
+  "total_epochs": 50,
+  "train_loss": 0.0031934474736047555,
+  "test_loss": 0.01292341285995554,
+  "test_accuracy": 0.9962839093273876,
+  "best_accuracy": 0.9975845410628019,
+  "epoch_seconds": 42.56692838668823,
+  "status": "completed",
+  "roc_auc": 0.9999584336357782
+}

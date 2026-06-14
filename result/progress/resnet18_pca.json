@@ -1,0 +1,13 @@
+{
+  "model": "resnet18",
+  "variant": "pca",
+  "epoch": 50,
+  "total_epochs": 50,
+  "train_loss": 7.831003521039985e-06,
+  "test_loss": 0.010087468456019613,
+  "test_accuracy": 0.9981419546636938,
+  "best_accuracy": 0.9981419546636938,
+  "epoch_seconds": 35.43676733970642,
+  "status": "completed",
+  "roc_auc": 0.9998547248665733
+}
