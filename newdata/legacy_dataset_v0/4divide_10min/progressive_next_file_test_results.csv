@@ -1,0 +1,10 @@
+﻿step,train_n_files,train_files_first,train_files_last,test_file,test_subject,true_label,pred_label_by_vote,file_vote_correct,window_accuracy_this_file,n_test_windows,pred_window_distribution
+21,20,daze1.edf,zyf_daze2.edf,zyf_focus1.edf,zyf,focus,daze,False,0.0,298,"{'daze': np.int64(297), 'distracted': np.int64(1)}"
+22,21,daze1.edf,zyf_focus1.edf,zyf_focus2.edf,zyf,focus,focus,True,0.9899328859060402,298,"{'focus': np.int64(295), 'daze': np.int64(3)}"
+23,22,daze1.edf,zyf_focus2.edf,zyf_focus3.edf,zyf,focus,focus,True,0.9899328859060402,298,"{'focus': np.int64(295), 'daze': np.int64(2), 'distracted': np.int64(1)}"
+24,23,daze1.edf,zyf_focus3.edf,zyf_focus4.edf,zyf,focus,focus,True,0.8819672131147541,305,"{'focus': np.int64(269), 'daze': np.int64(36)}"
+25,24,daze1.edf,zyf_focus4.edf,zyf_iu1.edf,zyf,distracted,focus,False,0.006711409395973154,298,"{'focus': np.int64(267), 'daze': np.int64(29), 'distracted': np.int64(2)}"
+26,25,daze1.edf,zyf_iu1.edf,zyf_iu2.edf,zyf,distracted,focus,False,0.05704697986577181,298,"{'focus': np.int64(279), 'distracted': np.int64(17), 'daze': np.int64(2)}"
+27,26,daze1.edf,zyf_iu2.edf,zyf_ou1.edf,zyf,distracted,focus,False,0.2550335570469799,298,"{'focus': np.int64(211), 'distracted': np.int64(76), 'daze': np.int64(11)}"
+28,27,daze1.edf,zyf_ou1.edf,zyf_ou2.edf,zyf,distracted,distracted,True,0.697986577181208,298,"{'distracted': np.int64(208), 'focus': np.int64(79), 'daze': np.int64(11)}"
+29,28,daze1.edf,zyf_ou2.edf,zyf_ou3.edf,zyf,distracted,distracted,True,0.761744966442953,298,"{'distracted': np.int64(227), 'focus': np.int64(71)}"
