@@ -2,9 +2,17 @@
 
 本仓库用于复现并改进 EEG 专注度识别系统。当前正式目标是区分 `focus`（专注）与 `unfocus`（不专注）；`rest`（静息态）保留作基线或质量检查，不并入不专注类别。
 
+## 当前进度
+
+- 最新简报：[`2026-09-08｜冻结旧数据与旧模型`](docs/progress/EEG项目推进简报_2026-09-08.md)
+- 历史简报索引：[`docs/progress/`](docs/progress/README.md)
+
+当前状态：Legacy 数据治理已完成，规范主 Notebook 和 `legacy_baseline_v0` 尚待建立；LOCKED_TEST 尚未执行。
+
 ## 当前数据入口
 
 - 正式清单：`data/session_manifest.csv`
+- Legacy baseline 候选清单：`data/legacy_manifest.csv`
 - 数据规范：`data/DATA_PROTOCOL.md`
 - 新标准录制：`data/locked/YYYY-MM-DD/`
 - 只读验收：`scripts/validate_locked_data.py`
@@ -15,6 +23,7 @@
 
 ```powershell
 python scripts/validate_locked_data.py
+python scripts/validate_legacy_manifest.py
 ```
 
 验收脚本只读取 EDF 文件头和哈希，不修改数据，也不依赖 MNE。
