@@ -1,1 +1,0 @@
-EEG Dataset (https://www.kaggle.com/datasets/inancigdem/eeg-data-for-mental-attention-state-detection)
