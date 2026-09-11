@@ -4,10 +4,10 @@
 
 ## 当前进度
 
-- 最新简报：[`2026-09-08｜冻结旧数据与旧模型`](docs/progress/EEG项目推进简报_2026-09-08.md)
+- 最新简报：[`2026-09-10｜真实状态核验`](docs/progress/EEG项目推进简报_2026-09-10.md)
 - 历史简报索引：[`docs/progress/`](docs/progress/README.md)
 
-当前状态：Legacy 数据治理已完成，规范主 Notebook 和 `legacy_baseline_v0` 尚待建立；LOCKED_TEST 尚未执行。
+当前状态：better_train 分支与远程一致；工作区目前仅有 README / progress 文档改动，未发现代码、数据或模型产物改动。Legacy 数据治理已完成，但规范主 Notebook、无泄漏 Pipeline、train/validation 划分和 legacy_baseline_v0 尚待建立；LOCKED_TEST 尚未执行，02 尚不具备前置条件。
 
 ## 当前数据入口
 
