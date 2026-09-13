@@ -7,7 +7,7 @@
 - 最新简报：[`2026-09-13｜Legacy baseline 冻结`](docs/progress/EEG项目推进简报_2026-09-13.md)
 - 历史简报索引：[`docs/progress/`](docs/progress/README.md)
 
-当前状态：`better_train` 分支与远程一致；`legacy_baseline_v0` 已完成 Legacy-only 冻结，包含确定性 group split、无泄漏 `Scaler→PCA→SVC` Pipeline 和 validation 产物。冻结结果见 [`artifacts/legacy_baseline_v0/`](artifacts/legacy_baseline_v0/) 和 [`docs/methodology/legacy_baseline_v0.md`](docs/methodology/legacy_baseline_v0.md)。LOCKED_TEST 尚未执行，02 仍需单独经过 freeze gate。
+当前状态：`better_train` 分支已完成 `legacy_baseline_v0` 的 Legacy-only 冻结，并在冻结 pipeline 下完成 2026-09-07 的独立 `LOCKED_TEST FIRST RUN`。Legacy validation accuracy 为 `0.699878`；LOCKED_TEST accuracy 为 `0.552951`、balanced accuracy 为 `0.599068`，结果显示明显的跨 Session 泛化差距。冻结与测试结果见 [`artifacts/legacy_baseline_v0/`](artifacts/legacy_baseline_v0/)、[`artifacts/locked_test/2026-09-07/`](artifacts/locked_test/2026-09-07/) 和 [`docs/methodology/legacy_baseline_v0.md`](docs/methodology/legacy_baseline_v0.md)。下一节点为 2026-09-14 跨 Session 采集与正式比较。
 
 ## 当前数据入口
 
