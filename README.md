@@ -4,10 +4,10 @@
 
 ## 当前进度
 
-- 最新简报：[`2026-09-10｜真实状态核验`](docs/progress/EEG项目推进简报_2026-09-10.md)
+- 最新简报：[`2026-09-13｜Legacy baseline 冻结`](docs/progress/EEG项目推进简报_2026-09-13.md)
 - 历史简报索引：[`docs/progress/`](docs/progress/README.md)
 
-当前状态：better_train 分支与远程一致；工作区目前仅有 README / progress 文档改动，未发现代码、数据或模型产物改动。Legacy 数据治理已完成，但规范主 Notebook、无泄漏 Pipeline、train/validation 划分和 legacy_baseline_v0 尚待建立；LOCKED_TEST 尚未执行，02 尚不具备前置条件。
+当前状态：`better_train` 分支与远程一致；`legacy_baseline_v0` 已完成 Legacy-only 冻结，包含确定性 group split、无泄漏 `Scaler→PCA→SVC` Pipeline 和 validation 产物。冻结结果见 [`artifacts/legacy_baseline_v0/`](artifacts/legacy_baseline_v0/) 和 [`docs/methodology/legacy_baseline_v0.md`](docs/methodology/legacy_baseline_v0.md)。LOCKED_TEST 尚未执行，02 仍需单独经过 freeze gate。
 
 ## 当前数据入口
 

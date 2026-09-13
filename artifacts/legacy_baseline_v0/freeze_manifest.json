@@ -1,0 +1,22 @@
+{
+  "artifact_sha256": {
+    "config.json": "274771877da2a88931edf28d9ab790c6d1ecae155558e728c6341ed89e0269e7",
+    "pipeline.joblib": "2c67ed005d3821f712771d3412bcad0a5b67a2638e89393d1d505460635488cc",
+    "split.csv": "db1be0f41a6b828a1fb1af575cd284a12292a705dd6da9e1c345b1b1d037a159",
+    "validation_group_metrics.csv": "a2f6bafc864a512573bbb87993ca9a4e96d1587e0f67c334e91c01ae55a7fca5",
+    "validation_metrics.json": "425e60faa9c79efae5ea3a42b40131783c233cd9665150503d894322008bbe1c",
+    "validation_predictions.csv": "3dca452de2d81f14d0b0367f033e968623be65e592aa7ede8e72eeba069df80f"
+  },
+  "baseline_version": "legacy_baseline_v0",
+  "dataset_version": "legacy_dataset_v0",
+  "frozen_at_utc": "2026-09-13T12:19:21.112096+00:00",
+  "git_branch": "better_train",
+  "git_head": "a4549f0e1d6a9779e9eb0305cca6ddc84cb917d2",
+  "legacy_manifest": {
+    "path": "data/legacy_manifest.csv",
+    "sha256": "b780eab933b857eca02f240fc35b3db09f2e3710b58d5ada4a309f0ed6bc1ff9"
+  },
+  "locked_test_read": false,
+  "train_session_group_count": 17,
+  "validation_session_group_count": 5
+}

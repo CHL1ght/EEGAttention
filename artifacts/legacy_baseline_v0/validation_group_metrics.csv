@@ -1,0 +1,6 @@
+session_group_id,true_label_counts,pred_label_counts,n_windows,group_accuracy,predicted_label_proportion
+legacy_lyc_mixed_01,"{'unfocus': 299, 'focus': 299}","{'unfocus': 509, 'focus': 89}",598,0.6387959866220736,"{'unfocus': 0.8511705685618729, 'focus': 0.1488294314381271}"
+legacy_lyc_mixed_03,"{'unfocus': 299, 'focus': 299}","{'unfocus': 287, 'focus': 311}",598,0.939799331103679,"{'unfocus': 0.479933110367893, 'focus': 0.520066889632107}"
+legacy_lyc_run_01,"{'unfocus': 596, 'focus': 298}","{'unfocus': 529, 'focus': 365}",894,0.6789709172259508,"{'unfocus': 0.5917225950782998, 'focus': 0.4082774049217002}"
+legacy_lyc_run_02,"{'unfocus': 596, 'focus': 298}","{'unfocus': 393, 'focus': 501}",894,0.6208053691275168,"{'unfocus': 0.4395973154362416, 'focus': 0.5604026845637584}"
+legacy_lyc_run_09,"{'unfocus': 0, 'focus': 298}","{'unfocus': 107, 'focus': 191}",298,0.6409395973154363,"{'unfocus': 0.35906040268456374, 'focus': 0.6409395973154363}"

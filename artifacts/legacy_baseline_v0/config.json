@@ -1,0 +1,85 @@
+{
+  "baseline_version": "legacy_baseline_v0",
+  "dataset_role": "legacy_baseline_candidate",
+  "dataset_version": "legacy_dataset_v0",
+  "feature_extraction": {
+    "bands_hz": {
+      "alpha": [
+        8.0,
+        13.0
+      ],
+      "beta": [
+        13.0,
+        30.0
+      ],
+      "delta": [
+        1.0,
+        4.0
+      ],
+      "gamma": [
+        30.0,
+        43.0
+      ],
+      "theta": [
+        4.0,
+        8.0
+      ]
+    },
+    "feature_order": "channel, band insertion order, absolute then relative",
+    "features_per_band": [
+      "log_absolute_power",
+      "relative_power"
+    ],
+    "method": "Welch band power per channel",
+    "total_power_range_hz": [
+      1.0,
+      43.0
+    ],
+    "welch_nperseg_sec": 2.0
+  },
+  "fit_policy": "pipeline.fit(X_train, y_train) only; validation uses pipeline.predict(X_val)",
+  "label_mapping": {
+    "focus": "focus",
+    "iu": "unfocus",
+    "ou": "unfocus"
+  },
+  "labels": [
+    "unfocus",
+    "focus"
+  ],
+  "pca": {
+    "n_components": 0.95,
+    "random_state": 42
+  },
+  "preprocessing": {
+    "channel_policy": "all channels identified as EEG by MNE, ordered as in EDF",
+    "edf_reader": "mne.io.read_raw_edf(preload=True, infer_types=True)",
+    "filter": {
+      "applied": "per manifest segment before windowing",
+      "fir_design": "firwin",
+      "h_freq_hz": 43.0,
+      "l_freq_hz": 0.5,
+      "method": "fir"
+    },
+    "resample": "MNE Raw.resample(target_fs, npad='auto') when source is not 128 Hz",
+    "target_sampling_rate_hz": 128.0
+  },
+  "random_seed": 42,
+  "split": {
+    "algorithm": "numpy RandomState(seed).permutation(groups), first ceil(fraction*n) groups",
+    "n_validation_groups": 5,
+    "seed": 42,
+    "unit": "session_group_id",
+    "validation_fraction": 0.2
+  },
+  "step_sec": 2.0,
+  "svc": {
+    "C": 10.0,
+    "class_weight": "balanced",
+    "gamma": "scale",
+    "kernel": "rbf",
+    "probability": true,
+    "random_state": 42
+  },
+  "window_sec": 4.0
+}
