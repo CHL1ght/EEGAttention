@@ -19,6 +19,10 @@
 4. 在 `session_manifest.csv` 增加一行，填写活动有效起止秒数；不清楚时采用首尾各 30 秒缓冲。
 5. 运行 `scripts/validate_locked_data.py`，确认时长、采样率、通道、哈希、标签和窗口数全部通过。
 
+2026-09-14 的现场执行框架见 [`locked/2026-09-14/recording_plan.md`](locked/2026-09-14/recording_plan.md)，每段录制后的空白记录模板见 [`recording_notes_template.md`](recording_notes_template.md)。模板中的任务、说话、异常和四项主观评分不改变现有 manifest schema；真实录制完成后再把已确认的字段写入现有 19 列清单。
+
+当前 `focus/unfocus` 仍是数据层 canonical label，研究表述逐步转向高 / 低任务投入度。高唤醒（例如恐惧）不等同于高投入；恐怖游戏应记录为额外的高投入 + 高唤醒 probe，不自动成为 `focus` 的唯一标准。当前 Trigger 不承担标签真值。
+
 详细规则见 [DATA_PROTOCOL.md](DATA_PROTOCOL.md)。
 
 ## Legacy 二分类口径
