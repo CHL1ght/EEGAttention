@@ -1,0 +1,36 @@
+{
+  "baseline_version": "legacy_baseline_v0",
+  "config_sha256": "274771877da2a88931edf28d9ab790c6d1ecae155558e728c6341ed89e0269e7",
+  "evaluation_script_path": "scripts/evaluate_locked_test.py",
+  "evaluation_script_sha256": "1e38de3c2feff1b7fae767e4ac2b3fd9ab74ee281dc43c568d07365e93a249c6",
+  "evaluation_version": "locked_test_evaluation_v0",
+  "excluded_reference_session_ids": [
+    "20260907_lyc_rest_01"
+  ],
+  "fit_calls": 0,
+  "formal_session_ids": [
+    "20260907_lyc_focus_01",
+    "20260907_lyc_focus_02",
+    "20260907_lyc_unfocus_01",
+    "20260907_zyf_focus_01",
+    "20260907_zyf_focus_02",
+    "20260907_zyf_unfocus_01"
+  ],
+  "freeze_commit_sha": "431f6c63c2e0f1461e67bf5f49b18a68b45b916d",
+  "freeze_manifest_sha256": "52255cfa9377f5da8f9d92c99b1e43ea1de13580ff3bb22ec7f9a8d34c60e6f2",
+  "locked_date": "2026-09-07",
+  "locked_manifest_path": "data/session_manifest.csv",
+  "locked_manifest_sha256": "95692ede6557950ee43c7aaae25ac815af7134b5f0ff6262d1ceeafe4387fc59",
+  "output_sha256": {
+    "locked_metrics.json": "ca5a385a969402b3a6a0e2dc4bce93dbf02cbfbc8e8fdb259136d1b0d63ff71f",
+    "locked_predictions.csv": "bd3f9f59a2bc67028463734cf42ae454ac512b67c6b66ef75dbf56604d37dd65",
+    "locked_session_metrics.csv": "3f33f87898a0ef83ec9f1cfb57f18260a8d9b36c954574941df912e58edf6daa",
+    "locked_subject_metrics.csv": "192b1760ba71574a1b63d4691c8b4c091277bf77d9eb42b9efe18b9173e9c56f",
+    "reference_predictions.csv": "4d448f5b0e7d2c3ab58dcb28ccdea3ff23a73f87e76a9926fb3b5ad743bde7de",
+    "reference_session_metrics.csv": "d861e6a1dc53da21b420d048c731fe92a51d1c2ca3a2f4499954e3d04f6d2665"
+  },
+  "pipeline_sha256": "2c67ed005d3821f712771d3412bcad0a5b67a2638e89393d1d505460635488cc",
+  "predict_calls": 7,
+  "run_timestamp_utc": "2026-09-13T12:33:05.737108+00:00",
+  "training_performed": false
+}

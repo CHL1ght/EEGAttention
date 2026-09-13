@@ -1,0 +1,58 @@
+{
+  "accuracy": 0.5529510255336961,
+  "balanced_accuracy": 0.5990684598341438,
+  "classification_report": {
+    "accuracy": 0.5529510255336961,
+    "focus": {
+      "f1-score": 0.5619360131255127,
+      "precision": 0.7687991021324355,
+      "recall": 0.442792501616031,
+      "support": 1547.0
+    },
+    "macro avg": {
+      "f1-score": 0.5527628783576282,
+      "precision": 0.5966825951249628,
+      "recall": 0.5990684598341438,
+      "support": 2389.0
+    },
+    "unfocus": {
+      "f1-score": 0.5435897435897435,
+      "precision": 0.42456608811748997,
+      "recall": 0.7553444180522565,
+      "support": 842.0
+    },
+    "weighted avg": {
+      "f1-score": 0.5554698938500344,
+      "precision": 0.6474746158199265,
+      "recall": 0.5529510255336961,
+      "support": 2389.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      636,
+      206
+    ],
+    [
+      862,
+      685
+    ]
+  ],
+  "confusion_matrix_label_order": [
+    "unfocus",
+    "focus"
+  ],
+  "formal_dataset_role": "locked_test",
+  "formal_session_count": 6,
+  "labels": [
+    "unfocus",
+    "focus"
+  ],
+  "locked_date": "2026-09-07",
+  "reference_session_count_excluded": 1,
+  "reference_session_ids_excluded": [
+    "20260907_lyc_rest_01"
+  ],
+  "total_windows": 2389,
+  "training_performed": false
+}
