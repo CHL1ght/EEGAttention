@@ -7,7 +7,7 @@
 - `upstream/`：论文上游代码、结果可视化及 MATLAB 数据检查。
 - `legacy/self_recorded/`：旧自采 3/4 分类、旧 20 分钟切段与域偏移对比实验。
 - `tutorial/`：中文注释版本和阅读笔记。
-- `lab_quick_test_legacy_model.ipynb`：输入单个 EDF 路径，按文件名识别可用真值并复用冻结模型做现场快速 inference；不训练、不 fit、不写入正式产物。
+- `lab_quick_test_legacy_model.ipynb`：输入单个 EDF 路径，严格按文件名识别 subject/真值，并复用 pooled frozen model 与适用的 lyc/zyf personal model 做现场快速 inference；zqd/未知 subject 跳过 personal，不训练、不 fit、不写入正式产物。
 
 ## 运行约定
 

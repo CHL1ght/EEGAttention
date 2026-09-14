@@ -1,0 +1,42 @@
+{
+  "excluded_subjects": {
+    "zqd": 6
+  },
+  "fit_calls": 2,
+  "locked_test_read": false,
+  "manifest_path": "data/legacy_manifest.csv",
+  "manifest_sha256": "b780eab933b857eca02f240fc35b3db09f2e3710b58d5ada4a309f0ed6bc1ff9",
+  "model_version": "subject_dependent_v1",
+  "models": [
+    {
+      "config_path": "artifacts/subject_models/lyc/config.json",
+      "model_path": "artifacts/subject_models/lyc/pipeline.joblib",
+      "n_edf": 19,
+      "n_session_groups": 12,
+      "n_source_recordings": 19,
+      "n_train_windows": 6741,
+      "pca_components_fitted": 65,
+      "pipeline_sha256": "7270a2dbf0f04f490b48dc52db4eb694df698d2b1636234abd65534505a9c0fa",
+      "subject": "lyc",
+      "train_manifest_path": "artifacts/subject_models/lyc/train_manifest.csv"
+    },
+    {
+      "config_path": "artifacts/subject_models/zyf/config.json",
+      "model_path": "artifacts/subject_models/zyf/pipeline.joblib",
+      "n_edf": 12,
+      "n_session_groups": 7,
+      "n_source_recordings": 12,
+      "n_train_windows": 4483,
+      "pca_components_fitted": 74,
+      "pipeline_sha256": "5343939b19d0bfde7aa2ff8915c43bf8be8169d020b48932f586bcb93d690ff4",
+      "subject": "zyf",
+      "train_manifest_path": "artifacts/subject_models/zyf/train_manifest.csv"
+    }
+  ],
+  "subjects": [
+    "lyc",
+    "zyf"
+  ],
+  "trained_at_utc": "2026-09-14T04:30:18.408067+00:00",
+  "unknown_subject_rows_in_manifest": 0
+}

@@ -1,0 +1,73 @@
+{
+  "class_window_counts": {
+    "focus": 3758,
+    "unfocus": 2983
+  },
+  "dataset_role": "legacy_baseline_candidate",
+  "dataset_version": "legacy_dataset_v0",
+  "fit_policy": "pipeline.fit(X_subject_historical, y_subject_historical) only; LOCKED_TEST is prediction-only",
+  "git_head": "bfcf7bcb9bd5c8b093f47f8ad9cc316691175ded",
+  "labels": [
+    "unfocus",
+    "focus"
+  ],
+  "locked_test_read": false,
+  "model_type": "subject_dependent",
+  "model_version": "subject_dependent_v1",
+  "n_features": 240,
+  "n_train_windows": 6741,
+  "pca": {
+    "n_components": 0.95,
+    "random_state": 42
+  },
+  "pca_components_fitted": 65,
+  "preprocessing": {
+    "filter_hz": [
+      0.5,
+      43.0
+    ],
+    "shared_with": "scripts/eeg_pipeline_utils.py",
+    "target_sampling_rate_hz": 128.0,
+    "window_step_sec": [
+      4.0,
+      2.0
+    ]
+  },
+  "subject": "lyc",
+  "svc": {
+    "C": 10.0,
+    "class_weight": "balanced",
+    "gamma": "scale",
+    "kernel": "rbf",
+    "probability": true,
+    "random_state": 42
+  },
+  "trained_at_utc": "2026-09-14T04:29:55.675015+00:00",
+  "training_scope": {
+    "edf_paths": [
+      "data/legacy/mixed_20min/data_0002_raw.edf",
+      "data/legacy/mixed_20min/data_0003_raw.edf",
+      "data/legacy/mixed_20min/data_0004_raw.edf",
+      "data/legacy/multiclass_10min/focus1.edf",
+      "data/legacy/multiclass_10min/iu1.edf",
+      "data/legacy/multiclass_10min/ou1.edf",
+      "data/legacy/multiclass_10min/focus2.edf",
+      "data/legacy/multiclass_10min/iu2.edf",
+      "data/legacy/multiclass_10min/ou2.edf",
+      "data/legacy/multiclass_10min/focus3.edf",
+      "data/legacy/multiclass_10min/iu3.edf",
+      "data/legacy/multiclass_10min/ou3.edf",
+      "data/legacy/multiclass_10min/focus4.edf",
+      "data/legacy/multiclass_10min/iu4.edf",
+      "data/legacy/multiclass_10min/focus5.edf",
+      "data/legacy/multiclass_10min/focus6.edf",
+      "data/legacy/multiclass_10min/focus7.edf",
+      "data/legacy/multiclass_10min/focus8.edf",
+      "data/legacy/multiclass_10min/focus9.edf"
+    ],
+    "n_edf": 19,
+    "n_session_groups": 12,
+    "n_source_recordings": 19,
+    "unit": "complete EDF/source_recording_id and session_group_id"
+  }
+}\n

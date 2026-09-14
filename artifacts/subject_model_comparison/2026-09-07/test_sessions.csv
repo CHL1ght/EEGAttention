@@ -1,0 +1,7 @@
+session_id,subject_id,canonical_label,dataset_role,edf_path,activity_start_s,activity_end_s
+20260907_lyc_focus_01,lyc,focus,locked_test,data/locked/2026-09-07/lyc_focus1_20260907.edf,30.0,877.5
+20260907_lyc_focus_02,lyc,focus,locked_test,data/locked/2026-09-07/lyc_focus_202609072034_raw.edf,30.0,599.5
+20260907_lyc_unfocus_01,lyc,unfocus,locked_test,data/locked/2026-09-07/lyc_unfocus1_20260907.edf,30.0,880.5
+20260907_zyf_focus_01,zyf,focus,locked_test,data/locked/2026-09-07/zyf_focus1_20260907.edf,30.0,881.0
+20260907_zyf_focus_02,zyf,focus,locked_test,data/locked/2026-09-07/zyf_focus2_20260907.edf,30.0,869.5
+20260907_zyf_unfocus_01,zyf,unfocus,locked_test,data/locked/2026-09-07/zyf_unfocus1_20260907.edf,30.0,869.5

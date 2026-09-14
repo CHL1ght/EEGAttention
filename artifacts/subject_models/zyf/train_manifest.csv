@@ -1,0 +1,16 @@
+dataset_version,recording_id,source_recording_id,session_group_id,subject_id,canonical_label,dataset_role,split,edf_path,activity_start_s,activity_end_s,sfreq_hz,window_sec,step_sec
+legacy_dataset_v0,legacy_zyf_mixed_01_focus,legacy_zyf_mixed_01,legacy_zyf_mixed_01,zyf,focus,legacy_baseline_candidate,train,data/legacy/mixed_20min/data_zyf_1_raw.edf,600,1200.0,300,4,2
+legacy_dataset_v0,legacy_zyf_mixed_01_unfocus,legacy_zyf_mixed_01,legacy_zyf_mixed_01,zyf,unfocus,legacy_baseline_candidate,train,data/legacy/mixed_20min/data_zyf_1_raw.edf,0,600.0,300,4,2
+legacy_dataset_v0,legacy_zyf_mixed_02_focus,legacy_zyf_mixed_02,legacy_zyf_mixed_02,zyf,focus,legacy_baseline_candidate,train,data/legacy/mixed_20min/data_zyf_2_raw.edf,600,1200.0,300,4,2
+legacy_dataset_v0,legacy_zyf_mixed_02_unfocus,legacy_zyf_mixed_02,legacy_zyf_mixed_02,zyf,unfocus,legacy_baseline_candidate,train,data/legacy/mixed_20min/data_zyf_2_raw.edf,0,600.0,300,4,2
+legacy_dataset_v0,legacy_zyf_mixed_03_focus,legacy_zyf_mixed_03,legacy_zyf_mixed_03,zyf,focus,legacy_baseline_candidate,train,data/legacy/mixed_20min/data_zyf_3_raw.edf,600,1200.0,300,4,2
+legacy_dataset_v0,legacy_zyf_mixed_03_unfocus,legacy_zyf_mixed_03,legacy_zyf_mixed_03,zyf,unfocus,legacy_baseline_candidate,train,data/legacy/mixed_20min/data_zyf_3_raw.edf,0,600.0,300,4,2
+legacy_dataset_v0,legacy_zyf_focus_01,legacy_zyf_focus_01,legacy_zyf_run_01,zyf,focus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_focus1.edf,0,599.5,300,4,2
+legacy_dataset_v0,legacy_zyf_iu_01,legacy_zyf_iu_01,legacy_zyf_run_01,zyf,unfocus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_iu1.edf,0,599.5,300,4,2
+legacy_dataset_v0,legacy_zyf_ou_01,legacy_zyf_ou_01,legacy_zyf_run_01,zyf,unfocus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_ou1.edf,0,599.5,300,4,2
+legacy_dataset_v0,legacy_zyf_focus_02,legacy_zyf_focus_02,legacy_zyf_run_02,zyf,focus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_focus2.edf,0,599.5,300,4,2
+legacy_dataset_v0,legacy_zyf_iu_02,legacy_zyf_iu_02,legacy_zyf_run_02,zyf,unfocus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_iu2.edf,0,599.5,300,4,2
+legacy_dataset_v0,legacy_zyf_ou_02,legacy_zyf_ou_02,legacy_zyf_run_02,zyf,unfocus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_ou2.edf,0,599.5,300,4,2
+legacy_dataset_v0,legacy_zyf_focus_03,legacy_zyf_focus_03,legacy_zyf_run_03,zyf,focus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_focus3.edf,0,599.5,300,4,2
+legacy_dataset_v0,legacy_zyf_ou_03,legacy_zyf_ou_03,legacy_zyf_run_03,zyf,unfocus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_ou3.edf,0,599.5,300,4,2
+legacy_dataset_v0,legacy_zyf_focus_04,legacy_zyf_focus_04,legacy_zyf_run_04,zyf,focus,legacy_baseline_candidate,train,data/legacy/multiclass_10min/zyf_focus4.edf,0,613.5,300,4,2

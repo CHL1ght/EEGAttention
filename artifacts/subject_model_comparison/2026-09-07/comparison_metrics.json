@@ -1,0 +1,178 @@
+{
+  "comparison_version": "subject_model_comparison_v1",
+  "evaluated_at_utc": "2026-09-14T04:30:41.213171+00:00",
+  "fit_calls": 0,
+  "formal_locked_sessions": [
+    "20260907_lyc_focus_01",
+    "20260907_lyc_focus_02",
+    "20260907_lyc_unfocus_01",
+    "20260907_zyf_focus_01",
+    "20260907_zyf_focus_02",
+    "20260907_zyf_unfocus_01"
+  ],
+  "git_head": "bfcf7bcb9bd5c8b093f47f8ad9cc316691175ded",
+  "labels": [
+    "unfocus",
+    "focus"
+  ],
+  "locked_date": "2026-09-07",
+  "locked_test_policy": "LOCKED_TEST used only for transform/predict/final metrics",
+  "model_sha256": {
+    "lyc_personal": "7270a2dbf0f04f490b48dc52db4eb694df698d2b1636234abd65534505a9c0fa",
+    "pooled": "2c67ed005d3821f712771d3412bcad0a5b67a2638e89393d1d505460635488cc",
+    "zyf_personal": "5343939b19d0bfde7aa2ff8915c43bf8be8169d020b48932f586bcb93d690ff4"
+  },
+  "models": {
+    "lyc_personal": "lyc personal model",
+    "pooled": "Existing pooled frozen model",
+    "zyf_personal": "zyf personal model"
+  },
+  "reference_sessions_excluded": [
+    "20260907_lyc_rest_01"
+  ],
+  "results": [
+    {
+      "accuracy": 0.466784765279008,
+      "balanced_accuracy": 0.47669443329318884,
+      "confusion_matrix": [
+        [
+          219,
+          205
+        ],
+        [
+          397,
+          308
+        ]
+      ],
+      "model": "lyc personal model",
+      "model_id": "lyc_personal",
+      "predicted_focus_proportion": 0.45438441098317095,
+      "predicted_focus_windows": 513,
+      "predicted_unfocus_proportion": 0.545615589016829,
+      "predicted_unfocus_windows": 616,
+      "sessions": 3,
+      "test_subject": "lyc",
+      "windows": 1129
+    },
+    {
+      "accuracy": 0.6793650793650794,
+      "balanced_accuracy": 0.5179511075248042,
+      "confusion_matrix": [
+        [
+          16,
+          402
+        ],
+        [
+          2,
+          840
+        ]
+      ],
+      "model": "lyc personal model",
+      "model_id": "lyc_personal",
+      "predicted_focus_proportion": 0.9857142857142858,
+      "predicted_focus_windows": 1242,
+      "predicted_unfocus_proportion": 0.014285714285714285,
+      "predicted_unfocus_windows": 18,
+      "sessions": 3,
+      "test_subject": "zyf",
+      "windows": 1260
+    },
+    {
+      "accuracy": 0.6554472984942427,
+      "balanced_accuracy": 0.6427990766760336,
+      "confusion_matrix": [
+        [
+          251,
+          173
+        ],
+        [
+          216,
+          489
+        ]
+      ],
+      "model": "Existing pooled frozen model",
+      "model_id": "pooled",
+      "predicted_focus_proportion": 0.5863596102745793,
+      "predicted_focus_windows": 662,
+      "predicted_unfocus_proportion": 0.4136403897254207,
+      "predicted_unfocus_windows": 467,
+      "sessions": 3,
+      "test_subject": "lyc",
+      "windows": 1129
+    },
+    {
+      "accuracy": 0.46111111111111114,
+      "balanced_accuracy": 0.5769158644830603,
+      "confusion_matrix": [
+        [
+          385,
+          33
+        ],
+        [
+          646,
+          196
+        ]
+      ],
+      "model": "Existing pooled frozen model",
+      "model_id": "pooled",
+      "predicted_focus_proportion": 0.18174603174603174,
+      "predicted_focus_windows": 229,
+      "predicted_unfocus_proportion": 0.8182539682539682,
+      "predicted_unfocus_windows": 1031,
+      "sessions": 3,
+      "test_subject": "zyf",
+      "windows": 1260
+    },
+    {
+      "accuracy": 0.4579273693534101,
+      "balanced_accuracy": 0.5645473705339221,
+      "confusion_matrix": [
+        [
+          421,
+          3
+        ],
+        [
+          609,
+          96
+        ]
+      ],
+      "model": "zyf personal model",
+      "model_id": "zyf_personal",
+      "predicted_focus_proportion": 0.08768821966341896,
+      "predicted_focus_windows": 99,
+      "predicted_unfocus_proportion": 0.912311780336581,
+      "predicted_unfocus_windows": 1030,
+      "sessions": 3,
+      "test_subject": "lyc",
+      "windows": 1129
+    },
+    {
+      "accuracy": 0.41349206349206347,
+      "balanced_accuracy": 0.5214089261157644,
+      "confusion_matrix": [
+        [
+          352,
+          66
+        ],
+        [
+          673,
+          169
+        ]
+      ],
+      "model": "zyf personal model",
+      "model_id": "zyf_personal",
+      "predicted_focus_proportion": 0.1865079365079365,
+      "predicted_focus_windows": 235,
+      "predicted_unfocus_proportion": 0.8134920634920635,
+      "predicted_unfocus_windows": 1025,
+      "sessions": 3,
+      "test_subject": "zyf",
+      "windows": 1260
+    }
+  ],
+  "test_subjects": [
+    "lyc",
+    "zyf"
+  ],
+  "training_performed": false
+}

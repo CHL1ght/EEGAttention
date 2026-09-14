@@ -1,0 +1,19 @@
+{
+  "comparison_version": "subject_model_comparison_v1",
+  "evaluated_at_utc": "2026-09-14T04:30:41.271985+00:00",
+  "fit_calls": 0,
+  "git_head": "bfcf7bcb9bd5c8b093f47f8ad9cc316691175ded",
+  "locked_manifest_path": "data/session_manifest.csv",
+  "locked_manifest_sha256": "95692ede6557950ee43c7aaae25ac815af7134b5f0ff6262d1ceeafe4387fc59",
+  "output_sha256": {
+    "comparison_metrics.json": "13c640f2f96c1526cef6ef2ee11a06f41ccb5c6c9738698d856f2d5469e862bc",
+    "predictions.csv": "41d06ba2ff2d7ecec5ccdc2c907e823dbddc459886456c2af7702cd8a0d86b31",
+    "session_metrics.csv": "36e70afa04e39bf176642666ce289d30fb31d6a3a22964803c051741b53edd2c",
+    "subject_model_comparison.csv": "2524e0a46a3f5c8b67658f4fbe1a4a737ccc9d5d7e4a646e19ce628307037295",
+    "test_sessions.csv": "fb19b6bae862bb972d1bfd8b7b1f5afe1f45191e51a3317bad1f1e4457d715a0"
+  },
+  "reference_sessions_not_evaluated": [
+    "20260907_lyc_rest_01"
+  ],
+  "training_performed": false
+}
