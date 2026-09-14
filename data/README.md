@@ -1,60 +1,52 @@
-# 数据目录
+# 这个目录是什么
 
-这里是项目唯一的数据入口。
+这里保存原始脑电、允许训练的数据清单和禁止训练的测试/探索数据规则。
 
-## 本目录直接文件
+## 它属于项目哪一步
 
-| 文件 | 代表什么 | 是否可修改 |
-|---|---|---|
-| `README.md` | 数据目录导航、数据源优先级和使用方式。 | 可更新文档。 |
-| `DATA_PROTOCOL.md` | 正式标签、活动区间、4s/2s 窗口、session 划分和 LOCKED_TEST 禁止事项。 | 规则变更需留痕。 |
-| `legacy_manifest.csv` | 旧数据的唯一身份/标签/时间/用途/路径/哈希登记；训练脚本只从它读取。 | 不应随意重排或覆盖。 |
-| `legacy_manifest_dictionary.md` | legacy manifest 30 列的数据字典。 | 可更新文档。 |
-| `session_manifest.csv` | 正式 locked/reference session 登记；评估脚本的唯一正式测试入口。 | 新 session 追加，禁止覆盖原行。 |
-| `recording_notes_template_simplified.md` | 现场采集后填写的 session 记录模板。 | 模板可迭代。 |
+Stage 0–8：作者数据 → 自采历史 → 冻结测试 → 现场探索。
 
-| 位置 | 用途 | 是否进入新管线 |
-|---|---|---|
-| `session_manifest.csv` | 正式 session 清单和标签真值 | 是，唯一入口 |
-| `legacy_manifest.csv` | `legacy_dataset_v0` 的录制身份、采集时间证据、标签映射、用途和哈希 | 是，旧 baseline 的唯一候选入口 |
-| `locked/YYYY-MM-DD/` | 新标准单状态录制；当前作为不可触碰的最终测试集 | 仅最终测试 |
-| `legacy/mixed_20min/` | 旧 20 分钟固定顺序录制；按清单中的片段边界读取 | Legacy 候选，必须按完整 EDF 分组 |
-| `legacy/multiclass_10min/` | 旧单状态自采记录 | 候选 Legacy 训练/验证集；须由新主 Notebook 按完整 EDF 划分 |
-| `reference/original_mat/` | 论文/上游项目的 MATLAB 参考数据 | 仅历史复现 |
+前一步：Common6 通道对齐与 Mixed。
+这一步：防止来源不明、标签不明或看过反馈的数据混进正式训练或最终测试。
+后一步：将来预先规定任务和评估方案，再收集不看反馈、从未用于调参的新 final holdout（最终留出集）；当前旧测试已被多次查看，不可再次声称全新盲测。
 
-子目录 README：
+完整故事：[实验阶段地图](../docs/EXPERIMENT_MAP.md)；名词和模型：[模型字典](../docs/MODEL_CATALOG.md)。
 
-- [`legacy/README.md`](legacy/README.md)：旧自采数据及两个数据族。
-- [`locked/README.md`](locked/README.md)：正式测试和采集计划。
-- [`reference/README.md`](reference/README.md)：上游 MAT 数据。
+## 为什么会有这个目录
 
-EDF、CSV、DSI、MAT 原始文件均不得在仓库内就地编辑；需要修正身份、标签或活动区间时更新清单并保留哈希/说明。
+防止来源不明、标签不明或看过反馈的数据混进正式训练或最终测试。
 
-## 新数据怎么放
+## 输入从哪里来
 
-1. 每个文件只录一种状态，文件名使用：`被试_focus_序号_YYYYMMDD.edf`、`被试_unfocus_序号_YYYYMMDD.edf` 或 `被试_rest_序号_YYYYMMDD.edf`。
-2. 配套 CSV/DSI 使用相同主体名；不要覆盖旧文件。
-3. 放入 `data/locked/YYYY-MM-DD/`。
-4. 在 `session_manifest.csv` 增加一行，填写活动有效起止秒数；不清楚时采用首尾各 30 秒缓冲。
-5. 运行 `scripts/validate_locked_data.py`，确认时长、采样率、通道、哈希、标签和窗口数全部通过。
+作者原始MAT、DSI设备导出的EDF/CSV/DSI、采集者确认的身份与任务记录。
 
-2026-09-14 的现场执行框架见 [`locked/2026-09-14/recording_plan.md`](locked/2026-09-14/recording_plan.md)，每段录制后的空白记录模板见 [`recording_notes_template_simplified.md`](recording_notes_template_simplified.md)。模板中的任务、说话、异常和四项主观评分不改变现有 manifest schema；真实录制完成后再把已确认的字段写入现有 19 列清单。
+## 谁生成这里的文件
 
-当前 `focus/unfocus` 仍是数据层 canonical label，研究表述逐步转向高 / 低任务投入度。高唤醒（例如恐惧）不等同于高投入；恐怖游戏应记录为额外的高投入 + 高唤醒 probe，不自动成为 `focus` 的唯一标准。当前 Trigger 不承担标签真值。
+原始文件由设备/作者提供；清单人工登记；validate_legacy_manifest.py与validate_locked_data.py只读验收。
 
-详细规则见 [DATA_PROTOCOL.md](DATA_PROTOCOL.md)。
+## 这个目录里的文件
 
-## Legacy 二分类口径
+| 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
+|---|---|---|---|
+| [legacy/](legacy/README.md) | 这里封存早期自采原始信号；训练能用哪些片段由 legacy_manifest.csv 决定。 | 目录 | 按子目录规则 |
+| [locked/](locked/README.md) | 这里封存预先指定的独立测试信号，训练程序不能使用；今天的反馈录制另有目录。 | 目录 | 按子目录规则 |
+| [reference/](reference/README.md) | 这里保存原作者提供的MAT数据：最初用于复现，后来也为作者模型和mixed模型提供训练录制。 | 目录 | 按子目录规则 |
+| [DATA_PROTOCOL.md](DATA_PROTOCOL.md) | 数据角色、标签、窗口、禁止泄漏规则；第7节定义现场反馈metadata。 | 手写维护 | 可维护，保留来源与实验边界 |
+| [legacy_manifest_dictionary.md](legacy_manifest_dictionary.md) | legacy manifest 30 列的数据字典。 | 手写维护 | 可维护，保留来源与实验边界 |
+| [legacy_manifest.csv](legacy_manifest.csv) | 唯一历史候选入口；记录身份、标签、片段、分组、路径与哈希。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [README.md](README.md) | 本目录为什么存在、属于哪一步，以及各文件怎么看。 | 手写维护 | 可维护，保留来源与实验边界 |
+| [recording_notes_template_simplified.md](recording_notes_template_simplified.md) | 现场采集后填写的 session 记录模板。 | 手写维护 | 可维护，保留来源与实验边界 |
+| [session_manifest.csv](session_manifest.csv) | 正式locked/reference录制的唯一登记；不收LAB_FEEDBACK数据。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [exploratory/](exploratory/README.md) | 这里为今天看模型反馈、主动调整状态前后的录制建立归档规则。 | 目录 | 按子目录规则 |
 
-- `focus` 保持为 `focus`。
-- `iu` 和 `ou` 合并为 `unfocus`。
-- `daze` 作静息参考，不进入当前二分类。
-- `mixed_20min/` 按较晚且实际运行过的专项 Notebook，统一解释为前 10 分钟 `unfocus`、后 10 分钟 `focus`；较早的通用讲解稿写反，清单中保留了这一来源冲突。
+## 当前状态
 
-mixed 的状态和边界直接写在 `legacy_manifest.csv` 的 `canonical_label`、`activity_start_s`、`activity_end_s` 中，不依赖另一份隐藏映射。未来主 Notebook 对所有数据统一按“路径 + 起点 + 终点 + 标签”读取，不需要针对 mixed 文件名写特判。
+历史与测试已登记；今天lab_feedback只有规则，无新增信号。
 
-当前清单覆盖 39 个 EDF，共 48 行逻辑记录：43 个二分类候选片段（`focus=22`、`unfocus=21`）、4 个静息参考录制和 1 个过短演示记录。候选片段的 `split` 仍为 `unassigned`，留给规范主 Notebook 按完整 `session_group_id` 分配。
+## 我什么时候需要看这个目录
 
-清单 30 列的逐项中文解释、允许值和使用方法见 [`legacy_manifest_dictionary.md`](legacy_manifest_dictionary.md)。
+今天带回文件时先看exploratory/lab_feedback/README.md。
 
-旧数据中无姓名前缀的文件已由数据负责人确认为 `lyc`。原始文件名保持不变，身份和时间统一以 `legacy_manifest.csv` 为准；采集开始时间取 EDF 文件头，Windows 修改时间另列用于核对。
+## 不要误解
+
+并非所有新录制都放locked；feedback0同样是探索数据。

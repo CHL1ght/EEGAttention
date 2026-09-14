@@ -1,21 +1,53 @@
-# `author_common6/`
+# 这个目录是什么
 
-这是只使用上游作者 MATLAB 数据的 `author-common6` 模型。训练范围沿用 checked-in author notebook 选出的 23 个 recording：`3–7, 10–14, 17–21, 24–27, 31–34`；每个 recording 的前 600 秒标为 `focus`，后 600 秒标为 `unfocus`。
+只用作者23个录制、去掉AF4后训练的六通道模型。
 
-common6 直接保留作者 MAT 中的 `F7,F3,P7,O1,O2,P8`，主动舍弃 `AF4`。它与 DSI-24 的通道名通过 `scripts/cross_source_utils.py` 的 `T5-Pz→P7`、`T6-Pz→P8` adapter 对齐；author MAT reference 仍为 unknown，因此跨来源结果仅为 exploratory。
+## 它属于项目哪一步
 
-| 文件 | 含义 |
-|---|---|
-| `pipeline.joblib` | 用作者 common6 特征 fit 的 `StandardScaler → PCA → RBF SVC` pipeline。 |
-| `train_manifest.csv` | 46 个 author label blocks（23 recording × focus/unfocus）及其 session group。 |
-| `mat_inspection.csv` | 选定 MAT 的字段、数据形状、采样率和 common channel inspection。 |
-| `validation_fold_metrics.csv` | recording-level 5-fold GroupKFold 每折结果。 |
-| `validation_predictions.csv` | validation window 的真实/预测标签及 recording 信息。 |
-| `validation_confusion_matrix.csv` | validation 总混淆矩阵。 |
-| `validation_metrics.json` | GroupKFold accuracy / balanced accuracy 均值和标准差。 |
-| `config.json` | common6 映射、60 维特征、PCA/SVC 配置、author recording 范围与审计边界。 |
-| `run_manifest.json` | 输出哈希与训练策略声明；`locked_test_read=false`。 |
-| `REPORT.md` | 人类可读的 author common6 训练和验证报告。 |
-| `README.md` | 本目录文件说明。 |
+Stage 7：Common6 通道对齐与 Mixed
 
-该模型不改变既有 `author_models/author_only/` 的 author-only-7ch 结果；两者可在统一比较报告中进行 AF4 去除前后的内部 ablation 对照。
+前一步：Author-only model。
+这一步：在相同六通道输入下，加入作者训练数据能否改善新录制表现？
+后一步：现场用三种代表模型看反馈方向，再规划未来不看反馈的新最终留出集。
+
+完整故事：[实验阶段地图](../../../docs/EXPERIMENT_MAP.md)；名词和模型：[模型字典](../../../docs/MODEL_CATALOG.md)。
+
+## 为什么会有这个目录
+
+比较去掉AF4的影响，并检查作者模型直接预测自采数据的表现。
+
+## 输入从哪里来
+
+与author-only-7ch相同23个MAT录制、13754窗口。 没有使用：自采历史数据、zqd、未知身份、LOCKED_TEST、LAB_FEEDBACK。
+
+## 谁生成这里的文件
+
+scripts/train_cross_source_models.py --model author-common6（既有生成入口，本轮不训练）。
+
+## 这个目录里的文件
+
+| 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
+|---|---|---|---|
+| [config.json](config.json) | 模型使用的数据范围、通道/特征、固定参数等说明。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [mat_inspection.csv](mat_inspection.csv) | 选定 MAT 的字段、数据形状、采样率和 common channel inspection。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [pipeline.joblib](pipeline.joblib) | 保存已学好的缩放、降维、分类步骤；加载后可预测，不需要再训练。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [README.md](README.md) | 本目录为什么存在、属于哪一步，以及各文件怎么看。 | 手写维护 | 可维护，保留来源与实验边界 |
+| [REPORT.md](REPORT.md) | 当次实验的原始报告；当前阶段解释见本README，历史结论不改写。 | 手写维护 | 不就地覆盖；需另存版本并留痕 |
+| [run_manifest.json](run_manifest.json) | 记录当次运行的来源、输出哈希和执行策略。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [train_manifest.csv](train_manifest.csv) | 实际用于该模型训练的录制/片段清单，可追溯身份、标签和分组。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [validation_confusion_matrix.csv](validation_confusion_matrix.csv) | 分别统计两类预测正确和互相混淆的数量。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [validation_fold_metrics.csv](validation_fold_metrics.csv) | 逐折列出哪些完整录制被留出以及该折成绩。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [validation_metrics.json](validation_metrics.json) | 历史留出数据上的汇总成绩；不是今天新录制的结果。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [validation_predictions.csv](validation_predictions.csv) | 每个历史验证窗口的真实/预测类别，可复算指标。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+
+## 当前状态
+
+已完成；GroupKFold Acc/Bal均64.69% ±4.29%；LOCKED_TEST lyc37.56% /50.00%，zyf33.17% /50.00%，全部预测unfocus。
+
+## 我什么时候需要看这个目录
+
+作者内部通道对照和跨来源研究，不默认显示在现场界面。
+
+## 不要误解
+
+输入为60维；文件名标签只用于计分，QuickTest不更新训练参数。

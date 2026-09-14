@@ -1,17 +1,52 @@
-# LOCKED_TEST 2026-09-07 结果
+# 这个目录是什么
 
-这是旧 pooled frozen model 的独立 prediction-only 结果。正式二分类包含 6 个 session、2,389 个窗口；`lyc_rest_01` 是 reference rest，不进入二分类 accuracy。
+这里保存旧冻结通用模型在6个正式测试 session、2389个窗口上的成绩；rest 不计入二分类。
 
-| 文件 | 含义 |
-|---|---|
-| `locked_predictions.csv` | 6 个正式 locked session 的逐窗口 true/pred、subject、session 和窗口起止时间。 |
-| `locked_session_metrics.csv` | 每个正式 session 的窗口数、accuracy 和预测 focus/unfocus 数量/比例。 |
-| `locked_subject_metrics.csv` | 将正式 session 按 lyc/zyf 聚合后的 subject 指标。 |
-| `locked_metrics.json` | 总体 accuracy、balanced accuracy、混淆矩阵及计数。 |
-| `reference_predictions.csv` | rest reference 的预测记录，仅供质量检查。 |
-| `reference_session_metrics.csv` | rest reference 的汇总，不参与二分类指标。 |
-| `run_manifest.json` | 旧 pipeline、清单、评估脚本和输出文件的哈希；记录 `fit_calls=0`。 |
-| `run_summary.json` | 本次 locked evaluation 的机器可读摘要。 |
-| `REPORT.md` | 人类可读的测试说明、结果和冻结边界。 |
+## 它属于项目哪一步
 
-使用 `python scripts/evaluate_locked_test.py --check-existing` 做无 EDF 读取的回归检查。
+Stage 3：独立 LOCKED_TEST
+
+前一步：Legacy pooled baseline。
+这一步：面对从未参与训练的新录制，旧模型表现如何？
+后一步：怀疑不同人的差异影响模型，于是检验个人模型。
+
+完整故事：[实验阶段地图](../../../docs/EXPERIMENT_MAP.md)；名词和模型：[模型字典](../../../docs/MODEL_CATALOG.md)。
+
+## 为什么会有这个目录
+
+面对从未参与训练的新录制，旧模型表现如何？
+
+## 输入从哪里来
+
+data/locked/2026-09-07/：lyc/zyf 各3段二分类录制，共2389个正式窗口；另1段静息参考。
+
+## 谁生成这里的文件
+
+scripts/validate_locked_data.py；scripts/evaluate_locked_test.py。
+
+## 这个目录里的文件
+
+| 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
+|---|---|---|---|
+| [locked_metrics.json](locked_metrics.json) | 总体 accuracy、balanced accuracy、混淆矩阵及计数。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [locked_predictions.csv](locked_predictions.csv) | 正式测试逐窗口预测记录；不同于QuickTest全文件反馈。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [locked_session_metrics.csv](locked_session_metrics.csv) | 每次完整测试录制的预测比例和成绩。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [locked_subject_metrics.csv](locked_subject_metrics.csv) | 将正式 session 按 lyc/zyf 聚合后的 subject 指标。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [README.md](README.md) | 本目录为什么存在、属于哪一步，以及各文件怎么看。 | 手写维护 | 可维护，保留来源与实验边界 |
+| [reference_predictions.csv](reference_predictions.csv) | rest reference 的预测记录，仅供质量检查。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [reference_session_metrics.csv](reference_session_metrics.csv) | rest reference 的汇总，不参与二分类指标。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [REPORT.md](REPORT.md) | 当次实验的原始报告；当前阶段解释见本README，历史结论不改写。 | 手写维护 | 不就地覆盖；需另存版本并留痕 |
+| [run_manifest.json](run_manifest.json) | 记录当次运行的来源、输出哈希和执行策略。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+| [run_summary.json](run_summary.json) | 本次 locked evaluation 的机器可读摘要。 | 采集或程序生成 | 不就地覆盖；需另存版本并留痕 |
+
+## 当前状态
+
+已完成；既有模型/结果只读。
+
+## 我什么时候需要看这个目录
+
+需要回答“面对从未参与训练的新录制，旧模型表现如何？”时查看本目录文件。
+
+## 不要误解
+
+LOCKED_TEST（冻结测试数据，只能预测，不能参与任何 fit，即学习参数）首轮总 Accuracy 55.30%、Balanced Accuracy 59.91%，明显低于历史验证。按整个 EDF/session 隔离，防止同一次录制的窗口跨集合。

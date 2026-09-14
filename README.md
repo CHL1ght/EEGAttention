@@ -1,59 +1,92 @@
-# EEG Attention Reproduction
+# EEGAttention：从脑电波到现场反馈
 
-本仓库用于复现并改进 EEG 专注度识别系统。当前正式目标是区分 `focus`（专注）与 `unfocus`（不专注）；`rest`（静息态）保留作基线或质量检查，不并入不专注类别。
+## 30 秒看懂这个项目
 
-## 当前进度
+我们想通过EEG（脑电信号）区分focus（专注）与unfocus（不专注）。先复现原作者方案，再用自己的EDF脑电文件训练模型；后来发现，把同一次录制的小片段随机分到训练和测试会让成绩虚高，于是改为按完整录制隔离，并封存独立测试数据。之后又检验个人模型和作者数据，当前最大的困难是换一次录制或换一种数据来源后，模型表现变差。
 
-- 最新简报：[`2026-09-14｜Personal diagnosis、author-only 与 common6 对比`](docs/progress/EEG项目推进简报_2026-09-14.md)
-- 历史简报索引：[`docs/progress/`](docs/progress/README.md)
+今天现场用几个已经训练好的模型观察反馈：先录一段，看结果，主动调整状态，再录一段比较。这个先导实验叫LAB_FEEDBACK（现场反馈探索），不是最终模型考试。
 
-当前状态：`better_train` 分支已完成 `legacy_baseline_v0` 的 Legacy-only 冻结，并在冻结 pipeline 下完成 2026-09-07 的独立 `LOCKED_TEST FIRST RUN`。上一阶段新增 lyc/zyf subject-dependent personal model；本阶段完成 personal 诊断、author-only-7ch，并在权威 ACNS/Wearable Sensing 证据解除 T5/T6 命名阻塞后完成 author-common6、our-common6、mixed-common6。Personal 诊断显示 `lyc personal → zyf` 的高 accuracy 来自明显类别偏置，历史 held-out 高于 LOCKED_TEST，支持 session/domain shift 嫌疑。Author-only-7ch GroupKFold balanced accuracy 为 `64.12% ± 4.37%`，author-common6 为 `64.69% ± 4.29%`。Common6 结果见 [`artifacts/cross_source_comparison/2026-09-14/`](artifacts/cross_source_comparison/2026-09-14/)。
+## 项目发展路线图
 
-## 当前数据入口
-
-- 正式清单：`data/session_manifest.csv`
-- Legacy baseline 候选清单：`data/legacy_manifest.csv`
-- 数据规范：`data/DATA_PROTOCOL.md`
-- 新标准录制：`data/locked/YYYY-MM-DD/`
-- 只读验收：`scripts/validate_locked_data.py`
-
-新数据必须一段只对应一种状态，不依赖 marker。正式样本统一使用 4 秒窗口、2 秒步长，并在每段录制首尾默认各留 30 秒操作缓冲。训练/测试必须先按完整 session 或被试划分，再切窗口。
-
-运行验收：
-
-```powershell
-python scripts/validate_locked_data.py
-python scripts/validate_legacy_manifest.py
+```text
+原作者方案/数据
+  ↓ 早期自采EEG探索
+  ↓ Legacy pooled baseline（第一个冻结的多人通用模型）
+  ↓ 独立LOCKED_TEST（只预测、禁止学习参数的测试数据）
+  ↓ lyc / zyf personal models（各自只用自己的历史数据）
+  ↓ Personal diagnosis（检查为什么个人模型没有稳定改善）
+  ↓ Author-only model（单独检验作者数据）
+  ↓ Common6通道对齐（双方都能可靠对应的六个测量位置）
+  ↓ Our-common6 / Author-common6 / Mixed-common6（自采/作者/合并训练）
+  ↓ 现场LAB_FEEDBACK QuickTest（已有模型的反馈与前后比较）
+  ↓ 未来新的真正final holdout（事先封存且不看反馈的最终留出集）
 ```
 
-验收脚本只读取 EDF 文件头和哈希，不修改数据，也不依赖 MNE。
+下表连接每一步的问题、数据、结果与路径。详细故事见 [实验阶段地图](docs/EXPERIMENT_MAP.md)。脚本是来源索引，不是要求按顺序重新训练。
 
-## 仓库文件总览
+| 阶段与为什么做 | 数据 | 已得到的结论 | 脚本/入口 | 产物位置 |
+|---|---|---|---|---|
+| 0 原作者：先弄懂和复现方案 | 作者MAT | 保留来源与历史结果 | notebooks/upstream/ | artifacts/upstream_author/；artifacts/reproductions/ |
+| 1 早期自采：检查自己的数据 | legacy EDF | 随机窗口高分不等于新录制泛化 | notebooks/legacy/self_recorded/ | artifacts/legacy/notebook_outputs/ |
+| 2 正式基线：保存可重复模型 | 按组划分后的历史训练数据 | 历史验证准确率69.99% | scripts/legacy_baseline_v0.py | artifacts/legacy_baseline_v0/ |
+| 3 独立测试：检验新录制 | 2026-09-07封存EDF | 总准确率降至55.30% | scripts/evaluate_locked_test.py | artifacts/locked_test/2026-09-07/ |
+| 4 个人模型：检验同人训练 | lyc/zyf各自历史数据 | 未稳定胜过原通用模型 | scripts/train_subject_models.py；scripts/evaluate_subject_models.py | artifacts/subject_models/；artifacts/subject_model_comparison/ |
+| 5 个人诊断：追查失败 | 历史数据与已有预测 | 预测偏向和录制条件变化值得关注 | scripts/diagnose_subject_models.py | artifacts/subject_model_diagnostics/ |
+| 6 作者模型：检查作者内部可分性 | 23个作者MAT录制 | 七通道按录制验证约64.12% | scripts/train_cross_source_models.py | artifacts/author_models/author_only/ |
+| 7 六通道：比较是否加入作者数据 | lyc/zyf历史 + 作者23段 | 混合模型相对自采六通道对照有改善 | scripts/cross_source_utils.py；scripts/train_cross_source_models.py；scripts/evaluate_cross_source_models.py | artifacts/common6_compatibility/；artifacts/author_models/author_common6/；artifacts/our_common6_models/；artifacts/mixed_models/；artifacts/cross_source_comparison/2026-09-14/ |
+| 8 现场反馈：比较主动调整前后 | 真实数据回来后归入lab_feedback | 当前只建立入口/规则，尚无今天的新实验结论 | notebooks/lab_quick_test_legacy_model.ipynb | 结果默认只在内存；data/exploratory/lab_feedback/2026-09-14/为原始录制归档 |
+| 未来最终留出：独立检验 | 未来事先规划的新数据 | 尚未开始 | 未来方案明确后登记 | 不将feedback数据直接改名成locked |
 
-完整的递归文件说明见 [`docs/REPOSITORY_FILE_GUIDE.md`](docs/REPOSITORY_FILE_GUIDE.md)。每个主要内容目录均有自己的 README，负责说明本目录直接文件；不要把 `artifacts/` 中的历史缓存、上游结果或冻结模型误当作当前训练入口。
+## 我从哪里开始
 
-## 目录说明
+- 想知道为什么做这些实验 → [EXPERIMENT_MAP.md](docs/EXPERIMENT_MAP.md)。
+- 不知道某个模型是什么 → [MODEL_CATALOG.md](docs/MODEL_CATALOG.md)，含术语解释。
+- 想查某个文件路径 → [REPOSITORY_FILE_GUIDE.md](docs/REPOSITORY_FILE_GUIDE.md)。
+- 今天要录制和看反馈 → [LAB_FEEDBACK规则](data/exploratory/lab_feedback/README.md)、[今天的目录](data/exploratory/lab_feedback/2026-09-14/README.md)、[QuickTest Notebook](notebooks/lab_quick_test_legacy_model.ipynb)。
 
-| 目录 | 内容 |
-|---|---|
-| `data/locked/` | 不可用于训练或调参的锁定数据 |
-| `data/legacy/` | 旧自采数据，仅用于历史追溯 |
-| `data/reference/` | 上游论文 MATLAB 数据 |
-| `artifacts/upstream_author/` | 原作者仓库早期版本中已有的结果表 |
-| `artifacts/legacy/` | 我们早期探索 notebook 的历史产物 |
-| `artifacts/reproductions/` | 我们运行/改造上游流程生成的数组、缓存、权重和结果 |
-| `notebooks/` | 上游复现、历史实验和中文教程，分目录归档 |
-| `scripts/` | 验收入口；旧训练辅助脚本位于 `scripts/legacy/` |
-| `system/` | 系统原型代码 |
-| `docs/` | 推进简报和说明图片 |
+## 现场怎么操作
 
-旧 notebook 中的随机窗口评估仅用于确认流程是否运行，不能作为跨 session 或跨被试的泛化结果。
+在已有EEG Python环境中，从仓库根目录或notebooks目录打开QuickTest。第一段填EDF_PATH执行单文件模式；第二段填EDF_PATH_BEFORE / EDF_PATH_AFTER执行前后模式。lyc/zyf默认运行旧通用模型、本人模型、mixed-common6；zqd/unknown跳过个人模型。
+
+pooled/personal使用完整24通道的240维特征；mixed-common6使用六通道的60维特征，两路都复用共享处理函数。文件名标签只用于计分。标签不同或身份不同/未知时不算改善差值。
+
+今天命名例：`lyc_focus_202609141630_feedback0.edf` → `lyc_focus_202609141650_feedback1.edf`。同一次录制的EDF/CSV/DSI保持同一stem，放入`data/exploratory/lab_feedback/2026-09-14/`。包括feedback0在内都默认不训练、不作为最终测试；实际metadata等数据回来再填写。
+
+## 目前结果怎么读
+
+Balanced Accuracy（平衡准确率）分别算两类召回率后平均，避免被样本较多的一类主导。既有正式测试结果：
+
+| 模型 | lyc平衡准确率 | zyf平衡准确率 |
+|---|---:|---:|
+| 原通用冻结模型 | 64.28% | 57.69% |
+| lyc个人模型 | 47.67% | 51.80% |
+| zyf个人模型 | 56.45% | 52.14% |
+| 只用作者六通道 | 50.00% | 50.00% |
+| 只用自采六通道 | 48.29% | 46.78% |
+| 合并来源六通道 | 52.68% | 55.77% |
+
+mixed相对our-common6提高4.39/8.99个百分点，但尚未超过原通用模型。Our reference（电压参考电极）=Pz；作者reference未知，通道对齐不意味着参考一致。结果仅作exploratory / channel-aligned but reference compatibility uncertain。完整既有结果见[比较报告](artifacts/cross_source_comparison/2026-09-14/REPORT.md)。
+
+## 文件与数据边界
+
+代码在[scripts/](scripts/README.md)，交互入口在[notebooks/](notebooks/README.md)，原始数据在[data/](data/README.md)，实验产物在[artifacts/](artifacts/README.md)，文档在[docs/](docs/README.md)，未来服务原型在[system/](system/README.md)。每个目录README都说明其阶段、来源和用途。
+
+LOCKED_TEST只可预测、计分，不可fit（学习参数）、调参或挑选模型。现场feedback数据不能靠改文件名变成独立测试。旧模型、原始信号及历史报告保留原样；未来真正最终留出集需要重新规划。
+
+## 只读验收
+
+```powershell
+python scripts/validate_legacy_manifest.py
+python scripts/validate_locked_data.py
+python scripts/validate_reproduction_models.py
+python scripts/validate_quick_test.py
+git diff --check
+```
+
+当前本机可使用 `C:\CHLight\1-Workconfig\Miniconda\envs\EEG\python.exe`。训练命令仅供查来源，不属于本轮验收。进度历史见[docs/progress/](docs/progress/README.md)。
 
 ## 上游参考
 
-1. Wang, J.; Kim, S.-K. *Novel Machine Learning-Based Brain Attention Detection Systems*. Information 2025, 16, 25.
-2. Aci, C.I.; Kaya, M.; Mishchenko, Y. *Distinguishing mental attention states of humans via an EEG-based passive BCI using machine learning methods*. Expert Systems with Applications 2019, 134, 153–166.
+Wang, J.; Kim, S.-K. *Novel Machine Learning-Based Brain Attention Detection Systems*. Information 2025, 16, 25。
 
-## Common6 当前状态
-
-ACNS 与 Wearable Sensing 权威证据确认当前 DSI-24 数据的 nomenclature equivalence：`T5-Pz → P7-Pz`、`T6-Pz → P8-Pz`；Our EDF/DSI-Streamer reference 为 `Pz (confirmed)`，author MAT reference 仍为 `unknown`。因此 common6 已建立并完成三个模型，但跨来源结果统一标记为 exploratory / channel-aligned / reference compatibility uncertain。历史阻塞判断保留在 [`artifacts/common6_compatibility/2026-09-14/`](artifacts/common6_compatibility/2026-09-14/)。
+Aci, C.I.; Kaya, M.; Mishchenko, Y. *Distinguishing mental attention states of humans via an EEG-based passive BCI using machine learning methods*. Expert Systems with Applications 2019, 134, 153–166。

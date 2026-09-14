@@ -1,67 +1,49 @@
-# Legacy 数据说明
+# 这个目录是什么
 
-`legacy_manifest.csv` 每一列的中文含义和后续读取规则见 [`../legacy_manifest_dictionary.md`](../legacy_manifest_dictionary.md)。
+这里封存早期自采原始信号；训练能用哪些片段由 legacy_manifest.csv 决定。
 
-Legacy 是项目早期自采数据的封存区。原始 EDF、CSV 和 DSI 不在此目录内修改。
+## 它属于项目哪一步
 
-## `multiclass_10min/`
+Stage 1：早期自采 EEG 探索
 
-这批文件每个 EDF 只对应一种状态，是 `legacy_baseline_v0` 的候选训练/验证来源。具体身份由 `../legacy_manifest.csv` 记录，不再由新代码自行猜测文件名。
+前一步：原作者方案与数据。
+这一步：模型在自己的数据上能否区分专注和不专注？为什么以前分数很高？
+后一步：需要按完整录制隔离、并能保存全套处理步骤的正式基线。
 
-标签映射：
+完整故事：[实验阶段地图](../../docs/EXPERIMENT_MAP.md)；名词和模型：[模型字典](../../docs/MODEL_CATALOG.md)。
 
-| 原标签 | 当前口径 | 用途 |
-|---|---|---|
-| `focus` | `focus` | 二分类候选数据 |
-| `iu` | `unfocus` | 二分类候选数据 |
-| `ou` | `unfocus` | 二分类候选数据 |
-| `daze` | `rest` | 静息参考，排除二分类 |
+## 为什么会有这个目录
 
-数据负责人已确认：无被试名前缀的文件来自 `lyc`，`zyf_` 前缀文件来自 `zyf`。清单中的 `subject_id`、`recording_id` 和 `session_group_id` 均使用这两个明确标识；原始文件名不改，避免破坏旧 Notebook 引用，也便于用 SHA-256 对照原件。
+模型在自己的数据上能否区分专注和不专注？为什么以前分数很高？
 
-时间字段按以下证据填写：
+## 输入从哪里来
 
-- `recorded_date`：便于筛选的采集日期。
-- `recorded_at_local`：EDF 文件头记录的本地采集起始时间，精确到秒。
-- `recorded_at_source`：固定为 `edf_header`。
-- `file_modified_at_local`：Windows 文件“修改日期”，用于交叉核对。
+data/legacy/multiclass_10min/ 和 data/legacy/mixed_20min/：39 个 EDF（脑电信号文件）。CSV/DSI 是设备配套导出。
 
-目前登记的 39 个 EDF，其文件修改时间都晚于文件头起始时间约“录制时长 + 保存开销”，两者能够互相印证。因此清单把更接近真实采集开始的 EDF 文件头时间作为主时间，修改时间作为证据保留；这些时间均未附加无法从文件确认的时区偏移。
+## 谁生成这里的文件
 
-`session_group_id` 按“被试 + 文件编号”保守分组。例如 `focus1/iu1/ou1/daze1` 被视为同一个可能的历史 session 组，防止后续把可能同次录制的条件拆到训练和验证两边。如果以后找到准确日期/实验记录，再修正该分组。
+notebooks/legacy/self_recorded/；scripts/validate_legacy_manifest.py 核对后续建立的清单。
 
-## `mixed_20min/`
+## 这个目录里的文件
 
-这批文件采用固定的 20 分钟实验设计。两个旧 Notebook 对顺序的文字记录相反，现按以下证据确定：
+| 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
+|---|---|---|---|
+| [mixed_20min/](mixed_20min/README.md) | 这里是约20分钟的固定顺序录制：前10分钟unfocus、后10分钟focus，边界以正式清单为准。 | 目录 | 按子目录规则 |
+| [multiclass_10min/](multiclass_10min/README.md) | 这里是早期单状态录制及设备配套文件；身份和标签必须按已确认清单解释。 | 目录 | 按子目录规则 |
+| [README.md](README.md) | 本目录为什么存在、属于哪一步，以及各文件怎么看。 | 手写维护 | 可维护，保留来源与实验边界 |
 
-- `multi_edf_training_explained.ipynb` 较早，作为通用讲解稿，写的是“前 10 分钟专注，后 10 分钟不专注”。
-- `multi_edf_original_self_5comparisons_count_channels.ipynb` 较晚，专门针对这批自采 EDF，明确设置 `SELF_SEGMENT_ORDER = "unfocus_first"`，并已经实际成功读取全部 9 个有效文件、为两个片段各提取 585 个旧流程窗口。
+## 当前状态
 
-因此清单采用较晚且实际运行过的专项 Notebook：
+原始数据只读；角色按清单/协议决定。
 
-- `0–600 s`：`unfocus`
-- `600–1200 s`：`focus`
-- `1200 s` 之后：实验状态没有可靠记录，不使用
+## 我什么时候需要看这个目录
 
-有效混合录制包括 `lyc`、`zqd`、`zyf` 各 3 个文件。每个 EDF 在清单中登记为两个逻辑片段，但共享同一个 `source_recording_id` 和 `session_group_id`；后续划分数据时必须让同一 EDF 的两个片段整体进入同一侧，不能一个训练、一个测试。
+需要回答“模型在自己的数据上能否区分专注和不专注？为什么以前分数很高？”时查看本目录文件。
 
-`data_0001_raw.edf` 只有 2.5 秒，是早期设置/演示文件，短于一个 4 秒窗口。它会进入总清单，但标为 `excluded_too_short`，不参与训练。
+## 不要误解
 
-## 验收
+同一录制切成的相邻窗口很相似，随机分配窗口可能让模型在测试中见到熟悉的录制条件，分数虚高。旧单状态 iu/ou 归为 unfocus，daze 只作静息参考；旧 mixed 前10分钟 unfocus、后10分钟 focus。
 
-在使用 Legacy 数据前运行：
+## 历史标签与身份依据
 
-```powershell
-python scripts/validate_legacy_manifest.py
-```
-
-验收会检查 39 个 EDF 是否全部登记，以及身份、两类时间证据、混合片段边界、路径、标签映射、分组、采样率、信号数、时长和 SHA-256 是否一致。
-
-## 子目录文件导航
-
-| 子目录 | 直接文件代表什么 |
-|---|---|
-| `mixed_20min/` | 20 分钟固定顺序录制的 EDF 原始信号；`README.md` 逐项解释 lyc/zqd/zyf 文件。 |
-| `multiclass_10min/` | 约 10 分钟单状态 EDF 及同名 CSV/DSI sidecar；`README.md` 按状态和 subject 列出文件族。 |
-
-本目录自身没有额外原始文件；所有身份和用途以父目录的 `legacy_manifest.csv` 为准。
+单状态focus保留，iu/ou合并unfocus，daze仅参考。旧mixed前600秒unfocus、后600秒focus，早期相反说法作为历史来源冲突保留。无姓名前缀的旧lyc文件由数据负责人确认并登记；现场parser不会据此猜新文件身份。完整时间/片段/哈希见data/legacy_manifest.csv及其数据字典。

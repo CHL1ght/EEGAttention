@@ -1,29 +1,57 @@
-# 实验产物总览
+# 这个目录是什么
 
-这里保存由脚本或 notebook 生成的可复现实验文件。原始 EDF/CSV/DSI/MAT 在 `data/`，代码在 `scripts/`；本目录中的文件通常可以删除后重新生成，但冻结目录和锁定测试结果必须先核对哈希，不能随意覆盖。
+这是每次实验留下的模型和成绩的总索引。
 
-| 子目录 | 直接内容与用途 | 当前可信边界 |
-|---|---|---|
-| `legacy_baseline_v0/` | 旧 pooled baseline 的完整冻结 pipeline、配置、划分、验证预测和冻结清单。 | 已冻结；不因新实验重训或覆盖。 |
-| `locked_test/2026-09-07/` | 旧 pooled model 在正式 LOCKED_TEST 上的 prediction-only 结果。 | 回归基线；只读。 |
-| `subject_models/` | lyc/zyf personal model 及各自历史训练范围、zqd 排除清单。 | 本阶段新模型；不包含 locked 数据。 |
-| `subject_model_comparison/2026-09-07/` | pooled 与两个 personal model 在相同 locked session 上的交叉评估。 | 本阶段正式比较结果。 |
-| `subject_model_diagnostics/2026-09-07/` | personal model 的类别偏置、session 级、历史 held-out 和 PCA 诊断。 | 诊断结果，不是新冻结模型。 |
-| `author_models/author_only/` | 只使用 23 个 author MAT recording 的既有 7 通道 author-only pipeline 和 GroupKFold 验证。 | 保留的内部基线；不覆盖。 |
-| `author_models/author_common6/` | 只使用同一 23 个 author recording 的 common6 pipeline；主动舍弃 AF4。 | 可用于探索性跨来源比较；author reference unknown。 |
-| `our_common7_models/pooled_common7/` | our-common7 pooled 的通道门禁结果。 | 当前 blocked，无模型。 |
-| `our_common6_models/pooled_common6/` | lyc/zyf historical candidate 的 common6 pooled pipeline 和 recording-level 验证。 | 已训练；不含 zqd/unknown/LOCKED_TEST。 |
-| `mixed_models/our_author_mixed/` | our+author mixed 的通道门禁结果。 | 当前 blocked，无模型。 |
-| `mixed_models/our_author_mixed_common6/` | author historical + lyc/zyf historical 的 common6 mixed pipeline 和验证产物。 | 已训练；跨源解释 exploratory。 |
-| `cross_source_comparison/2026-09-07/` | pooled/personal/author/common7/mixed 的统一比较表。 | 跨来源结果按通道可比性标记。 |
-| `cross_source_comparison/2026-09-14/` | common6 最终统一比较、逐窗口/逐 session 指标、预测比例和混淆矩阵。 | LOCKED_TEST fit_calls=0；reference compatibility uncertain。 |
-| `legacy/` | 旧自采 notebook 输出、缓存和人工检查表。 | 历史探索，不作为正式泛化结论。 |
-| `reproductions/` | 运行/改造上游流程得到的 `.npy`、`.npz`、`.pth`、ROC 和训练表。 | 上游复现证据，不用于当前 LOCKED_TEST。 |
-| `upstream_author/` | 原作者版本中已有的训练结果表。 | 来源对照，不是本项目新生成结果。 |
-| `README.md` | 本目录的来源分类和保护规则。 | 文档。 |
+## 它属于项目哪一步
 
-各子目录的直接文件说明见对应 README；跨目录完整索引见 [`docs/REPOSITORY_FILE_GUIDE.md`](../docs/REPOSITORY_FILE_GUIDE.md)。
+Stage 0–7：从复现到正式对照，今天只读取既有结果。
 
-## Common6 兼容性门禁
+前一步：Common6 通道对齐与 Mixed。
+这一步：找到某个分数的原始记录，并判断它是历史探索、冻结模型还是正式测试结果。
+后一步：将来预先规定任务和评估方案，再收集不看反馈、从未用于调参的新 final holdout（最终留出集）；当前旧测试已被多次查看，不可再次声称全新盲测。
 
-`common6_compatibility/2026-09-14/` 保存本轮的设备通道、EDF/MAT reference、montage 证据和历史门禁迁移。ACNS/Wearable Sensing 证据已解除 T5/T6→P7/P8 命名阻塞；Our reference=Pz confirmed，author MAT reference unknown。原始阻塞状态保存在 `HISTORICAL_*` 文件中。
+完整故事：[实验阶段地图](../docs/EXPERIMENT_MAP.md)；名词和模型：[模型字典](../docs/MODEL_CATALOG.md)。
+
+## 为什么会有这个目录
+
+找到某个分数的原始记录，并判断它是历史探索、冻结模型还是正式测试结果。
+
+## 输入从哪里来
+
+data/reference/original_mat/、data/legacy_manifest.csv、data/session_manifest.csv及已保存模型。
+
+## 谁生成这里的文件
+
+各目录README列出的训练/评估脚本；本轮不执行任何训练。
+
+## 这个目录里的文件
+
+| 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
+|---|---|---|---|
+| [author_models/](author_models/README.md) | 这里保存两个只用原作者数据训练的模型：七通道基线与六通道对照。 | 目录 | 按子目录规则 |
+| [common6_compatibility/](common6_compatibility/README.md) | 这里保存通道能否正确对应的检查证据；它是训练前的安全检查，不保存模型。 | 目录 | 按子目录规则 |
+| [cross_source_comparison/](cross_source_comparison/README.md) | 这里保存作者、自采与混合模型在同一正式测试集上的对照成绩。 | 目录 | 按子目录规则 |
+| [legacy/](legacy/README.md) | 这里保留早期自采实验导出的表格和中间数据，用于追溯当时为何得到那些分数。 | 目录 | 按子目录规则 |
+| [legacy_baseline_v0/](legacy_baseline_v0/README.md) | 第一套保存完整处理步骤、供后续实验对照的多人通用模型。 | 目录 | 按子目录规则 |
+| [locked_test/](locked_test/README.md) | 这里保存旧冻结通用模型对独立录制的测试结果，按测试批次归档。 | 目录 | 按子目录规则 |
+| [mixed_models/](mixed_models/README.md) | 这里保存把作者与自采历史数据合并训练的尝试。 | 目录 | 按子目录规则 |
+| [our_common6_models/](our_common6_models/README.md) | 这里保存只学我们历史数据、但只看六个共同通道的模型。 | 目录 | 按子目录规则 |
+| [our_common7_models/](our_common7_models/README.md) | 这里保留要求七个共同通道时未能训练的尝试。 | 目录 | 按子目录规则 |
+| [reproductions/](reproductions/README.md) | 这里存放我们运行原作者方法得到的历史复现结果，与作者自带的结果分开保存。 | 目录 | 按子目录规则 |
+| [subject_model_comparison/](subject_model_comparison/README.md) | 这里保存三种模型对同一批新录制的成绩，用来公平比较个人模型与通用模型。 | 目录 | 按子目录规则 |
+| [subject_model_diagnostics/](subject_model_diagnostics/README.md) | 这里保存查找个人模型失效原因的证据：预测偏向、历史留出表现和逐录制表现。 | 目录 | 按子目录规则 |
+| [subject_models/](subject_models/README.md) | 这里保存lyc与zyf各自的模型，用来检验只学一个人的历史记录是否更好。 | 目录 | 按子目录规则 |
+| [upstream_author/](upstream_author/README.md) | 这里保存原作者项目最初就附带的结果，用于区分作者成绩和我们后来复现的成绩。 | 目录 | 按子目录规则 |
+| [README.md](README.md) | 本目录为什么存在、属于哪一步，以及各文件怎么看。 | 手写维护 | 可维护，保留来源与实验边界 |
+
+## 当前状态
+
+已完成 / frozen / historical；不同子目录状态不同。
+
+## 我什么时候需要看这个目录
+
+想核对mixed是否改善，进入cross_source_comparison/2026-09-14/。
+
+## 不要误解
+
+目录中有成绩不代表它是独立测试；不要覆盖旧模型和结果。

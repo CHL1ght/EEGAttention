@@ -1,27 +1,47 @@
-# Notebook 导航
+# 这个目录是什么
 
-这些 notebook 都是历史复现或探索记录，不是下一阶段正式训练入口。正式管线将放在可测试的 Python 模块和脚本中。
+这里提供现场填路径看结果的页面，也保留过去实验的交互记录。
 
-## 分类
+## 它属于项目哪一步
 
-- `upstream/`：论文上游代码、结果可视化及 MATLAB 数据检查。
-- `legacy/self_recorded/`：旧自采 3/4 分类、旧 20 分钟切段与域偏移对比实验。
-- `tutorial/`：中文注释版本和阅读笔记。
-- `lab_quick_test_legacy_model.ipynb`：输入单个 EDF 路径，严格按文件名识别 subject/真值，并复用 pooled frozen model 与适用的 lyc/zyf personal model 做现场快速 inference；zqd/未知 subject 跳过 personal，不训练、不 fit、不写入正式产物。
+Stage 0–1历史Notebook；Stage 8当前QuickTest。
 
-## 运行约定
+前一步：Common6 通道对齐与 Mixed。
+这一步：让现场使用者录完即可比较已训练模型，历史Notebook用于理解早期方案。
+后一步：将来预先规定任务和评估方案，再收集不看反馈、从未用于调参的新 final holdout（最终留出集）；当前旧测试已被多次查看，不可再次声称全新盲测。
 
-从仓库根目录启动 Jupyter 或 VS Code，再运行 notebook；历史 notebook 的数据路径均相对仓库根目录。其输出统一写入 `artifacts/legacy/notebook_outputs/`，不得写回 `data/`。
+完整故事：[实验阶段地图](../docs/EXPERIMENT_MAP.md)；名词和模型：[模型字典](../docs/MODEL_CATALOG.md)。
 
-旧 notebook 可能包含已经执行过的输出。随机窗口指标只用于历史流程核对，不代表跨 session 或跨被试泛化能力。
+## 为什么会有这个目录
 
-## 目录和文件说明
+让现场使用者录完即可比较已训练模型，历史Notebook用于理解早期方案。
 
-| 目录/文件 | 内容 |
-|---|---|
-| `lab_quick_test_legacy_model.ipynb` | 当前现场快速入口；输入 EDF 后复用共享函数比较 pooled/personal。 |
-| `upstream/` | 原始上游训练、MAT 检查和结果可视化 notebook。 |
-| `tutorial/` | 上游 notebook 的中文注释和阅读笔记。 |
-| `legacy/self_recorded/` | 旧自采三/四分类、mixed EDF 和历史比较 notebook。 |
+## 输入从哪里来
 
-notebook 只适合作为交互式入口或阅读材料；需要可重复训练/评估时使用 `scripts/` 下的 Python 入口。
+QuickTest读取用户指定EDF和三个代表模型；历史Notebook使用其原数据。
+
+## 谁生成这里的文件
+
+lab_quick_test_legacy_model.ipynb调用scripts/subject_model_utils.py；其余Notebook按各目录说明。
+
+## 这个目录里的文件
+
+| 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
+|---|---|---|---|
+| [legacy/](legacy/README.md) | 这里保留早期自采探索笔记，帮助追溯高分来自什么流程，不作为当前正式入口。 | 目录 | 按子目录规则 |
+| [tutorial/](tutorial/README.md) | 这里是供逐步学习的中文注释笔记；正式实验不依赖第二套教学实现。 | 目录 | 按子目录规则 |
+| [upstream/](upstream/README.md) | 这里保存阅读作者数据和复现原方案的笔记，不负责今天的现场三模型预测。 | 目录 | 按子目录规则 |
+| [lab_quick_test_legacy_model.ipynb](lab_quick_test_legacy_model.ipynb) | 现场单文件及前后比较页面；只填写路径、调用共享helper和显示。 | 代码手写/输出生成 | 可维护，保留来源与实验边界 |
+| [README.md](README.md) | 本目录为什么存在、属于哪一步，以及各文件怎么看。 | 手写维护 | 可维护，保留来源与实验边界 |
+
+## 当前状态
+
+QuickTest可用；旧Notebook为historical。
+
+## 我什么时候需要看这个目录
+
+今天第一段录完运行单文件模式，第二段录完运行Before/After模式。
+
+## 不要误解
+
+QuickTest全文件计分不同于正式清单区间；它不会训练或覆盖模型。

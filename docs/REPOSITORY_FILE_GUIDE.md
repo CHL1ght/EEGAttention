@@ -1,46 +1,10 @@
-# EEGAttention 仓库文件总览
+# 仓库文件路径查询手册
 
-本文档是仓库的递归文件地图。各目录 README 负责解释本目录，本文档负责把跨目录的数据流、模型流和产物流串起来。除 `.git/`、Python 缓存和操作系统临时文件外，仓库中的文件都归入下面的某一类。
+- 不知道项目为什么发展到这里 → [EXPERIMENT_MAP.md](EXPERIMENT_MAP.md)。
+- 不知道某个模型是什么 → [MODEL_CATALOG.md](MODEL_CATALOG.md)。
+- 不知道某个文件路径干什么 → 查本文件及对应目录README。
 
-## 1. 从原始数据到结果
-
-```text
-data/legacy_manifest.csv
-        │
-        ├─ scripts/validate_legacy_manifest.py       清单/文件头/哈希验收
-        ├─ scripts/legacy_baseline_v0.py              历史 pooled baseline
-        └─ scripts/train_subject_models.py            lyc/zyf personal model
-                 │
-                 └─ scripts/eeg_pipeline_utils.py
-                    MNE EDF → EEG 通道 → 128 Hz → FIR → 4s/2s 窗口
-                    → Welch 频带特征(240维) → StandardScaler → PCA → RBF SVC
-
-data/reference/original_mat/
-        │
-        └─ scripts/train_cross_source_models.py       author-only（common7 adapter）
-                 │
-                 └─ scripts/cross_source_utils.py
-                    MAT o.data → 明确 7 通道 → 128 Hz → 共享 FIR/窗口/Welch
-                    → 70维 → StandardScaler → PCA → RBF SVC
-
-data/reference/original_mat/ + data/legacy_manifest.csv
-        │
-        └─ scripts/train_cross_source_models.py       common6 / mixed-common6
-                 │
-                 └─ scripts/cross_source_utils.py
-                    EDF: F7-Pz→F7, F3-Pz→F3, T5-Pz→P7,
-                    O1-Pz→O1, O2-Pz→O2, T6-Pz→P8
-                    MAT: F7,F3,P7,O1,O2,P8; drop AF4
-                    → 60维 → StandardScaler → PCA → RBF SVC
-
-data/session_manifest.csv
-        │
-        ├─ scripts/validate_locked_data.py             LOCKED_TEST 验收
-        ├─ scripts/evaluate_locked_test.py              旧 pooled prediction-only
-        └─ scripts/evaluate_subject_models.py           pooled × lyc/zyf 对比
-```
-
-关键边界：`data/locked/` 只能用于 transform、predict 和最终指标；任何训练、scaler/PCA/特征筛选、调参或模型选择都不能读取它的统计信息。
+本页按目录查路径，项目故事由实验地图负责。每个目录README都包含阶段、输入、生成者、文件字典、状态和使用场景；术语第一次阅读可查模型字典。
 
 ## 2. 根目录
 
@@ -62,7 +26,7 @@ data/session_manifest.csv
 | `recording_notes_template_simplified.md` | 新采集 session 的现场记录模板，不改变 manifest schema。 |
 | `legacy/` | 旧自采 EDF、CSV、DSI 原始文件；只按 legacy manifest 使用。 |
 | `locked/` | 受保护的新标准录制；当前正式测试集和后续采集计划。 |
-| `reference/original_mat/` | 上游论文/原始项目的 MATLAB 参考数据，只用于历史复现。 |
+| `reference/original_mat/` | 上游论文/原始项目的MATLAB参考数据；同时是author-only/common6与mixed的作者训练来源。 |
 
 ### `data/legacy/`
 
@@ -88,7 +52,7 @@ data/session_manifest.csv
 | `diagnose_subject_models.py` | Personal model 类别分布、预测偏置、session 级结果、历史 LOGO、PCA 和通道诊断。 |
 | `train_cross_source_models.py` | author-only-7ch、author-common6、our-common6/common7、mixed-common6/common7 训练入口；所有训练以 recording/session 为组。 |
 | `evaluate_cross_source_models.py` | common6/common7 统一 pooled/personal/author/mixed 比较入口，输出逐窗口和逐 session 结果。 |
-| `subject_model_utils.py` | 严格解析 `subject_status_timestamp` 文件名并为快速 notebook 提供共享 inference 辅助。 |
+| `subject_model_utils.py` | 严格解析文件名；单EDF和前后比较的共享推理helper，按240/60维分别提取特征。 |
 | `validate_legacy_manifest.py` | 验证 legacy manifest、EDF 头、路径、片段、身份和哈希。 |
 | `validate_locked_data.py` | 验证 locked manifest、EDF 头、时长、窗口数、配套文件和哈希。 |
 | `validate_reproduction_models.py` | 仅检查上游复现深度模型权重的完整性。 |
@@ -101,7 +65,7 @@ data/session_manifest.csv
 | 目录/文件 | 作用 |
 |---|---|
 | `README.md` | notebook 分类和运行约定。 |
-| `lab_quick_test_legacy_model.ipynb` | 现场输入一个 EDF，严格解析 subject/label，比较 pooled 与适用 personal model；不训练、不 fit、不写 artifacts。 |
+| `lab_quick_test_legacy_model.ipynb` | 现场单EDF及Before/After入口；pooled/personal用240维、mixed-common6用60维；不fit或写artifacts。 |
 | `upstream/` | 上游原始 notebook：MAT 检查、训练和结果可视化。 |
 | `tutorial/` | 上游 notebook 的中文注释/阅读材料。 |
 | `legacy/self_recorded/` | 旧自采三分类、四分类、mixed EDF 和历史对比 notebook。 |
@@ -156,3 +120,20 @@ artifacts 是实验产物，不是新的原始数据入口。
 ## 10. Common6 兼容性审计
 
 `scripts/verify_common6_compatibility.py` 是 common6 的前置审计。它检查当前 DSIStreamer/EDF 的 `T5-Pz`、`T6-Pz`、Pz sidecar metadata、MNE header 状态，以及作者 MAT/notebook 的 reference/montage provenance，并登记 ACNS/Wearable Sensing 权威证据；当前状态为 `unblocked_for_common6_training`。历史阻塞快照保存在 `HISTORICAL_*` 文件中；审计本身不执行模型 fit 或 LOCKED_TEST 信号预测。
+
+
+## 11. 现场 LAB_FEEDBACK（Stage 8）
+
+| 路径 | 用途 |
+|---|---|
+| `data/exploratory/README.md` | 探索数据入口；不是默认训练或最终测试。 |
+| `data/exploratory/lab_feedback/README.md` | 反馈实验的命名、metadata、归档与数据晋升规则。 |
+| `data/exploratory/lab_feedback/2026-09-14/README.md` | 今天的执行说明；尚无新EDF或metadata。 |
+| `data/DATA_PROTOCOL.md` 第7节 | subject、预期标签、时间、feedback轮次、看反馈标志、task、notes、角色和资格的字段字典。 |
+| `scripts/subject_model_utils.py` | `run_quick_test()` 和 `compare_quick_tests()`；旧模型不fit，240/60维特征分开。 |
+| `scripts/validate_quick_test.py` | 真实EDF dry run、A/B标签差异、未知身份、维数及fit拦截验收；不生成实验分数文件。 |
+| `notebooks/lab_quick_test_legacy_model.ipynb` | 填路径、调用helper、显示模型说明和前后指标。 |
+| `docs/MODEL_CATALOG.md` | 七种既有模型及输入/用途解释。 |
+| `docs/EXPERIMENT_MAP.md` | Stage 0–8的实验发展顺序。 |
+
+`data/locked/2026-09-14/recording_plan.md`仅保留旧计划；今天的feedback数据不照旧计划加入LOCKED_TEST。未来探索结果可另存到独立的lab_feedback结果目录，但本轮不预造数据或结果。

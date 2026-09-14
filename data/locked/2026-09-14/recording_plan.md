@@ -1,3 +1,9 @@
+# 当前执行规则更新：今天使用 LAB_FEEDBACK
+
+下面保留原采集计划供追溯。2026-09-14现场看反馈后主动调整状态的录制（包括feedback0）统一放入 `data/exploratory/lab_feedback/2026-09-14/`，不得按下方旧计划直接登记成LOCKED_TEST。执行规则见[今天的反馈目录](../../exploratory/lab_feedback/2026-09-14/README.md)与[数据协议](../../DATA_PROTOCOL.md)。本轮没有新EDF，也不修改既有测试数据。
+
+---
+
 # 2026-09-14（周一）正式 EEG 采集计划
 
 > 本文是现场执行框架，不是已完成的 session 清单；未确认的条件不预先写入 `session_manifest.csv`，也不生成伪造数据文件。

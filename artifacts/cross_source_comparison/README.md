@@ -1,9 +1,45 @@
-# `cross_source_comparison/`
+# 这个目录是什么
 
-这里保存 pooled、personal、author 和 cross-source 模型的统一比较表。已有 pooled/personal 结果直接读取上一阶段 locked comparison；common6/common7 新模型在通道可用时才会对 LOCKED_TEST 做 prediction-only 评估。
+这里保存作者、自采与混合模型在同一正式测试集上的对照成绩。
 
-| 子目录 | 内容 |
-|---|---|
-| `2026-09-07/` | 当前正式 LOCKED_TEST 的统一比较；author-only 有 recording-level held-out 结果，但跨 EDF 结果因缺少 common7 通道为 N/A。 |
-| `2026-09-14/` | common6 阶段最终比较：author-common6、our-common6、mixed-common6 与旧 pooled/personal 结果；含逐窗口、逐 session、混淆矩阵和 predicted class ratio。 |
-| `README.md` | 本目录说明。 |
+## 它属于项目哪一步
+
+Stage 7：Common6 通道对齐与 Mixed
+
+前一步：Author-only model。
+这一步：在相同六通道输入下，加入作者训练数据能否改善新录制表现？
+后一步：现场用三种代表模型看反馈方向，再规划未来不看反馈的新最终留出集。
+
+完整故事：[实验阶段地图](../../docs/EXPERIMENT_MAP.md)；名词和模型：[模型字典](../../docs/MODEL_CATALOG.md)。
+
+## 为什么会有这个目录
+
+把数据来源变化与共同通道条件放在一起看，判断加入作者数据后的表现。
+
+## 输入从哪里来
+
+已保存模型、旧pooled/personal预测与2026-09-07正式测试录制。
+
+## 谁生成这里的文件
+
+scripts/evaluate_cross_source_models.py；本轮不重跑正式对照。
+
+## 这个目录里的文件
+
+| 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
+|---|---|---|---|
+| [2026-09-07/](2026-09-07/README.md) | 这里保存共同七通道方案尚未打通时的历史对照表，不是后来 COMMON6 的完整成绩表。 | 目录 | 按子目录规则 |
+| [2026-09-14/](2026-09-14/README.md) | 这里把六个已保存模型在同一批独立录制上的成绩并排展示，重点看加入作者数据是否有帮助。 | 目录 | 按子目录规则 |
+| [README.md](README.md) | 本目录为什么存在、属于哪一步，以及各文件怎么看。 | 手写维护 | 可维护，保留来源与实验边界 |
+
+## 当前状态
+
+2026-09-14/是common6既有结果；2026-09-07/是旧common7阻塞报告。
+
+## 我什么时候需要看这个目录
+
+看mixed是否改善时，打开2026-09-14/的统一表和逐session表。
+
+## 不要误解
+
+这里的日期是分析阶段目录；两个目录都引用2026-09-07测试批次，不是今天新录制。
