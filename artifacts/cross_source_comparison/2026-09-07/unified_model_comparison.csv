@@ -1,0 +1,13 @@
+model_id,model,test_subject,status,accuracy,balanced_accuracy,windows,author_or_cross_source_heldout_balanced_accuracy,note
+existing_pooled_frozen,Existing pooled frozen model,lyc,available,0.6554472984942427,0.6427990766760336,1129.0,,
+existing_pooled_frozen,Existing pooled frozen model,zyf,available,0.4611111111111111,0.5769158644830603,1260.0,,
+lyc_personal,lyc personal model,lyc,available,0.466784765279008,0.4766944332931888,1129.0,,
+lyc_personal,lyc personal model,zyf,available,0.6793650793650794,0.5179511075248042,1260.0,,
+zyf_personal,zyf personal model,lyc,available,0.4579273693534101,0.5645473705339221,1129.0,,
+zyf_personal,zyf personal model,zyf,available,0.4134920634920634,0.5214089261157644,1260.0,,
+our_common7_pooled,our-common7 pooled model,lyc,blocked,,,,,"missing explicit common-7 channel(s): AF4, P7, P8"
+our_common7_pooled,our-common7 pooled model,zyf,blocked,,,,,"missing explicit common-7 channel(s): AF4, P7, P8"
+author_only,author-only model,lyc,not_comparable,,,,0.6412207357859532,"missing explicit common-7 channel(s): AF4, P7, P8"
+author_only,author-only model,zyf,not_comparable,,,,0.6412207357859532,"missing explicit common-7 channel(s): AF4, P7, P8"
+our_author_mixed,our+author mixed model,lyc,blocked,,,,,"missing explicit common-7 channel(s): AF4, P7, P8"
+our_author_mixed,our+author mixed model,zyf,blocked,,,,,"missing explicit common-7 channel(s): AF4, P7, P8"

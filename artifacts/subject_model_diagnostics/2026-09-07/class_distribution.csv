@@ -1,0 +1,9 @@
+dataset,subject,true_label,sessions,edfs,windows,window_proportion,total_windows
+historical_training,lyc,unfocus,7,10,2983,0.4425159471888444,6741
+historical_training,lyc,focus,12,12,3758,0.5574840528111557,6741
+historical_training,zyf,unfocus,6,8,2387,0.5324559446799019,4483
+historical_training,zyf,focus,7,7,2096,0.46754405532009813,4483
+locked_test,lyc,unfocus,1,1,424,0.3755535872453499,1129
+locked_test,lyc,focus,2,2,705,0.6244464127546502,1129
+locked_test,zyf,unfocus,1,1,418,0.33174603174603173,1260
+locked_test,zyf,focus,2,2,842,0.6682539682539682,1260

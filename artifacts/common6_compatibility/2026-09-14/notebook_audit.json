@@ -1,0 +1,26 @@
+{
+  "any_reference_operation_token_found": false,
+  "common7_selection_is_explicit": true,
+  "notebooks": [
+    {
+      "has_author_channel_order": true,
+      "has_data_slice": true,
+      "path": "notebooks/upstream/EEG_train_22_origin.ipynb",
+      "reference_operation_tokens_found": []
+    },
+    {
+      "has_author_channel_order": true,
+      "has_data_slice": true,
+      "path": "notebooks/upstream/EEG_train_22_20250226.ipynb",
+      "reference_operation_tokens_found": []
+    }
+  ],
+  "reference_operation_tokens_checked": [
+    "set_eeg_reference",
+    "rereference",
+    "re-reference",
+    "reref",
+    "common average",
+    "linked ear"
+  ]
+}

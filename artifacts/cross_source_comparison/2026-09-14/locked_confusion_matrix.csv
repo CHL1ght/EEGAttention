@@ -1,0 +1,25 @@
+model_id,model,test_subject,true_label,predicted_label,count
+author_common6,author-common6 model,lyc,unfocus,unfocus,424
+author_common6,author-common6 model,lyc,unfocus,focus,0
+author_common6,author-common6 model,lyc,focus,unfocus,705
+author_common6,author-common6 model,lyc,focus,focus,0
+author_common6,author-common6 model,zyf,unfocus,unfocus,418
+author_common6,author-common6 model,zyf,unfocus,focus,0
+author_common6,author-common6 model,zyf,focus,unfocus,842
+author_common6,author-common6 model,zyf,focus,focus,0
+our_common6_pooled,our-common6 model,lyc,unfocus,unfocus,270
+our_common6_pooled,our-common6 model,lyc,unfocus,focus,154
+our_common6_pooled,our-common6 model,lyc,focus,unfocus,473
+our_common6_pooled,our-common6 model,lyc,focus,focus,232
+our_common6_pooled,our-common6 model,zyf,unfocus,unfocus,329
+our_common6_pooled,our-common6 model,zyf,unfocus,focus,89
+our_common6_pooled,our-common6 model,zyf,focus,unfocus,717
+our_common6_pooled,our-common6 model,zyf,focus,focus,125
+our_author_mixed_common6,mixed-common6 model,lyc,unfocus,unfocus,312
+our_author_mixed_common6,mixed-common6 model,lyc,unfocus,focus,112
+our_author_mixed_common6,mixed-common6 model,lyc,focus,unfocus,481
+our_author_mixed_common6,mixed-common6 model,lyc,focus,focus,224
+our_author_mixed_common6,mixed-common6 model,zyf,unfocus,unfocus,292
+our_author_mixed_common6,mixed-common6 model,zyf,unfocus,focus,126
+our_author_mixed_common6,mixed-common6 model,zyf,focus,unfocus,491
+our_author_mixed_common6,mixed-common6 model,zyf,focus,focus,351

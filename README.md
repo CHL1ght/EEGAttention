@@ -4,10 +4,10 @@
 
 ## 当前进度
 
-- 最新简报：[`2026-09-13｜Legacy baseline 冻结`](docs/progress/EEG项目推进简报_2026-09-13.md)
+- 最新简报：[`2026-09-14｜Personal diagnosis、author-only 与 common6 对比`](docs/progress/EEG项目推进简报_2026-09-14.md)
 - 历史简报索引：[`docs/progress/`](docs/progress/README.md)
 
-当前状态：`better_train` 分支已完成 `legacy_baseline_v0` 的 Legacy-only 冻结，并在冻结 pipeline 下完成 2026-09-07 的独立 `LOCKED_TEST FIRST RUN`。本阶段新增 lyc/zyf subject-dependent personal model，并在同一锁定测试集完成 pooled vs personal 交叉比较。Legacy validation accuracy 为 `0.699878`；原 pooled LOCKED_TEST accuracy 为 `0.552951`、balanced accuracy 为 `0.599068`。新增结果见 [`artifacts/subject_models/`](artifacts/subject_models/)、[`artifacts/subject_model_comparison/2026-09-07/`](artifacts/subject_model_comparison/2026-09-07/)。
+当前状态：`better_train` 分支已完成 `legacy_baseline_v0` 的 Legacy-only 冻结，并在冻结 pipeline 下完成 2026-09-07 的独立 `LOCKED_TEST FIRST RUN`。上一阶段新增 lyc/zyf subject-dependent personal model；本阶段完成 personal 诊断、author-only-7ch，并在权威 ACNS/Wearable Sensing 证据解除 T5/T6 命名阻塞后完成 author-common6、our-common6、mixed-common6。Personal 诊断显示 `lyc personal → zyf` 的高 accuracy 来自明显类别偏置，历史 held-out 高于 LOCKED_TEST，支持 session/domain shift 嫌疑。Author-only-7ch GroupKFold balanced accuracy 为 `64.12% ± 4.37%`，author-common6 为 `64.69% ± 4.29%`。Common6 结果见 [`artifacts/cross_source_comparison/2026-09-14/`](artifacts/cross_source_comparison/2026-09-14/)。
 
 ## 当前数据入口
 
@@ -27,6 +27,10 @@ python scripts/validate_legacy_manifest.py
 ```
 
 验收脚本只读取 EDF 文件头和哈希，不修改数据，也不依赖 MNE。
+
+## 仓库文件总览
+
+完整的递归文件说明见 [`docs/REPOSITORY_FILE_GUIDE.md`](docs/REPOSITORY_FILE_GUIDE.md)。每个主要内容目录均有自己的 README，负责说明本目录直接文件；不要把 `artifacts/` 中的历史缓存、上游结果或冻结模型误当作当前训练入口。
 
 ## 目录说明
 
@@ -49,3 +53,7 @@ python scripts/validate_legacy_manifest.py
 
 1. Wang, J.; Kim, S.-K. *Novel Machine Learning-Based Brain Attention Detection Systems*. Information 2025, 16, 25.
 2. Aci, C.I.; Kaya, M.; Mishchenko, Y. *Distinguishing mental attention states of humans via an EEG-based passive BCI using machine learning methods*. Expert Systems with Applications 2019, 134, 153–166.
+
+## Common6 当前状态
+
+ACNS 与 Wearable Sensing 权威证据确认当前 DSI-24 数据的 nomenclature equivalence：`T5-Pz → P7-Pz`、`T6-Pz → P8-Pz`；Our EDF/DSI-Streamer reference 为 `Pz (confirmed)`，author MAT reference 仍为 `unknown`。因此 common6 已建立并完成三个模型，但跨来源结果统一标记为 exploratory / channel-aligned / reference compatibility uncertain。历史阻塞判断保留在 [`artifacts/common6_compatibility/2026-09-14/`](artifacts/common6_compatibility/2026-09-14/)。

@@ -1,0 +1,3 @@
+subject,evaluation,folds,accuracy_mean,accuracy_std,balanced_accuracy_valid_folds,balanced_accuracy_mean,balanced_accuracy_std,balanced_accuracy_note
+lyc,leave_one_session_group_out,12,0.7167298756450502,0.28999316078776927,7,0.7538891229075111,0.13623343391341972,N/A for held-out groups containing one true class
+zyf,leave_one_session_group_out,7,0.745807601042309,0.12799573709524217,6,0.7570845772261005,0.13705003511316927,N/A for held-out groups containing one true class

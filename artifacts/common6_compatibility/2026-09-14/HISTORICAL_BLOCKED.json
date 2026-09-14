@@ -1,0 +1,49 @@
+{
+  "audit_version": "common6_compatibility_audit_v1",
+  "author_mat_reference": "unknown",
+  "author_record_ids_audited": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    19,
+    20,
+    21,
+    24,
+    25,
+    26,
+    27,
+    31,
+    32,
+    33,
+    34
+  ],
+  "blockers": [
+    "T5-Pz -> P7 is not positively established by current device/data evidence",
+    "T6-Pz -> P8 is not positively established by current device/data evidence",
+    "author MAT reference/montage is unknown"
+  ],
+  "common6_channels_established": false,
+  "common6_locked_test_evaluated": false,
+  "common6_models_trained": false,
+  "generated_at_utc": "2026-09-14T05:47:32.270310+00:00",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "locked_test_signal_values_read": false,
+  "locked_test_used_for_fit": false,
+  "our_edf_reference": "Pz indicated by DSIStreamer sidecars and -Pz labels; exact derivation history not fully encoded",
+  "reference_compatibility": "uncertain",
+  "required_channels_not_substituted": [
+    "P7",
+    "P8"
+  ],
+  "status": "blocked",
+  "zqd_or_unknown_used_for_modeling": false
+}

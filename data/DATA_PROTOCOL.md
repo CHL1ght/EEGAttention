@@ -61,4 +61,4 @@
 
 - 固定设备事实：使用 `DSIStreamer`；目标配置为 300 Hz、24 个 EEG 通道、Pz reference，并保留 `Trigger` 与 `EDF Annotations`。
 - 采集前必须现场核对 headset / serial、Trigger Source（`Wired` / `Wireless`）、输出目录、文件 basename，以及 EDF、CSV、DSI 是否实际导出。仓库文档不代表仓库能够控制 DSIStreamer。
-- 明日计划、低投入条件的确认项和现场时间框架见 [`locked/2026-09-14/recording_plan.md`](locked/2026-09-14/recording_plan.md)；每段记录模板见 [`recording_notes_template.md`](recording_notes_template.md)。
+- 明日计划、低投入条件的确认项和现场时间框架见 [`locked/2026-09-14/recording_plan.md`](locked/2026-09-14/recording_plan.md)；每段记录模板见 [`recording_notes_template_simplified.md`](recording_notes_template_simplified.md)。

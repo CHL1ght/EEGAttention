@@ -1,0 +1,19 @@
+{
+  "fit_policy": "validation folds fit on train recordings; final artifact fit on author recordings only",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "input_files": 23,
+  "locked_test_read": false,
+  "model_type": "author_common6",
+  "model_version": "cross_source_models_v1",
+  "output_sha256": {
+    "config.json": "a51fb6ead8972854271807e61fb7fc4de7c7dec854d97d682284e8906abced37",
+    "mat_inspection.csv": "2689d12fb588db0b3f029f395836355d93fa8660d1b11388cf50fbbca738ee19",
+    "pipeline.joblib": "85987c2ec5cd13d72279696a166b4fc9da84460909264b1679b96f37799f5974",
+    "train_manifest.csv": "2f44d67972850d58a8fbdd03f0e302cb95a6001f8cb7ab6a4519498bd819b580",
+    "validation_confusion_matrix.csv": "f02030569ab0a88953f36fded44d86ef1d373984c90943c7f8bb192d72d821dd",
+    "validation_fold_metrics.csv": "fef4d14108623d648e87877fe7d2b5eaa6ab11b14bb9b90dcaabb1bba0d73a58",
+    "validation_metrics.json": "b5dca5564d01803e924ea423c9099eea1b31bc326f2c6d0a7bf88b14ea11a17b",
+    "validation_predictions.csv": "2fa8562d5742f9faad5437b521f16d6fe5a27bfd0e5e1a615a85ea8ba144db4d"
+  },
+  "trained_at_utc": "2026-09-14T06:01:07.210684+00:00"
+}

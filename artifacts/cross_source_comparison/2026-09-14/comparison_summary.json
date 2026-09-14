@@ -1,0 +1,78 @@
+{
+  "artifact_sha256": {
+    "author_common6": "85987c2ec5cd13d72279696a166b4fc9da84460909264b1679b96f37799f5974",
+    "our_author_mixed_common6": "5f171c20e61b7ad827d08494f283fa6612d3eabbddb012b8389699a392881db8",
+    "our_common6_pooled": "bf8e20d43ab7927cdf28bba6501b835e212fcf37fb7e7c1bdbc5cb2dd761dbb6"
+  },
+  "author_common6_validation": {
+    "accuracy_mean": 0.6469397993311038,
+    "balanced_accuracy_mean": 0.6469397993311038
+  },
+  "author_mat_reference": "unknown",
+  "author_only_7ch_validation": {
+    "accuracy_mean": 0.6412207357859532,
+    "balanced_accuracy_mean": 0.6412207357859532
+  },
+  "author_source_records": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    19,
+    20,
+    21,
+    24,
+    25,
+    26,
+    27,
+    31,
+    32,
+    33,
+    34
+  ],
+  "blocked_reason": "",
+  "channel_available_for_locked": true,
+  "channel_set": "common6",
+  "common6_available_for_locked": true,
+  "common6_mapping": {
+    "F3-Pz": "F3",
+    "F7-Pz": "F7",
+    "O1-Pz": "O1",
+    "O2-Pz": "O2",
+    "T5-Pz": "P7",
+    "T6-Pz": "P8"
+  },
+  "comparison_version": "unified_cross_source_comparison_v2",
+  "cross_source_scope": "exploratory / channel-aligned but author MAT reference compatibility uncertain",
+  "generated_at_utc": "2026-09-14T06:11:44.440243+00:00",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "locked_test_fit_calls": 0,
+  "locked_test_policy": "transform/predict/metric only; no fit, threshold tuning, or model selection",
+  "models": {
+    "author_common6": "author-common6 model",
+    "existing_pooled_frozen": "Existing pooled frozen model",
+    "lyc_personal": "lyc personal model",
+    "our_author_mixed_common6": "mixed-common6 model",
+    "our_common6_pooled": "our-common6 model",
+    "zyf_personal": "zyf personal model"
+  },
+  "old_frozen_comparison": "artifacts/subject_model_comparison/2026-09-07/comparison_metrics.json",
+  "our_edf_reference": "Pz confirmed",
+  "reference_compatibility": "uncertain",
+  "required_channels": [
+    "F7",
+    "F3",
+    "P7",
+    "O1",
+    "O2",
+    "P8"
+  ]
+}

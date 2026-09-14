@@ -1,0 +1,6 @@
+fold,train_recordings,held_out_recordings,train_windows,held_out_windows,held_out_session_groups,accuracy,balanced_accuracy,balanced_accuracy_applicable,pca_components_fitted
+1,15,4,8983,2241,"legacy_lyc_mixed_03,legacy_lyc_run_03,legacy_lyc_run_07,legacy_lyc_run_09",0.7719767960731816,0.7761100550358189,True,22
+2,15,4,9105,2119,"legacy_lyc_run_04,legacy_lyc_run_08,legacy_zyf_run_02,legacy_zyf_run_04",0.6866446436998584,0.6679267680226453,True,21
+3,15,4,8836,2388,"legacy_lyc_mixed_02,legacy_lyc_run_05,legacy_zyf_mixed_03,legacy_zyf_run_01",0.7273869346733668,0.7273869346733668,True,21
+4,16,3,9134,2090,"legacy_lyc_mixed_01,legacy_lyc_run_02,legacy_zyf_mixed_02",0.7196172248803828,0.7181162508973439,True,21
+5,15,4,8838,2386,"legacy_lyc_run_01,legacy_lyc_run_06,legacy_zyf_mixed_01,legacy_zyf_run_03",0.5859178541492037,0.5859178541492037,True,21

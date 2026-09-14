@@ -1,0 +1,21 @@
+{
+  "diagnostic_version": "subject_model_diagnostics_v1",
+  "fit_policy": "historical LOGO folds fit only on train groups; locked predictions read from existing comparison artifact",
+  "generated_at_utc": "2026-09-14T05:04:44.231221+00:00",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "input_sha256": {
+    "comparison_predictions.csv": "41d06ba2ff2d7ecec5ccdc2c907e823dbddc459886456c2af7702cd8a0d86b31",
+    "legacy_manifest.csv": "b780eab933b857eca02f240fc35b3db09f2e3710b58d5ada4a309f0ed6bc1ff9"
+  },
+  "locked_test_fit_calls": 0,
+  "output_sha256": {
+    "class_distribution.csv": "c3288f4ff200e36e8cc40ed1bff585e99c7c1dcd4fbf48db6ff21c36b37a1d80",
+    "common7_channel_alignment.csv": "0bce9ca816a1aa55ee20080408e216ca513c49fcf517fe61fb371b7cfef54a06",
+    "diagnostic_summary.json": "5bdd9e6e727e5386abebe1a363e843f22cf426a0e064c3feb525205feebc01d0",
+    "historical_heldout_folds.csv": "43705efb22a4c0ed7ca54ee106a3b9898597be00dbc1ce16b218b0e5e4da0dd2",
+    "historical_heldout_summary.csv": "7e8c8b312d3250d48dc22ad9280ebfbcb8dc7403dc3fecd70b8c01b28b3a5799",
+    "pca_diagnostics.csv": "6b1f9ac9c4926f84293f67e3766f92ada7898a9bd2acfca9f7c0667b9db21d1a",
+    "prediction_bias.csv": "5ee8c16aee5d48a64d2625e0a11e782aaf3b398e9eb98b15cc5f5651b6daa6ce",
+    "session_diagnostics.csv": "7946f55ffc452eb725292093fecf5b6d4b0b4d1fd18e7cb254f7b59c82b9baec"
+  }
+}

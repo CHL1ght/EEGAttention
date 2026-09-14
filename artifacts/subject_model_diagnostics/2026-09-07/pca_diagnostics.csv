@@ -1,0 +1,4 @@
+model_id,model,pipeline_path,raw_feature_dimension,pca_components,explained_variance_ratio_sum,pipeline_sha256
+pooled,Existing pooled frozen model,artifacts/legacy_baseline_v0/pipeline.joblib,240,67,0.950536001197905,2c67ed005d3821f712771d3412bcad0a5b67a2638e89393d1d505460635488cc
+lyc_personal,lyc personal model,artifacts/subject_models/lyc/pipeline.joblib,240,65,0.9506578693618418,7270a2dbf0f04f490b48dc52db4eb694df698d2b1636234abd65534505a9c0fa
+zyf_personal,zyf personal model,artifacts/subject_models/zyf/pipeline.joblib,240,74,0.9506259235840953,5343939b19d0bfde7aa2ff8915c43bf8be8169d020b48932f586bcb93d690ff4

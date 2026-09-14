@@ -1,0 +1,6 @@
+fold,train_recordings,held_out_recordings,train_windows,held_out_windows,held_out_session_groups,accuracy,balanced_accuracy,balanced_accuracy_applicable,pca_components_fitted
+1,18,5,10764,2990,"author_eeg_record12,author_eeg_record19,author_eeg_record26,author_eeg_record33,author_eeg_record7",0.6993311036789298,0.6993311036789298,True,22
+2,18,5,10764,2990,"author_eeg_record11,author_eeg_record18,author_eeg_record25,author_eeg_record32,author_eeg_record6",0.6046822742474917,0.6046822742474917,True,23
+3,18,5,10764,2990,"author_eeg_record10,author_eeg_record17,author_eeg_record24,author_eeg_record31,author_eeg_record5",0.6541806020066889,0.6541806020066889,True,22
+4,19,4,11362,2392,"author_eeg_record14,author_eeg_record21,author_eeg_record3,author_eeg_record4",0.5911371237458194,0.5911371237458194,True,23
+5,19,4,11362,2392,"author_eeg_record13,author_eeg_record20,author_eeg_record27,author_eeg_record34",0.6567725752508361,0.6567725752508361,True,22

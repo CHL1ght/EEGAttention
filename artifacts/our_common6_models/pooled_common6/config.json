@@ -1,0 +1,138 @@
+{
+  "cross_source_scope": "exploratory; channel-aligned but author MAT reference remains unknown",
+  "feature_protocol": {
+    "channel_mapping": {
+      "F3-Pz": "F3",
+      "F7-Pz": "F7",
+      "O1-Pz": "O1",
+      "O2-Pz": "O2",
+      "T5-Pz": "P7",
+      "T6-Pz": "P8"
+    },
+    "channel_set": "common6",
+    "channels": [
+      "F7",
+      "F3",
+      "P7",
+      "O1",
+      "O2",
+      "P8"
+    ],
+    "filter_hz": [
+      0.5,
+      43.0
+    ],
+    "raw_feature_dimension": 60,
+    "shared_module": "scripts/eeg_pipeline_utils.py",
+    "target_sampling_rate_hz": 128.0,
+    "welch_bands_hz": {
+      "alpha": [
+        8.0,
+        13.0
+      ],
+      "beta": [
+        13.0,
+        30.0
+      ],
+      "delta": [
+        1.0,
+        4.0
+      ],
+      "gamma": [
+        30.0,
+        43.0
+      ],
+      "theta": [
+        4.0,
+        8.0
+      ]
+    },
+    "window_step_sec": [
+      4.0,
+      2.0
+    ]
+  },
+  "final_fit_scope": "all listed non-LOCKED_TEST source rows",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "labels": [
+    "unfocus",
+    "focus"
+  ],
+  "locked_test_read": false,
+  "model_type": "our_common6_pooled",
+  "model_version": "cross_source_models_v1",
+  "output_dir": "artifacts/our_common6_models/pooled_common6",
+  "pca": {
+    "explained_variance_ratio_sum": 0.9500644420196757,
+    "fitted_components": 21,
+    "requested": 0.95
+  },
+  "pipeline_sha256": "bf8e20d43ab7927cdf28bba6501b835e212fcf37fb7e7c1bdbc5cb2dd761dbb6",
+  "reference_compatibility": "uncertain; author MAT reference unknown",
+  "source_scope": {
+    "blocks_by_label": {
+      "focus": 19,
+      "unfocus": 18
+    },
+    "paths": [
+      "data/legacy/multiclass_10min/focus1.edf",
+      "data/legacy/multiclass_10min/focus2.edf",
+      "data/legacy/multiclass_10min/focus3.edf",
+      "data/legacy/multiclass_10min/focus4.edf",
+      "data/legacy/multiclass_10min/focus5.edf",
+      "data/legacy/multiclass_10min/focus6.edf",
+      "data/legacy/multiclass_10min/focus7.edf",
+      "data/legacy/multiclass_10min/focus8.edf",
+      "data/legacy/multiclass_10min/focus9.edf",
+      "data/legacy/multiclass_10min/iu1.edf",
+      "data/legacy/multiclass_10min/iu2.edf",
+      "data/legacy/multiclass_10min/iu3.edf",
+      "data/legacy/multiclass_10min/iu4.edf",
+      "data/legacy/multiclass_10min/ou1.edf",
+      "data/legacy/multiclass_10min/ou2.edf",
+      "data/legacy/multiclass_10min/ou3.edf",
+      "data/legacy/multiclass_10min/zyf_focus1.edf",
+      "data/legacy/multiclass_10min/zyf_focus2.edf",
+      "data/legacy/multiclass_10min/zyf_focus3.edf",
+      "data/legacy/multiclass_10min/zyf_focus4.edf",
+      "data/legacy/multiclass_10min/zyf_iu1.edf",
+      "data/legacy/multiclass_10min/zyf_iu2.edf",
+      "data/legacy/multiclass_10min/zyf_ou1.edf",
+      "data/legacy/multiclass_10min/zyf_ou2.edf",
+      "data/legacy/multiclass_10min/zyf_ou3.edf",
+      "data/legacy/mixed_20min/data_0002_raw.edf",
+      "data/legacy/mixed_20min/data_0003_raw.edf",
+      "data/legacy/mixed_20min/data_0004_raw.edf",
+      "data/legacy/mixed_20min/data_zyf_1_raw.edf",
+      "data/legacy/mixed_20min/data_zyf_2_raw.edf",
+      "data/legacy/mixed_20min/data_zyf_3_raw.edf"
+    ],
+    "recordings": 31,
+    "rows": 37,
+    "session_groups": 19,
+    "windows": 11224
+  },
+  "sources": [
+    "our"
+  ],
+  "svc": {
+    "C": 10.0,
+    "class_weight": "balanced",
+    "gamma": "scale",
+    "kernel": "rbf",
+    "probability": true,
+    "random_state": 42
+  },
+  "trained_at_utc": "2026-09-14T06:02:07.043529+00:00",
+  "validation": {
+    "accuracy_mean": 0.6983086906951986,
+    "accuracy_std": 0.06981106248972058,
+    "balanced_accuracy_mean": 0.6950915725556757,
+    "balanced_accuracy_note": "N/A when a held-out group has one true class",
+    "balanced_accuracy_std": 0.07210053419782812,
+    "balanced_accuracy_valid_folds": 5,
+    "evaluation": "group_kfold",
+    "folds": 5,
+    "method": "GroupKFold(n_splits=5), group=session_group_id"
+  }
+}

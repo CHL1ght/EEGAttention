@@ -1,0 +1,60 @@
+{
+  "audit_version": "common6_compatibility_audit_v2",
+  "author_mat_reference": "unknown",
+  "author_record_ids_audited": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    19,
+    20,
+    21,
+    24,
+    25,
+    26,
+    27,
+    31,
+    32,
+    33,
+    34
+  ],
+  "blockers": [
+    "author MAT reference/montage is unknown; retained as a non-hard-blocking uncertainty"
+  ],
+  "common6_channels": [
+    "F7",
+    "F3",
+    "P7",
+    "O1",
+    "O2",
+    "P8"
+  ],
+  "common6_channels_established": true,
+  "common6_locked_test_evaluated": true,
+  "common6_mapping": {
+    "F3-Pz": "F3",
+    "F7-Pz": "F7",
+    "O1-Pz": "O1",
+    "O2-Pz": "O2",
+    "T5-Pz": "P7",
+    "T6-Pz": "P8"
+  },
+  "common6_models_trained": true,
+  "generated_at_utc": "2026-09-14T06:12:46.317651+00:00",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "locked_test_signal_values_read": false,
+  "locked_test_used_for_fit": false,
+  "our_edf_reference": "Pz confirmed by Wearable Sensing DSI-24/DSI-Streamer technical documentation, DSIStreamer sidecars, and -Pz labels",
+  "reference_compatibility": "uncertain",
+  "required_channels_not_substituted": [],
+  "status": "unblocked_for_common6_training",
+  "zqd_or_unknown_used_for_modeling": false
+}

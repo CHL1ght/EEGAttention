@@ -1,0 +1,37 @@
+{
+  "bias_conclusion": "支持明显类别预测偏置；67.94% 类似的 accuracy 不能解释为稳定跨受试者泛化。",
+  "channel_conclusion": "无法公平进行 author → EDF、our-common7 或 mixed：正式 locked EDF 缺少 AF4, P7, P8；未使用 T5/T6 等空间近似替代。",
+  "common7_available_for_formal_locked": false,
+  "common7_channels": [
+    "F7",
+    "F3",
+    "P7",
+    "O1",
+    "O2",
+    "P8",
+    "AF4"
+  ],
+  "comparison_predictions": "artifacts/subject_model_comparison/2026-09-07/predictions.csv",
+  "diagnostic_version": "subject_model_diagnostics_v1",
+  "generated_at_utc": "2026-09-14T05:04:44.150201+00:00",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "historical_conclusion": "lyc held-out 75.39%; zyf held-out 75.71%；历史 held-out 结果不完全接近随机，不能仅凭 LOCKED_TEST 结果断言任务本身不可分。",
+  "historical_fit_calls": 19,
+  "historical_manifest": "data/legacy_manifest.csv",
+  "labels": [
+    "unfocus",
+    "focus"
+  ],
+  "locked_test_fit_calls": 0,
+  "locked_test_policy": "existing predictions only; no scaler/PCA/SVC fit on LOCKED_TEST",
+  "lyc_personal_to_zyf_accuracy": 0.6793650793650794,
+  "lyc_personal_to_zyf_balanced_accuracy": 0.5179511075248042,
+  "lyc_personal_to_zyf_bias_conclusion": "支持明显类别预测偏置；67.94% 类似的 accuracy 不能解释为稳定跨受试者泛化。",
+  "lyc_personal_to_zyf_predicted_focus_proportion": 0.9857142857142858,
+  "lyc_personal_to_zyf_true_focus_proportion": 0.6682539682539682,
+  "shift_conclusion": "历史 held-out 高于对应 LOCKED_TEST，结果支持 session/domain shift 是重要嫌疑，但不是唯一解释。",
+  "subjects": [
+    "lyc",
+    "zyf"
+  ]
+}

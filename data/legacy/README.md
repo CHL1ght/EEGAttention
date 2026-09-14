@@ -56,3 +56,12 @@ python scripts/validate_legacy_manifest.py
 ```
 
 验收会检查 39 个 EDF 是否全部登记，以及身份、两类时间证据、混合片段边界、路径、标签映射、分组、采样率、信号数、时长和 SHA-256 是否一致。
+
+## 子目录文件导航
+
+| 子目录 | 直接文件代表什么 |
+|---|---|
+| `mixed_20min/` | 20 分钟固定顺序录制的 EDF 原始信号；`README.md` 逐项解释 lyc/zqd/zyf 文件。 |
+| `multiclass_10min/` | 约 10 分钟单状态 EDF 及同名 CSV/DSI sidecar；`README.md` 按状态和 subject 列出文件族。 |
+
+本目录自身没有额外原始文件；所有身份和用途以父目录的 `legacy_manifest.csv` 为准。

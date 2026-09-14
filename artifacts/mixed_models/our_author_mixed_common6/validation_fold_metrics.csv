@@ -1,0 +1,6 @@
+fold,train_recordings,held_out_recordings,train_windows,held_out_windows,held_out_session_groups,accuracy,balanced_accuracy,balanced_accuracy_applicable,pca_components_fitted
+1,34,8,20045,4933,"author_eeg_record10,author_eeg_record17,author_eeg_record24,author_eeg_record31,author_eeg_record5,legacy_lyc_mixed_03,legacy_lyc_run_03,legacy_lyc_run_07",0.7273464423271843,0.72735452312279,True,11
+2,34,8,20174,4804,"author_eeg_record11,author_eeg_record18,author_eeg_record25,author_eeg_record32,author_eeg_record6,legacy_lyc_run_04,legacy_lyc_run_08,legacy_zyf_run_02",0.6482098251457119,0.6481274162894634,True,11
+3,34,8,19900,5078,"author_eeg_record14,author_eeg_record21,author_eeg_record3,author_eeg_record4,legacy_lyc_mixed_02,legacy_zyf_mixed_03,legacy_zyf_run_01,legacy_zyf_run_03",0.6758566364710515,0.6794446727435743,True,11
+4,33,9,19893,5085,"author_eeg_record13,author_eeg_record20,author_eeg_record27,author_eeg_record34,legacy_lyc_mixed_01,legacy_lyc_run_02,legacy_lyc_run_05,legacy_zyf_mixed_02,legacy_zyf_run_04",0.6536873156342183,0.6531353583654839,True,10
+5,33,9,19900,5078,"author_eeg_record12,author_eeg_record19,author_eeg_record26,author_eeg_record33,author_eeg_record7,legacy_lyc_run_01,legacy_lyc_run_06,legacy_lyc_run_09,legacy_zyf_mixed_01",0.6543914927136668,0.657197960251046,True,10

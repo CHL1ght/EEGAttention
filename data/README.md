@@ -2,6 +2,17 @@
 
 这里是项目唯一的数据入口。
 
+## 本目录直接文件
+
+| 文件 | 代表什么 | 是否可修改 |
+|---|---|---|
+| `README.md` | 数据目录导航、数据源优先级和使用方式。 | 可更新文档。 |
+| `DATA_PROTOCOL.md` | 正式标签、活动区间、4s/2s 窗口、session 划分和 LOCKED_TEST 禁止事项。 | 规则变更需留痕。 |
+| `legacy_manifest.csv` | 旧数据的唯一身份/标签/时间/用途/路径/哈希登记；训练脚本只从它读取。 | 不应随意重排或覆盖。 |
+| `legacy_manifest_dictionary.md` | legacy manifest 30 列的数据字典。 | 可更新文档。 |
+| `session_manifest.csv` | 正式 locked/reference session 登记；评估脚本的唯一正式测试入口。 | 新 session 追加，禁止覆盖原行。 |
+| `recording_notes_template_simplified.md` | 现场采集后填写的 session 记录模板。 | 模板可迭代。 |
+
 | 位置 | 用途 | 是否进入新管线 |
 |---|---|---|
 | `session_manifest.csv` | 正式 session 清单和标签真值 | 是，唯一入口 |
@@ -11,6 +22,14 @@
 | `legacy/multiclass_10min/` | 旧单状态自采记录 | 候选 Legacy 训练/验证集；须由新主 Notebook 按完整 EDF 划分 |
 | `reference/original_mat/` | 论文/上游项目的 MATLAB 参考数据 | 仅历史复现 |
 
+子目录 README：
+
+- [`legacy/README.md`](legacy/README.md)：旧自采数据及两个数据族。
+- [`locked/README.md`](locked/README.md)：正式测试和采集计划。
+- [`reference/README.md`](reference/README.md)：上游 MAT 数据。
+
+EDF、CSV、DSI、MAT 原始文件均不得在仓库内就地编辑；需要修正身份、标签或活动区间时更新清单并保留哈希/说明。
+
 ## 新数据怎么放
 
 1. 每个文件只录一种状态，文件名使用：`被试_focus_序号_YYYYMMDD.edf`、`被试_unfocus_序号_YYYYMMDD.edf` 或 `被试_rest_序号_YYYYMMDD.edf`。
@@ -19,7 +38,7 @@
 4. 在 `session_manifest.csv` 增加一行，填写活动有效起止秒数；不清楚时采用首尾各 30 秒缓冲。
 5. 运行 `scripts/validate_locked_data.py`，确认时长、采样率、通道、哈希、标签和窗口数全部通过。
 
-2026-09-14 的现场执行框架见 [`locked/2026-09-14/recording_plan.md`](locked/2026-09-14/recording_plan.md)，每段录制后的空白记录模板见 [`recording_notes_template.md`](recording_notes_template.md)。模板中的任务、说话、异常和四项主观评分不改变现有 manifest schema；真实录制完成后再把已确认的字段写入现有 19 列清单。
+2026-09-14 的现场执行框架见 [`locked/2026-09-14/recording_plan.md`](locked/2026-09-14/recording_plan.md)，每段录制后的空白记录模板见 [`recording_notes_template_simplified.md`](recording_notes_template_simplified.md)。模板中的任务、说话、异常和四项主观评分不改变现有 manifest schema；真实录制完成后再把已确认的字段写入现有 19 列清单。
 
 当前 `focus/unfocus` 仍是数据层 canonical label，研究表述逐步转向高 / 低任务投入度。高唤醒（例如恐惧）不等同于高投入；恐怖游戏应记录为额外的高投入 + 高唤醒 probe，不自动成为 `focus` 的唯一标准。当前 Trigger 不承担标签真值。
 

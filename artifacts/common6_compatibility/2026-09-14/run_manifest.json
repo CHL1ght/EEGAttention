@@ -1,0 +1,29 @@
+{
+  "audit_date": "2026-09-14",
+  "audit_version": "common6_compatibility_audit_v2",
+  "common6_locked_test_evaluated": true,
+  "common6_models_trained": true,
+  "generated_at_utc": "2026-09-14T06:12:46.425223+00:00",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "locked_test_signal_values_read": false,
+  "model_fit_performed": false,
+  "output_sha256": {
+    "BLOCKED.json": "6cf141617d8b567741e4d09587d17d9bddb13a5f735e436e2a672a8253bfdff6",
+    "REPORT.md": "6410ec5bb0373bb0c5fe4020ef6b8176ed5236568b1625a700c79aa00409638d",
+    "author_mat_metadata.csv": "85915d72ae3870655c4f0ed7eeab51a639c12b48f75d46c3b54fba1f191e3bbf",
+    "edf_header_metadata.csv": "4634e993df3217add33e7cbe48934bc01e09ff5873895d9672d85fe10e916f3a",
+    "evidence_audit.csv": "fcad95b10213a73104f30d6d6d660dd21c40c392244cdae75b28edc85e18bb94",
+    "notebook_audit.json": "1d9b42563d281da6dbc9c79452ebb0a1674f52990399358eec1d10de78b33e7c",
+    "sidecar_metadata.csv": "6ec2f3f5ad83db11553a3d6789c943b2b0620b9426b0f07814f6641e051fe014"
+  },
+  "outputs": [
+    "edf_header_metadata.csv",
+    "sidecar_metadata.csv",
+    "author_mat_metadata.csv",
+    "evidence_audit.csv",
+    "notebook_audit.json",
+    "BLOCKED.json",
+    "REPORT.md"
+  ],
+  "status": "unblocked_for_common6_training"
+}

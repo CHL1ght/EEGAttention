@@ -74,7 +74,7 @@
 - 避免让状态标签与疲劳 / 时间顺序完全绑定。若现场无法平衡顺序，至少记录真实顺序。
 - 延续现有命名规律：`被试_focus_序号_YYYYMMDD.edf`、`被试_unfocus_序号_YYYYMMDD.edf` 或 `被试_rest_序号_YYYYMMDD.edf`。例如：`lyc_focus1_20260914.edf`、`lyc_unfocus1_20260914.edf`、`zyf_focus1_20260914.edf`。这些只是命名示例，不是预先承诺的 session 清单。
 - EDF、CSV、DSI 使用相同 basename；序号在现场确认，禁止覆盖任何已有文件。
-- 每段结束立即复制 [`data/recording_notes_template.md`](../../recording_notes_template.md) 填写一份记录。详细任务 / 异常 / 自评放在记录中；`session_manifest.csv` 保持现有 schema，不为本次采集增加字段。
+- 每段结束立即复制 [`data/recording_notes_template_simplified.md`](../../recording_notes_template_simplified.md) 填写一份记录。详细任务 / 异常 / 自评放在记录中；`session_manifest.csv` 保持现有 schema，不为本次采集增加字段。
 
 ## 6. DSIStreamer 现场 checklist
 
@@ -108,4 +108,3 @@
    ```
 
 5. `dataset_role=locked_test` 的数据禁止训练、调参、特征选择、阈值选择和模型选择；不得根据本批表现调整模型后仍把它称作独立测试集。
-

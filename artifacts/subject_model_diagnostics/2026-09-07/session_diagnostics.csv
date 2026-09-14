@@ -1,0 +1,19 @@
+model_id,model,subject,session_id,filename,true_label,true_label_count,windows,true_focus_windows,true_unfocus_windows,predicted_focus_windows,predicted_unfocus_windows,predicted_focus_proportion,predicted_unfocus_proportion,accuracy,balanced_accuracy,majority_prediction
+lyc_personal,lyc personal model,lyc,20260907_lyc_focus_01,lyc_focus1_20260907.edf,focus,1,422,422,0,63,359,0.14928909952606634,0.8507109004739336,0.14928909952606634,,unfocus
+lyc_personal,lyc personal model,lyc,20260907_lyc_focus_02,lyc_focus_202609072034_raw.edf,focus,1,283,283,0,245,38,0.8657243816254417,0.13427561837455831,0.8657243816254417,,focus
+lyc_personal,lyc personal model,lyc,20260907_lyc_unfocus_01,lyc_unfocus1_20260907.edf,unfocus,1,424,0,424,205,219,0.4834905660377358,0.5165094339622641,0.5165094339622641,,unfocus
+lyc_personal,lyc personal model,zyf,20260907_zyf_focus_01,zyf_focus1_20260907.edf,focus,1,424,424,0,423,1,0.9976415094339622,0.0023584905660377358,0.9976415094339622,,focus
+lyc_personal,lyc personal model,zyf,20260907_zyf_focus_02,zyf_focus2_20260907.edf,focus,1,418,418,0,417,1,0.9976076555023924,0.0023923444976076554,0.9976076555023924,,focus
+lyc_personal,lyc personal model,zyf,20260907_zyf_unfocus_01,zyf_unfocus1_20260907.edf,unfocus,1,418,0,418,402,16,0.9617224880382775,0.03827751196172249,0.03827751196172249,,focus
+pooled,Existing pooled frozen model,lyc,20260907_lyc_focus_01,lyc_focus1_20260907.edf,focus,1,422,422,0,220,202,0.5213270142180095,0.4786729857819905,0.5213270142180095,,focus
+pooled,Existing pooled frozen model,lyc,20260907_lyc_focus_02,lyc_focus_202609072034_raw.edf,focus,1,283,283,0,269,14,0.950530035335689,0.04946996466431095,0.950530035335689,,focus
+pooled,Existing pooled frozen model,lyc,20260907_lyc_unfocus_01,lyc_unfocus1_20260907.edf,unfocus,1,424,0,424,173,251,0.4080188679245283,0.5919811320754716,0.5919811320754716,,unfocus
+pooled,Existing pooled frozen model,zyf,20260907_zyf_focus_01,zyf_focus1_20260907.edf,focus,1,424,424,0,29,395,0.06839622641509434,0.9316037735849056,0.06839622641509434,,unfocus
+pooled,Existing pooled frozen model,zyf,20260907_zyf_focus_02,zyf_focus2_20260907.edf,focus,1,418,418,0,167,251,0.39952153110047844,0.6004784688995215,0.39952153110047844,,unfocus
+pooled,Existing pooled frozen model,zyf,20260907_zyf_unfocus_01,zyf_unfocus1_20260907.edf,unfocus,1,418,0,418,33,385,0.07894736842105263,0.9210526315789473,0.9210526315789473,,unfocus
+zyf_personal,zyf personal model,lyc,20260907_lyc_focus_01,lyc_focus1_20260907.edf,focus,1,422,422,0,96,326,0.22748815165876776,0.7725118483412322,0.22748815165876776,,unfocus
+zyf_personal,zyf personal model,lyc,20260907_lyc_focus_02,lyc_focus_202609072034_raw.edf,focus,1,283,283,0,0,283,0.0,1.0,0.0,,unfocus
+zyf_personal,zyf personal model,lyc,20260907_lyc_unfocus_01,lyc_unfocus1_20260907.edf,unfocus,1,424,0,424,3,421,0.007075471698113208,0.9929245283018868,0.9929245283018868,,unfocus
+zyf_personal,zyf personal model,zyf,20260907_zyf_focus_01,zyf_focus1_20260907.edf,focus,1,424,424,0,40,384,0.09433962264150944,0.9056603773584906,0.09433962264150944,,unfocus
+zyf_personal,zyf personal model,zyf,20260907_zyf_focus_02,zyf_focus2_20260907.edf,focus,1,418,418,0,129,289,0.30861244019138756,0.6913875598086124,0.30861244019138756,,unfocus
+zyf_personal,zyf personal model,zyf,20260907_zyf_unfocus_01,zyf_unfocus1_20260907.edf,unfocus,1,418,0,418,66,352,0.15789473684210525,0.8421052631578947,0.8421052631578947,,unfocus

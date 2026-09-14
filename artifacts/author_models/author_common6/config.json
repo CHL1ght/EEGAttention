@@ -1,0 +1,185 @@
+{
+  "author_label_blocks": "each recording: [0,600)s focus and [600,1200)s unfocus",
+  "author_record_ids": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    10,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    19,
+    20,
+    21,
+    24,
+    25,
+    26,
+    27,
+    31,
+    32,
+    33,
+    34
+  ],
+  "channel_set": "common6",
+  "cross_source_scope": "exploratory; author MAT reference remains unknown",
+  "feature_protocol": {
+    "channel_mapping": {
+      "F3-Pz": "F3",
+      "F7-Pz": "F7",
+      "O1-Pz": "O1",
+      "O2-Pz": "O2",
+      "T5-Pz": "P7",
+      "T6-Pz": "P8"
+    },
+    "channel_set": "common6",
+    "channels": [
+      "F7",
+      "F3",
+      "P7",
+      "O1",
+      "O2",
+      "P8"
+    ],
+    "filter_hz": [
+      0.5,
+      43.0
+    ],
+    "raw_feature_dimension": 60,
+    "shared_module": "scripts/eeg_pipeline_utils.py",
+    "target_sampling_rate_hz": 128.0,
+    "welch_bands_hz": {
+      "alpha": [
+        8.0,
+        13.0
+      ],
+      "beta": [
+        13.0,
+        30.0
+      ],
+      "delta": [
+        1.0,
+        4.0
+      ],
+      "gamma": [
+        30.0,
+        43.0
+      ],
+      "theta": [
+        4.0,
+        8.0
+      ]
+    },
+    "window_step_sec": [
+      4.0,
+      2.0
+    ]
+  },
+  "final_fit_scope": "all listed non-LOCKED_TEST source rows",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "labels": [
+    "unfocus",
+    "focus"
+  ],
+  "locked_test_read": false,
+  "mat_structure": {
+    "author_data_slice": "o.data[:20*128*60, 3:17]",
+    "data_field": "o.data",
+    "sampling_rate_hz": 128.0,
+    "source_channel_count": 14,
+    "source_channel_order": [
+      "AF3",
+      "F7",
+      "F3",
+      "FC5",
+      "T7",
+      "P7",
+      "O1",
+      "O2",
+      "P8",
+      "T8",
+      "FC6",
+      "F4",
+      "F8",
+      "AF4"
+    ],
+    "top_level_struct": "o"
+  },
+  "model_type": "author_common6",
+  "model_version": "cross_source_models_v1",
+  "original_notebook_audit": {
+    "features": "STFT nperseg=128, nfft=1024, noverlap=0; 36 frequency bins × 7 channels; 15-frame sliding average; 252 features (historical notebook)",
+    "label_construction": "first 10 minutes focus; next 10 minutes unfocus",
+    "preprocessing": "BaselineRemoval.IModPoly then Butterworth 0.2–43 Hz",
+    "scaler_pca_fit_scope": "train split only in the checked-in notebook",
+    "split": "train_test_split(X, y, test_size=0.2, random_state=42) after concatenating windows across recordings",
+    "window_level_leakage": true
+  },
+  "output_dir": "artifacts/author_models/author_common6",
+  "pca": {
+    "explained_variance_ratio_sum": 0.9514832895818403,
+    "fitted_components": 19,
+    "requested": 0.95
+  },
+  "pipeline_sha256": "85987c2ec5cd13d72279696a166b4fc9da84460909264b1679b96f37799f5974",
+  "reference_compatibility": "uncertain; author MAT reference unknown",
+  "source_scope": {
+    "blocks_by_label": {
+      "focus": 23,
+      "unfocus": 23
+    },
+    "paths": [
+      "data/reference/original_mat/eeg_record3.mat",
+      "data/reference/original_mat/eeg_record4.mat",
+      "data/reference/original_mat/eeg_record5.mat",
+      "data/reference/original_mat/eeg_record6.mat",
+      "data/reference/original_mat/eeg_record7.mat",
+      "data/reference/original_mat/eeg_record10.mat",
+      "data/reference/original_mat/eeg_record11.mat",
+      "data/reference/original_mat/eeg_record12.mat",
+      "data/reference/original_mat/eeg_record13.mat",
+      "data/reference/original_mat/eeg_record14.mat",
+      "data/reference/original_mat/eeg_record17.mat",
+      "data/reference/original_mat/eeg_record18.mat",
+      "data/reference/original_mat/eeg_record19.mat",
+      "data/reference/original_mat/eeg_record20.mat",
+      "data/reference/original_mat/eeg_record21.mat",
+      "data/reference/original_mat/eeg_record24.mat",
+      "data/reference/original_mat/eeg_record25.mat",
+      "data/reference/original_mat/eeg_record26.mat",
+      "data/reference/original_mat/eeg_record27.mat",
+      "data/reference/original_mat/eeg_record31.mat",
+      "data/reference/original_mat/eeg_record32.mat",
+      "data/reference/original_mat/eeg_record33.mat",
+      "data/reference/original_mat/eeg_record34.mat"
+    ],
+    "recordings": 23,
+    "rows": 46,
+    "session_groups": 23,
+    "windows": 13754
+  },
+  "svc": {
+    "C": 10.0,
+    "class_weight": "balanced",
+    "gamma": "scale",
+    "kernel": "rbf",
+    "probability": true,
+    "random_state": 42
+  },
+  "trained_at_utc": "2026-09-14T06:01:07.141968+00:00",
+  "validation": {
+    "accuracy_mean": 0.6469397993311038,
+    "accuracy_std": 0.042883016961273335,
+    "balanced_accuracy_mean": 0.6469397993311038,
+    "balanced_accuracy_note": "N/A when a held-out group has one true class",
+    "balanced_accuracy_std": 0.042883016961273314,
+    "balanced_accuracy_valid_folds": 5,
+    "evaluation": "group_kfold",
+    "folds": 5,
+    "method": "GroupKFold(n_splits=5), group=session_group_id/author recording"
+  }
+}

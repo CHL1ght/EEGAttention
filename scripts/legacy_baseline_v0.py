@@ -19,7 +19,7 @@ import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 import joblib
 import numpy as np
@@ -155,8 +155,17 @@ def prepare_split(rows: pd.DataFrame) -> pd.DataFrame:
     return rows
 
 
-def build_feature_dataset(rows: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, pd.DataFrame]:
-    """Read each source once, then extract only its manifest-defined segments."""
+def build_feature_dataset(
+    rows: pd.DataFrame,
+    *,
+    load_recording_fn: Callable[[Path], tuple[np.ndarray, float, list[str]]] = load_eeg_recording,
+) -> tuple[np.ndarray, np.ndarray, pd.DataFrame]:
+    """Read each source once, then extract its manifest-defined segments.
+
+    The optional loader is a thin input adapter for another file format or an
+    explicitly selected channel layout.  The feature, window, and metadata
+    logic remains the same as the frozen EDF path.
+    """
     source_to_rows: dict[str, list[int]] = defaultdict(list)
     for index, row in rows.iterrows():
         source_to_rows[str(row["source_recording_id"])].append(index)
@@ -167,7 +176,7 @@ def build_feature_dataset(rows: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, p
     channel_signature: tuple[str, ...] | None = None
     for source_id, indices in source_to_rows.items():
         source_row = rows.loc[indices[0]]
-        data, sfreq, channels = load_eeg_recording(Path(source_row["edf_path_abs"]))
+        data, sfreq, channels = load_recording_fn(Path(source_row["edf_path_abs"]))
         current_signature = tuple(channels)
         if channel_signature is None:
             channel_signature = current_signature

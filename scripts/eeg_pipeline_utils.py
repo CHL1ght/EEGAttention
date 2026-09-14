@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Any, Iterator, Mapping
 
 import mne
 import numpy as np
@@ -59,11 +59,56 @@ def print_metric(name: str, value: Any) -> None:
     print(f"  {name:<20}: {value}")
 
 
+def select_named_channels(
+    data: np.ndarray,
+    available_channels: list[str],
+    requested_channels: tuple[str, ...],
+    aliases: Mapping[str, tuple[str, ...]] | None = None,
+) -> tuple[np.ndarray, list[str]]:
+    """Select an explicitly mapped channel layout without spatial guessing.
+
+    Matching is case-insensitive and whitespace-normalized.  ``aliases`` is
+    intentionally explicit: a channel is accepted only when its exact name
+    appears in the canonical name or in the caller-provided alias list.
+    """
+    if data.ndim != 2 or data.shape[0] != len(available_channels):
+        raise ValueError("Channel data must have shape (channels, samples)")
+    alias_map = aliases or {}
+    normalized = {
+        " ".join(str(name).strip().casefold().split()): index
+        for index, name in enumerate(available_channels)
+    }
+    indices: list[int] = []
+    missing: list[str] = []
+    for canonical in requested_channels:
+        candidates = (canonical, *alias_map.get(canonical, ()))
+        index = next(
+            (
+                normalized[" ".join(str(candidate).strip().casefold().split())]
+                for candidate in candidates
+                if " ".join(str(candidate).strip().casefold().split()) in normalized
+            ),
+            None,
+        )
+        if index is None:
+            missing.append(canonical)
+        else:
+            indices.append(index)
+    if missing:
+        raise ValueError(
+            "Missing explicitly mapped channel(s): "
+            f"{missing}; available channels={available_channels}"
+        )
+    return np.asarray(data[indices], dtype=np.float64), list(requested_channels)
+
+
 def load_eeg_recording(
     edf_path: Path,
     *,
     target_fs: float = 128.0,
     allow_locked: bool = False,
+    channel_names: tuple[str, ...] | None = None,
+    channel_aliases: Mapping[str, tuple[str, ...]] | None = None,
 ) -> tuple[np.ndarray, float, list[str]]:
     """Load, select EEG channels, and resample one EDF consistently.
 
@@ -85,12 +130,40 @@ def load_eeg_recording(
     if len(raw.ch_names) == 0:
         raise ValueError(f"{edf_path} has no MNE-recognized EEG channels")
 
+    selected_channels = list(raw.ch_names)
+    if channel_names is not None:
+        all_channels = list(raw.ch_names)
+        all_data = raw.get_data()
+        _selected_data, selected_channels = select_named_channels(
+            all_data,
+            all_channels,
+            channel_names,
+            channel_aliases,
+        )
+        normalized = {
+            " ".join(str(name).strip().casefold().split()): index
+            for index, name in enumerate(all_channels)
+        }
+        actual_names = []
+        for canonical in channel_names:
+            candidates = (canonical, *(channel_aliases or {}).get(canonical, ()))
+            actual_names.append(
+                all_channels[
+                    next(
+                        normalized[" ".join(str(candidate).strip().casefold().split())]
+                        for candidate in candidates
+                        if " ".join(str(candidate).strip().casefold().split()) in normalized
+                    )
+                ]
+            )
+        raw.pick(actual_names)
+
     source_fs = float(raw.info["sfreq"])
     if not np.isclose(source_fs, float(round(source_fs)), atol=1e-6):
         raise ValueError(f"Non-integral source sampling rate is unsupported: {source_fs}")
     if not np.isclose(source_fs, target_fs):
         raw.resample(target_fs, npad="auto", verbose=False)
-    return raw.get_data(), float(raw.info["sfreq"]), list(raw.ch_names)
+    return raw.get_data(), float(raw.info["sfreq"]), selected_channels
 
 
 def preprocess_eeg(
@@ -189,4 +262,3 @@ def extract_segment_features(
         features.append(extract_bandpower_features(window, sfreq, bands))
         starts.append(start_sec + offset_sec)
     return np.asarray(features), np.asarray(starts, dtype=np.float64)
-

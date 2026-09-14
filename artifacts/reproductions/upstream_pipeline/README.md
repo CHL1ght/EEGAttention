@@ -11,6 +11,14 @@
 | `models/` | 5 个 GoogLeNet 和 5 个 ResNet18 权重 | 由本项目后加的深度训练辅助流程生成/保存 |
 | `results/` | 本地复现的训练表、ROC 数据、图和进度日志 | 与上述复现流程同批生成 |
 
+## 直接文件
+
+| 文件 | 含义 |
+|---|---|
+| `model_manifest.csv` | 上游复现模型的名称、路径、来源和完整性登记。 |
+
+各子目录的文件级说明见 `preprocessed_arrays/README.md`、`feature_cache/README.md`、`models/README.md` 和 `results/README.md`。
+
 Git 追溯证据：上述数组、缓存和权重在提交 `68a25c0` (`better train process`) 中加入；四个 `.npy` 的导出语句也位于该版本的 Notebook 中。
 
 ## 重要限制

@@ -1,0 +1,18 @@
+{
+  "channel_set": "common6",
+  "fit_policy": "validation folds fit on train groups; final artifact fit on listed non-LOCKED_TEST source rows",
+  "git_head": "12e70b819938dde0b9ca48d0423337c9c3550917",
+  "locked_test_read_for_fit": false,
+  "model_type": "our_common6_pooled",
+  "model_version": "cross_source_models_v1",
+  "output_sha256": {
+    "config.json": "88353c45423df574c40082ef50e7fb626dfc3200a9b99b8d59bf04c003d15e53",
+    "pipeline.joblib": "bf8e20d43ab7927cdf28bba6501b835e212fcf37fb7e7c1bdbc5cb2dd761dbb6",
+    "train_manifest.csv": "5884a9a0046c2e76645af69350295c2d9bcd24fbc4cdb16792f91f9e526dd420",
+    "validation_confusion_matrix.csv": "25e053e0ad533f8091ffce06516ec1c37cfd41de1259485bfc93ff1fafb413d3",
+    "validation_fold_metrics.csv": "cce5005e5efa98d6e972d6127c62cf8aaa1809d9f3a45ffc91ea65a9b108ef02",
+    "validation_metrics.json": "345bd3df6951486976df852dfd7bc3c41b14b3c39af64b6c9c6a04f451f4768a",
+    "validation_predictions.csv": "465ca0335b21fd03192382ff7c6609546005c713a88443aa3ff733f2f3406904"
+  },
+  "trained_at_utc": "2026-09-14T06:02:07.107042+00:00"
+}

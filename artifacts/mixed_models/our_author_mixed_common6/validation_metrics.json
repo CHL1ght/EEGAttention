@@ -1,0 +1,10 @@
+{
+  "accuracy_mean": 0.6718983424583665,
+  "accuracy_std": 0.03274689683389297,
+  "balanced_accuracy_mean": 0.6730519861544716,
+  "balanced_accuracy_note": "N/A when a held-out group has one true class",
+  "balanced_accuracy_std": 0.03263007947358284,
+  "balanced_accuracy_valid_folds": 5,
+  "evaluation": "group_kfold",
+  "folds": 5
+}

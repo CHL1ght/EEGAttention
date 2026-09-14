@@ -14,3 +14,14 @@
 从仓库根目录启动 Jupyter 或 VS Code，再运行 notebook；历史 notebook 的数据路径均相对仓库根目录。其输出统一写入 `artifacts/legacy/notebook_outputs/`，不得写回 `data/`。
 
 旧 notebook 可能包含已经执行过的输出。随机窗口指标只用于历史流程核对，不代表跨 session 或跨被试泛化能力。
+
+## 目录和文件说明
+
+| 目录/文件 | 内容 |
+|---|---|
+| `lab_quick_test_legacy_model.ipynb` | 当前现场快速入口；输入 EDF 后复用共享函数比较 pooled/personal。 |
+| `upstream/` | 原始上游训练、MAT 检查和结果可视化 notebook。 |
+| `tutorial/` | 上游 notebook 的中文注释和阅读笔记。 |
+| `legacy/self_recorded/` | 旧自采三/四分类、mixed EDF 和历史比较 notebook。 |
+
+notebook 只适合作为交互式入口或阅读材料；需要可重复训练/评估时使用 `scripts/` 下的 Python 入口。

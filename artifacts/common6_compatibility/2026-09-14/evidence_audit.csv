@@ -1,0 +1,9 @@
+evidence_id,source,url,finding,status,supports_t5_t6_mapping,supports_reference
+acns_nomenclature,ACNS Guideline 2,https://www.acns.org/UserFiles/file/EEGGuideline2Electrodenomenclature_final_v1.pdf,Modified 10-10 nomenclature replaces old 10-20 T5/T6 with P7/P8; T5/T6 are acceptable alternate names.,authoritative_nomenclature_equivalence,True,False
+wearable_sensing_dsi24_positions,Wearable Sensing DSI-24 product specification,https://wearablesensing.com/dsi-24/,DSI-24 sensor locations list P7/T5 and P8/T6.,authoritative_device_position_equivalence,True,False
+wearable_sensing_pz_reference,Wearable Sensing technical documentation,https://support.wearablesensing.com/examples/mne/python/core/channels.html,DSI-24 hardware reference is Pz and DSI-Streamer data uses this reference.,authoritative_our_reference,False,True
+project_protocol,data/DATA_PROTOCOL.md,,"DSIStreamer, 300 Hz, 24 EEG channels, Pz reference",explicit_project_declaration,False,True
+edf_labels,audited EDF signal headers,,T5-Pz=43/43; T6-Pz=43/43; literal P7=0/43; literal P8=0/43,observed_labels_only,False,partial
+sidecar_reference,DSIStreamer CSV sidecars,,reference_location counts={'Pz': 36}; logger/filter metadata retained,explicit_pz_metadata,False,True
+author_mat_schema,data/reference/original_mat/*.mat,,o.data and o.sampFreq exist; no reference/montage/electrode field,reference_unknown,False,False
+author_notebook,notebooks/upstream/EEG_train_22_origin.ipynb; notebooks/upstream/EEG_train_22_20250226.ipynb,,explicit P7/P8 selection and o.data slice; no explicit rereference operation,channel_names_without_reference_provenance,False,False
