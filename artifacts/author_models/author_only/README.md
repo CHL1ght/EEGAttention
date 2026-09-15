@@ -2,6 +2,8 @@
 
 只使用原作者23个MAT录制、保留七通道的模型。
 
+状态：`historical baseline`。保留作作者数据内部对照，不进入 New Paradigm v1 首轮训练。
+
 ## 它属于项目哪一步
 
 Stage 6：作者数据内部可分性。

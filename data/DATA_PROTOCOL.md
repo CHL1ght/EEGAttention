@@ -1,5 +1,7 @@
 # EEG 数据协议 v1
 
+> 状态：`HISTORICAL / protocol v1`。本文保留旧 legacy、LOCKED_TEST 与 LAB_FEEDBACK 的原始规则；CURRENT 采集与 manifest 规则见 [DATA_PROTOCOL_V2.md](../docs/current/DATA_PROTOCOL_V2.md)。
+
 本协议从 2026-09-08 起作为项目的唯一正式数据口径。
 
 ## 1. 标签来源

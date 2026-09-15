@@ -4,7 +4,7 @@
 
 ## 它属于项目哪一步
 
-Stage 2–8：共用处理函数，分别提供训练、正式评估和现场入口。
+Stage 2–9：旧训练/评估入口保留用于复现；CURRENT 只新增 New Paradigm v1 数据验证入口。
 
 前一步：Common6 通道对齐与 Mixed。
 这一步：Notebook只填路径，信号处理由同一份函数负责，避免不同入口算出不同特征。
@@ -22,12 +22,15 @@ manifest、原始EDF/MAT和artifacts中的已保存模型。
 
 ## 谁生成这里的文件
 
-脚本由开发者维护；历史训练生成既有产物；现场只调用subject_model_utils。
+脚本由开发者维护；历史训练已生成既有产物。当前没有运行训练，也没有为 New Paradigm v1 建立训练入口。
 
 ## 这个目录里的文件
 
 | 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
 |---|---|---|---|
+| [validate_new_paradigm_data.py](validate_new_paradigm_data.py) | 只读检查 New Paradigm v1 manifest schema、session 角色、final 冻结状态、路径和可选 EDF 哈希；允许 0 条 session，输出 `fit_calls=0`。 | 手写维护 | 随 v2 schema 同步维护 |
+| [validate_historical_integrity.py](validate_historical_integrity.py) | 只读检查 9/14 的 11 条 metadata/sidecar/hash/标签冲突/资格、未进入旧/新 manifest，以及七个冻结模型哈希和 `fit_calls=0`。 | 手写维护 | 与冻结哈希和 pilot schema 同步维护 |
+| [validate_markdown_links.py](validate_markdown_links.py) | 只读检查仓库 Markdown 的相对文件/目录链接。 | 手写维护 | 可维护 |
 | [annotated/](annotated/README.md) | 这里是三个核心脚本的中文教学注释副本，只用于阅读，不是第二套正式算法。 | 目录 | 按子目录规则 |
 | [legacy/](legacy/README.md) | 这里保留旧上游深度学习和ROC曲线的辅助脚本，不是当前三模型推理入口。 | 目录 | 按子目录规则 |
 | [cross_source_utils.py](cross_source_utils.py) | MAT 与 common6/common7 EDF 的薄输入 adapter、明确通道映射、author block manifest 和共享特征数据集入口；common6 显式将 `T5-Pz/T6-Pz` 映射为 `P7/P8`。 | 手写维护 | 可维护，保留来源与实验边界 |
@@ -49,19 +52,22 @@ manifest、原始EDF/MAT和artifacts中的已保存模型。
 
 ## 当前状态
 
-已有正式入口；本轮只扩展推理和只读验收。
+旧入口已冻结为 historical。CURRENT 只有数据 validator；尚无新范式训练/评估脚本和产物。
 
 ## 我什么时候需要看这个目录
 
-想找现场函数，看subject_model_utils.py；核对行为运行validate_quick_test.py。
+新数据登记后先运行 validate_new_paradigm_data.py；追溯旧现场推理才看 subject_model_utils.py。
 
 ## 不要误解
 
-train_*脚本会拟合模型，新人无需重跑；只读验收不是训练。
+现有 train_* 脚本都是历史训练入口，不得用于首轮 New Paradigm v1。只读验收不是训练。
 
 ## 本轮只读验收
 
 ```powershell
+python scripts/validate_new_paradigm_data.py
+python scripts/validate_historical_integrity.py
+python scripts/validate_markdown_links.py
 python scripts/validate_legacy_manifest.py
 python scripts/validate_locked_data.py
 python scripts/validate_reproduction_models.py

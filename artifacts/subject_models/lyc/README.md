@@ -2,6 +2,8 @@
 
 只用lyc历史数据训练的个人模型。
 
+状态：`historical baseline`。它不是未来的 `lyc-new personal`，不得用 New Paradigm v1 名义覆盖。
+
 ## 它属于项目哪一步
 
 Stage 4：lyc / zyf personal models

@@ -2,6 +2,8 @@
 
 把我们的lyc/zyf历史数据与原作者23个录制合起来，只使用双方能可靠对应的六个通道训练的通用SVC模型。
 
+状态：`historical baseline`。保留作跨来源历史对照，不进入 New Paradigm v1 首轮训练。
+
 ## 它属于项目哪一步
 
 Stage 7：Common6 通道对齐与 Mixed

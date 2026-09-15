@@ -2,6 +2,8 @@
 
 这里封存早期自采原始信号；训练能用哪些片段由 legacy_manifest.csv 决定。
 
+分类：`HISTORICAL / legacy_dataset_v0`。现有清单和原始文件继续用于旧实验复现，不是 New Paradigm v1 默认训练输入。
+
 ## 它属于项目哪一步
 
 Stage 1：早期自采 EEG 探索

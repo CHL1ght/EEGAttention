@@ -1,5 +1,7 @@
 # 新人文档、现场 QuickTest 与 LAB_FEEDBACK 交付记录
 
+> 状态：`HISTORICAL handoff`。本文保留当时的交付事实和执行时哈希；当前研究入口见 [New Paradigm v1](current/NEW_PARADIGM_V1.md)。2026-09-14 数据现归档为 historical pilot，CURRENT 结构整理前快照由 Git tag `pre-new-paradigm-v1` 指向提交 `f12359d`。
+
 本轮只整理文档、扩展固定模型推理和定义反馈数据规则。没有训练、调参、修改正式实验分数或伪造新录制。
 
 ## 1. 开始时的 Git 状态

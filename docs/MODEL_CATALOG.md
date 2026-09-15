@@ -1,6 +1,8 @@
 # 模型字典：这些模型分别学了什么
 
-不知道项目为什么走到这里，先看 [实验阶段地图](EXPERIMENT_MAP.md)。下面所有模型都是已经保存的实验产物；本轮不重新训练。现场默认使用旧pooled、对应personal、mixed-common6。
+不知道项目为什么走到这里，先看 [实验阶段地图](EXPERIMENT_MAP.md)。下面七个已保存模型统一为 `status = historical baseline`：它们保留用于追溯和对照，但都不是 New Paradigm v1 的当前模型，也不会在本轮重新训练。
+
+CURRENT 阶段尚无已训练模型。未来计划中的 `lyc-new personal`、`zyf-new personal` 和 `new-paradigm pooled` 只能从 `data/current/new_paradigm_v1/session_manifest.csv` 的合格 session 开始建立。
 
 ## 先认识几个词
 
@@ -20,6 +22,8 @@
 - reference：电压测量使用的参考电极；位置对应不等于参考电极一致。
 
 ## Existing pooled frozen model
+
+状态：`historical baseline`。
 
 一句话：第一套保存完整处理步骤、供后续实验对照的多人通用模型。
 
@@ -41,11 +45,13 @@
 
 训练入口：`scripts/legacy_baseline_v0.py`；这里只标出可追溯入口，不要求新人执行训练。
 
-目前用途：现场与研究的固定参考。
+目前用途：历史对照；不作为 New Paradigm v1 默认模型。
 
 当前结果：历史validation Acc69.99% / Bal69.64%；LOCKED_TEST lyc65.54% /64.28%，zyf46.11% /57.69%。 此处 Acc/Bal为Accuracy/Balanced Accuracy，±表示五折标准差，不是置信区间。
 
 ## lyc personal
+
+状态：`historical baseline`。
 
 一句话：只用lyc历史数据训练的个人模型。
 
@@ -67,11 +73,13 @@
 
 训练入口：`scripts/train_subject_models.py`；这里只标出可追溯入口，不要求新人执行训练。
 
-目前用途：lyc现场与旧pooled/mixed对照。
+目前用途：历史 lyc 对照；不作为未来 `lyc-new personal` 的初始化或默认输入。
 
 当前结果：LOCKED_TEST lyc Acc46.68% / Bal47.67%；zyf67.94% /51.80%，后者预测focus98.57%，存在明显偏向。 此处 Acc/Bal为Accuracy/Balanced Accuracy，±表示五折标准差，不是置信区间。
 
 ## zyf personal
+
+状态：`historical baseline`。
 
 一句话：只用zyf历史数据训练的个人模型。
 
@@ -93,11 +101,13 @@
 
 训练入口：`scripts/train_subject_models.py`；这里只标出可追溯入口，不要求新人执行训练。
 
-目前用途：zyf现场与旧pooled/mixed对照。
+目前用途：历史 zyf 对照；不作为未来 `zyf-new personal` 的初始化或默认输入。
 
 当前结果：LOCKED_TEST lyc Acc45.79% / Bal56.45%；zyf41.35% /52.14%。 此处 Acc/Bal为Accuracy/Balanced Accuracy，±表示五折标准差，不是置信区间。
 
 ## author-only-7ch
+
+状态：`historical baseline`。
 
 一句话：只使用原作者23个MAT录制、保留七通道的模型。
 
@@ -125,6 +135,8 @@
 
 ## author-common6
 
+状态：`historical baseline`。
+
 一句话：只用作者23个录制、去掉AF4后训练的六通道模型。
 
 为什么会有它：比较去掉AF4的影响，并检查作者模型直接预测自采数据的表现。 对应 [Stage 7](EXPERIMENT_MAP.md)。
@@ -150,6 +162,8 @@
 当前结果：GroupKFold Acc/Bal均64.69% ±4.29%；LOCKED_TEST lyc37.56% /50.00%，zyf33.17% /50.00%，全部预测unfocus。 此处 Acc/Bal为Accuracy/Balanced Accuracy，±表示五折标准差，不是置信区间。
 
 ## our-common6
+
+状态：`historical baseline`。
 
 一句话：只用lyc与zyf历史数据、限制为六个共同通道的通用模型。
 
@@ -177,6 +191,8 @@
 
 ## mixed-common6
 
+状态：`historical baseline`。
+
 一句话：把我们的lyc/zyf历史数据与原作者23个录制合起来，只使用双方能可靠对应的六个通道训练的通用SVC模型。
 
 为什么会有它：测试增加跨来源、跨录制的训练数据多样性，是否与新session泛化改善相关。 对应 [Stage 7](EXPERIMENT_MAP.md)。
@@ -197,9 +213,19 @@
 
 训练入口：`scripts/train_cross_source_models.py --model mixed-common6`；这里只标出可追溯入口，不要求新人执行训练。
 
-目前用途：研究跨录制/跨来源泛化；现场QuickTest的第三个代表模型。
+目前用途：历史跨录制/跨来源对照；不作为 New Paradigm v1 默认模型。
 
 当前结果：GroupKFold Acc67.19% ±3.27%，Bal67.31% ±3.26%；LOCKED_TEST lyc47.48% /52.68%，zyf51.03% /55.77%。相对our-common6 Bal增加4.39/8.99个百分点。 此处 Acc/Bal为Accuracy/Balanced Accuracy，±表示五折标准差，不是置信区间。
+
+## CURRENT 计划模型（尚未训练）
+
+| model_id | 预定训练范围 | 当前状态 |
+|---|---|---|
+| `lyc-new personal` | 只使用 New Paradigm v1 中 lyc 的合格训练 session | planned / no artifact |
+| `zyf-new personal` | 只使用 New Paradigm v1 中 zyf 的合格训练 session | planned / no artifact |
+| `new-paradigm pooled` | 只使用 New Paradigm v1 中 lyc+zyf 的合格训练 session | planned / no artifact |
+
+首轮不得混入 legacy、author、2026-09-14 LAB_FEEDBACK、旧 LOCKED_TEST 或 common6 训练数据。未来如研究旧数据迁移、跨来源合并或特征 ablation，应新建独立实验版本，不能覆盖这三个模型的纯新范式定义。
 
 ## 为什么 common7 曾被 blocked
 

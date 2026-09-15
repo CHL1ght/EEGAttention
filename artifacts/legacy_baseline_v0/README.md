@@ -2,6 +2,8 @@
 
 第一套保存完整处理步骤、供后续实验对照的多人通用模型。
 
+状态：`historical baseline`。保留模型、配置、划分、预测和哈希用于追溯；不是 New Paradigm v1 的当前模型，不得覆盖。
+
 ## 它属于项目哪一步
 
 Stage 2：Legacy pooled baseline

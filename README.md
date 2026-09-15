@@ -1,81 +1,54 @@
-# EEGAttention：从脑电波到现场反馈
+# EEGAttention
 
-## 30 秒看懂这个项目
+## CURRENT：New Paradigm v1
 
-我们想通过EEG（脑电信号）区分focus（专注）与unfocus（不专注）。先复现原作者方案，再用自己的EDF脑电文件训练模型；后来发现，把同一次录制的小片段随机分到训练和测试会让成绩虚高，于是改为按完整录制隔离，并封存独立测试数据。之后又检验个人模型和作者数据，当前最大的困难是换一次录制或换一种数据来源后，模型表现变差。
+当前研究目标是建立受控、可重复、按完整 session 隔离的新采集范式，并在**新范式数据内部**开发三类未来模型：`lyc-new personal`、`zyf-new personal` 与 `new-paradigm pooled`。
 
-今天现场用几个已经训练好的模型观察反馈：先录一段，看结果，主动调整状态，再录一段比较。这个先导实验叫LAB_FEEDBACK（现场反馈探索），不是最终模型考试。
+当前状态：目录、协议和 schema 已建立，`data/current/new_paradigm_v1/session_manifest.csv` 只有表头，尚无真实 session，也尚未训练任何 New Paradigm 模型。第一轮 pilot 目标为 lyc/zyf 各至少 4 条，正式阶段目标为各至少 6 条并覆盖 2–3 天；最终留出必须在预测前冻结，任何窗口都不能跨 session 泄漏。
 
-## 项目发展路线图
+- 当前数据入口：[data/current/new_paradigm_v1/](data/current/new_paradigm_v1/README.md)
+- 当前协议：[DATA_PROTOCOL_V2.md](docs/current/DATA_PROTOCOL_V2.md)
+- 当前研究计划：[NEW_PARADIGM_V1.md](docs/current/NEW_PARADIGM_V1.md)
+- 当前产物入口：[artifacts/current/new_paradigm_v1/](artifacts/current/new_paradigm_v1/README.md)
 
-```text
-原作者方案/数据
-  ↓ 早期自采EEG探索
-  ↓ Legacy pooled baseline（第一个冻结的多人通用模型）
-  ↓ 独立LOCKED_TEST（只预测、禁止学习参数的测试数据）
-  ↓ lyc / zyf personal models（各自只用自己的历史数据）
-  ↓ Personal diagnosis（检查为什么个人模型没有稳定改善）
-  ↓ Author-only model（单独检验作者数据）
-  ↓ Common6通道对齐（双方都能可靠对应的六个测量位置）
-  ↓ Our-common6 / Author-common6 / Mixed-common6（自采/作者/合并训练）
-  ↓ 现场LAB_FEEDBACK QuickTest（已有模型的反馈与前后比较）
-  ↓ 未来新的真正final holdout（事先封存且不看反馈的最终留出集）
-```
+## HISTORICAL：已冻结实验
 
-下表连接每一步的问题、数据、结果与路径。详细故事见 [实验阶段地图](docs/EXPERIMENT_MAP.md)。脚本是来源索引，不是要求按顺序重新训练。
+旧 pooled、personal、author、common6 和 2026-09-14 LAB_FEEDBACK 均为可追溯历史证据，不是 New Paradigm v1 的默认训练输入。为避免破坏脚本、报告与哈希链，旧数据和产物保留原物理路径，由 [data/historical/](data/historical/README.md) 与 [artifacts/historical/](artifacts/historical/README.md) 提供逻辑索引。
 
-| 阶段与为什么做 | 数据 | 已得到的结论 | 脚本/入口 | 产物位置 |
-|---|---|---|---|---|
-| 0 原作者：先弄懂和复现方案 | 作者MAT | 保留来源与历史结果 | notebooks/upstream/ | artifacts/upstream_author/；artifacts/reproductions/ |
-| 1 早期自采：检查自己的数据 | legacy EDF | 随机窗口高分不等于新录制泛化 | notebooks/legacy/self_recorded/ | artifacts/legacy/notebook_outputs/ |
-| 2 正式基线：保存可重复模型 | 按组划分后的历史训练数据 | 历史验证准确率69.99% | scripts/legacy_baseline_v0.py | artifacts/legacy_baseline_v0/ |
-| 3 独立测试：检验新录制 | 2026-09-07封存EDF | 总准确率降至55.30% | scripts/evaluate_locked_test.py | artifacts/locked_test/2026-09-07/ |
-| 4 个人模型：检验同人训练 | lyc/zyf各自历史数据 | 未稳定胜过原通用模型 | scripts/train_subject_models.py；scripts/evaluate_subject_models.py | artifacts/subject_models/；artifacts/subject_model_comparison/ |
-| 5 个人诊断：追查失败 | 历史数据与已有预测 | 预测偏向和录制条件变化值得关注 | scripts/diagnose_subject_models.py | artifacts/subject_model_diagnostics/ |
-| 6 作者模型：检查作者内部可分性 | 23个作者MAT录制 | 七通道按录制验证约64.12% | scripts/train_cross_source_models.py | artifacts/author_models/author_only/ |
-| 7 六通道：比较是否加入作者数据 | lyc/zyf历史 + 作者23段 | 混合模型相对自采六通道对照有改善 | scripts/cross_source_utils.py；scripts/train_cross_source_models.py；scripts/evaluate_cross_source_models.py | artifacts/common6_compatibility/；artifacts/author_models/author_common6/；artifacts/our_common6_models/；artifacts/mixed_models/；artifacts/cross_source_comparison/2026-09-14/ |
-| 8 现场反馈：比较主动调整前后 | 真实数据回来后归入lab_feedback | 当前只建立入口/规则，尚无今天的新实验结论 | notebooks/lab_quick_test_legacy_model.ipynb | 结果默认只在内存；data/exploratory/lab_feedback/2026-09-14/为原始录制归档 |
-| 未来最终留出：独立检验 | 未来事先规划的新数据 | 尚未开始 | 未来方案明确后登记 | 不将feedback数据直接改名成locked |
+| 阶段 | 状态 | 主要位置 |
+|---|---|---|
+| Stage 0–1：作者参考与早期自采探索 | historical / reference | `data/reference/`、`data/legacy/` |
+| Stage 2：Existing pooled frozen | historical baseline | `artifacts/legacy_baseline_v0/` |
+| Stage 3：LOCKED_TEST v1 | historical locked evaluation | `data/locked/`、`artifacts/locked_test/` |
+| Stage 4–5：lyc/zyf personal 与诊断 | historical baseline | `artifacts/subject_models/`、`artifacts/subject_model_diagnostics/` |
+| Stage 6–7：author/common6/mixed | historical baseline | `artifacts/author_models/`、`artifacts/our_common6_models/`、`artifacts/mixed_models/` |
+| Stage 8：2026-09-14 LAB_FEEDBACK | historical pilot / transition dataset | `data/exploratory/lab_feedback/2026-09-14/`、`artifacts/lab_feedback/2026-09-14/` |
+| Stage 9：New Paradigm v1 | **CURRENT** | `data/current/new_paradigm_v1/`、`docs/current/` |
 
-## 我从哪里开始
+Stage 8 已完成 11 条 EDF 的归档和 prediction-only 三模型分析。它揭示了明显的 session 波动与标签来源问题，但反馈轮次无法可靠确认，因此不能解释为 feedback improvement，也不能晋升为训练、验证或最终测试数据。所有 11 条固定为 `dataset_role=historical_pilot`，训练/验证/final eligibility 均为 `false`。
 
-- 想知道为什么做这些实验 → [EXPERIMENT_MAP.md](docs/EXPERIMENT_MAP.md)。
-- 不知道某个模型是什么 → [MODEL_CATALOG.md](docs/MODEL_CATALOG.md)，含术语解释。
-- 想查某个文件路径 → [REPOSITORY_FILE_GUIDE.md](docs/REPOSITORY_FILE_GUIDE.md)。
-- 今天要录制和看反馈 → [LAB_FEEDBACK规则](data/exploratory/lab_feedback/README.md)、[今天的目录](data/exploratory/lab_feedback/2026-09-14/README.md)、[QuickTest Notebook](notebooks/lab_quick_test_legacy_model.ipynb)。
+## 研究边界
 
-## 现场怎么操作
+- New Paradigm v1 首轮训练只允许使用其 manifest 中明确登记且符合协议的 `new_paradigm_v1` session。
+- legacy、author、2026-09-14 LAB_FEEDBACK、旧 LOCKED_TEST 和 common6 数据不得默认混入新模型；未来若做迁移/合并，必须作为单独 ablation 并留下新版本记录。
+- 划分单位是完整 session；推荐 leave-one-day-out，最终留出在预测前冻结。
+- 原始 EDF/CSV/DSI/notes 不就地修改或重命名；标签来源和冲突必须显式登记。
+- 历史模型与历史报告保留用于比较，不代表当前最佳模型或最终结论。
 
-在已有EEG Python环境中，从仓库根目录或notebooks目录打开QuickTest。第一段填EDF_PATH执行单文件模式；第二段填EDF_PATH_BEFORE / EDF_PATH_AFTER执行前后模式。lyc/zyf默认运行旧通用模型、本人模型、mixed-common6；zqd/unknown跳过个人模型。
+## 导航
 
-pooled/personal使用完整24通道的240维特征；mixed-common6使用六通道的60维特征，两路都复用共享处理函数。文件名标签只用于计分。标签不同或身份不同/未知时不算改善差值。
-
-今天命名例：`lyc_focus_202609141630_feedback0.edf` → `lyc_focus_202609141650_feedback1.edf`。同一次录制的EDF/CSV/DSI保持同一stem，放入`data/exploratory/lab_feedback/2026-09-14/`。包括feedback0在内都默认不训练、不作为最终测试；实际metadata等数据回来再填写。
-
-## 目前结果怎么读
-
-Balanced Accuracy（平衡准确率）分别算两类召回率后平均，避免被样本较多的一类主导。既有正式测试结果：
-
-| 模型 | lyc平衡准确率 | zyf平衡准确率 |
-|---|---:|---:|
-| 原通用冻结模型 | 64.28% | 57.69% |
-| lyc个人模型 | 47.67% | 51.80% |
-| zyf个人模型 | 56.45% | 52.14% |
-| 只用作者六通道 | 50.00% | 50.00% |
-| 只用自采六通道 | 48.29% | 46.78% |
-| 合并来源六通道 | 52.68% | 55.77% |
-
-mixed相对our-common6提高4.39/8.99个百分点，但尚未超过原通用模型。Our reference（电压参考电极）=Pz；作者reference未知，通道对齐不意味着参考一致。结果仅作exploratory / channel-aligned but reference compatibility uncertain。完整既有结果见[比较报告](artifacts/cross_source_comparison/2026-09-14/REPORT.md)。
-
-## 文件与数据边界
-
-代码在[scripts/](scripts/README.md)，交互入口在[notebooks/](notebooks/README.md)，原始数据在[data/](data/README.md)，实验产物在[artifacts/](artifacts/README.md)，文档在[docs/](docs/README.md)，未来服务原型在[system/](system/README.md)。每个目录README都说明其阶段、来源和用途。
-
-LOCKED_TEST只可预测、计分，不可fit（学习参数）、调参或挑选模型。现场feedback数据不能靠改文件名变成独立测试。旧模型、原始信号及历史报告保留原样；未来真正最终留出集需要重新规划。
+- 实验为什么一步步发展到这里：[EXPERIMENT_MAP.md](docs/EXPERIMENT_MAP.md)
+- 七个历史模型和三个未来模型：[MODEL_CATALOG.md](docs/MODEL_CATALOG.md)
+- 仓库路径用途：[REPOSITORY_FILE_GUIDE.md](docs/REPOSITORY_FILE_GUIDE.md)
+- 2026-09-14 pilot 清单：[LAB_FEEDBACK README](data/exploratory/lab_feedback/2026-09-14/README.md)
+- 历史进度记录：[docs/progress/](docs/progress/README.md)
 
 ## 只读验收
 
 ```powershell
+python scripts/validate_new_paradigm_data.py
+python scripts/validate_historical_integrity.py
+python scripts/validate_markdown_links.py
 python scripts/validate_legacy_manifest.py
 python scripts/validate_locked_data.py
 python scripts/validate_reproduction_models.py
@@ -83,7 +56,7 @@ python scripts/validate_quick_test.py
 git diff --check
 ```
 
-当前本机可使用 `C:\CHLight\1-Workconfig\Miniconda\envs\EEG\python.exe`。训练命令仅供查来源，不属于本轮验收。进度历史见[docs/progress/](docs/progress/README.md)。
+`train_*` 与其他会调用 fit 的历史入口只用于来源追溯，不属于当前验收。当前本机 EEG 环境可使用 `C:\CHLight\1-Workconfig\Miniconda\envs\EEG\python.exe`。
 
 ## 上游参考
 

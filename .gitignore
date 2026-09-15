@@ -1,3 +1,26 @@
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+
+# Raw EEG recordings stay on the local machine. Keep manifests, metadata,
+# reports, and other small CSV files versioned.
+data/**/*.edf
+data/**/*.dsi
+data/**/*_raw.csv
+data/**/raw/**/*.csv
+data/**/raw/**/*.mat
+data/exploratory/lab_feedback/*/lyc_*.csv
+data/exploratory/lab_feedback/*/zyf_*.csv
+
+# Generated model, array, and cache artifacts belong outside ordinary Git
+# history; lightweight README/manifest/metadata files remain trackable.
+artifacts/**/*.mat
+artifacts/**/*.pkl
+artifacts/**/*.joblib
+artifacts/**/*.pth
+artifacts/**/*.pt
+artifacts/**/*.ckpt
+artifacts/**/*.npz
+artifacts/**/*.npy
+artifacts/**/feature_cache/
+artifacts/**/preprocessed_arrays/

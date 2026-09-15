@@ -1,5 +1,7 @@
 # 实验阶段地图：项目为什么一步步走到这里
 
+当前阶段是 **Stage 9 / New Paradigm v1**。Stage 0–7 的模型与评估均为 historical baseline；Stage 8 的 2026-09-14 LAB_FEEDBACK 已冻结为 historical pilot / transition dataset。旧路径原位保留以维持报告链接、脚本引用和哈希可追溯性。
+
 第一次阅读请按顺序看；查模型用 [MODEL_CATALOG.md](MODEL_CATALOG.md)，查路径用 [REPOSITORY_FILE_GUIDE.md](REPOSITORY_FILE_GUIDE.md)。这里记录既有实验，本轮只改文档和现场推理，不重训、不更新正式分数。
 
 Accuracy（准确率）是所有窗口中预测正确的比例；Balanced Accuracy（平衡准确率）是分别算focus/unfocus召回率再平均，避免样本多的一类掩盖另一类。窗口是从长录制截取的4秒片段；相邻窗口会重叠，不能视为独立受试者。
@@ -134,19 +136,35 @@ Accuracy（准确率）是所有窗口中预测正确的比例；Balanced Accura
 
 ## Stage 8：LAB_FEEDBACK exploratory recording
 
-研究问题：人看到模型反馈后主动调整状态，多个模型预测方向会不会一致变化？
+研究问题：同一天的新 session 中，旧 pooled、对应 personal 与 mixed-common6 的输出是否一致，session 波动能有多大？
 
-输入数据：真实录制返回后放 data/exploratory/lab_feedback/2026-09-14/；当前只建规则，未登记任何新EEG。
+输入数据：`data/exploratory/lab_feedback/2026-09-14/` 的 11 条 EDF，均有 CSV/DSI 与 provenance；两条 zyf 文件名/notes 标签冲突按 notes 作为 canonical label。
 
-使用脚本：notebooks/lab_quick_test_legacy_model.ipynb；scripts/subject_model_utils.py 的 run_quick_test / compare_quick_tests。
+使用脚本：`scripts/analyze_lab_feedback.py` 与共享 prediction helper；只做 prediction-only，`fit_calls=0`。
 
-输出目录：QuickTest结果默认只在内存；未来探索结果另存并登记模型/输入哈希，不能覆盖正式实验结果。
+输出目录：`artifacts/lab_feedback/2026-09-14/`，包括 11×3 的 session 表、时间顺序、一致性与稳定性描述。
 
 关键模型：旧 pooled + 对应 personal + mixed-common6；zqd/unknown 跳过 personal。
 
-关键结论：LAB_FEEDBACK（现场看模型反馈后调整状态的探索实验）包含feedback0及后续轮次；全部默认禁止训练和最终测试。只报告描述性前后变化，不作为因果证明。
+关键结论：同人同标签仍可出现明显 session 波动，部分 session 三模型共同偏向错误类别。由于文件名没有 feedback token、notes 也未确认轮次，feedback round 全部为 unknown，时间顺序不能解释为反馈改善。该批数据现为 `historical_pilot`，训练/验证/final eligibility 全为 false。
 
-下一步为什么出现：将来预先规定任务和评估方案，再收集不看反馈、从未用于调参的新 final holdout（最终留出集）；当前旧测试已被多次查看，不可再次声称全新盲测。
+下一步为什么出现：标签、任务、反馈暴露和 session 条件需要在采集前受控登记；因此不继续把旧数据拼入训练，而是建立独立的新范式。
+
+## Stage 9：New Paradigm v1（CURRENT）
+
+研究问题：在统一任务、记录规范和 session 隔离下，个人模型与 pooled 模型能否获得可复核的新 session 泛化结果？
+
+输入数据：仅允许 `data/current/new_paradigm_v1/session_manifest.csv` 中按 v2 协议登记、资格明确的真实 session。当前 manifest 只有表头，0 条记录。
+
+当前入口：`docs/current/NEW_PARADIGM_V1.md`、`docs/current/DATA_PROTOCOL_V2.md`、`scripts/validate_new_paradigm_data.py`。
+
+预定产物：`artifacts/current/new_paradigm_v1/`。目前只有 README，不存在模型或结果文件。
+
+计划模型：`lyc-new personal`、`zyf-new personal`、`new-paradigm pooled`。首轮只能使用 New Paradigm v1；legacy、author、9/14 pilot、旧 LOCKED_TEST 和 common6 均不混入。未来的旧数据迁移或跨来源训练只能作为独立 ablation。
+
+验证与留出：以完整 session 为最小隔离单位，优先 leave-one-day-out；最终留出必须在首次预测前登记为 `final_test` 并冻结。训练、验证与 final 之间不得共享同一 session 的窗口。
+
+下一步：先完成 lyc/zyf 各至少 4 条 pilot session 的采集与只读质量核验；达到预定覆盖后再单独批准训练。
 
 ## 项目结论的边界
 

@@ -2,6 +2,8 @@
 
 只用作者23个录制、去掉AF4后训练的六通道模型。
 
+状态：`historical baseline`。保留作通道与跨来源对照，不进入 New Paradigm v1 首轮训练。
+
 ## 它属于项目哪一步
 
 Stage 7：Common6 通道对齐与 Mixed

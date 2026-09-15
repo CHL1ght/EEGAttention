@@ -2,6 +2,8 @@
 
 这里保存原作者提供的MAT数据：最初用于复现，后来也为作者模型和mixed模型提供训练录制。
 
+分类：`REFERENCE / historical source`。首轮 New Paradigm v1 不使用这些 MAT；未来跨来源实验必须另建 ablation 版本。
+
 ## 它属于项目哪一步
 
 Stage 0 → 6 → 7：原作者数据 → 作者内部验证 → 跨来源共同六通道实验。

@@ -1,10 +1,10 @@
 # 这个目录是什么
 
-这是每次实验留下的模型和成绩的总索引。
+这是 CURRENT 与 HISTORICAL 模型、预测和报告的总索引。
 
 ## 它属于项目哪一步
 
-Stage 0–7：从复现到正式对照，今天只读取既有结果。
+Stage 0–9：旧实验全部冻结为 historical evidence；New Paradigm v1 尚无模型产物。
 
 前一步：Common6 通道对齐与 Mixed。
 这一步：找到某个分数的原始记录，并判断它是历史探索、冻结模型还是正式测试结果。
@@ -28,6 +28,9 @@ data/reference/original_mat/、data/legacy_manifest.csv、data/session_manifest.
 
 | 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
 |---|---|---|---|
+| [current/](current/README.md) | **CURRENT** 产物入口；New Paradigm v1 目前为空骨架。 | 目录 | 仅新实验版本可写 |
+| [historical/](historical/README.md) | **HISTORICAL** 逻辑索引；指向原位保留的旧模型与报告。 | 目录 | 只维护索引和状态 |
+| [lab_feedback/](lab_feedback/README.md) | 2026-09-14 historical pilot 的 prediction-only 结果。 | 目录 | 不覆盖历史结果 |
 | [author_models/](author_models/README.md) | 这里保存两个只用原作者数据训练的模型：七通道基线与六通道对照。 | 目录 | 按子目录规则 |
 | [common6_compatibility/](common6_compatibility/README.md) | 这里保存通道能否正确对应的检查证据；它是训练前的安全检查，不保存模型。 | 目录 | 按子目录规则 |
 | [cross_source_comparison/](cross_source_comparison/README.md) | 这里保存作者、自采与混合模型在同一正式测试集上的对照成绩。 | 目录 | 按子目录规则 |
@@ -46,12 +49,12 @@ data/reference/original_mat/、data/legacy_manifest.csv、data/session_manifest.
 
 ## 当前状态
 
-已完成 / frozen / historical；不同子目录状态不同。
+七个旧模型均为 `historical baseline`；2026-09-14 LAB_FEEDBACK 为 historical pilot。CURRENT 尚无训练模型或预测结果。
 
 ## 我什么时候需要看这个目录
 
-想核对mixed是否改善，进入cross_source_comparison/2026-09-14/。
+当前工作先看 current/new_paradigm_v1/；追溯 mixed 则进入 cross_source_comparison/2026-09-14/。
 
 ## 不要误解
 
-目录中有成绩不代表它是独立测试；不要覆盖旧模型和结果。
+目录中有成绩不代表它是 CURRENT 或独立测试；不要覆盖旧模型和结果。

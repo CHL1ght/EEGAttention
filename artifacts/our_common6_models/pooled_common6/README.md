@@ -2,6 +2,8 @@
 
 只用lyc与zyf历史数据、限制为六个共同通道的通用模型。
 
+状态：`historical baseline`。保留作同通道历史对照，不进入 New Paradigm v1 首轮训练。
+
 ## 它属于项目哪一步
 
 Stage 7：Common6 通道对齐与 Mixed

@@ -1,0 +1,238 @@
+{
+  "analysis": "LAB_FEEDBACK 2026-09-14 exploratory prediction-only",
+  "created_at_utc": "2026-09-15T12:32:04.534393+00:00",
+  "script": "scripts/analyze_lab_feedback.py",
+  "script_sha256": "002a1dd0670804d14f5bdb252924afd6b5a4eaf42dd25734f4622188e5e79144",
+  "input_edf_count": 11,
+  "input_records": [
+    {
+      "filename": "lyc_focus_202609141641_raw.edf",
+      "edf_sha256": "0729a05a942aca6f091afa15af91d5a1d5a29dd5f66419fdd759940c57dfeb52",
+      "window_count": 467,
+      "duration_s": 937.5,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "lyc_focus_202609141702_raw.edf",
+      "edf_sha256": "e15db6359124ca7ca69fdba483bf862c80aa7185ca3870ba0f587bf0fb4acd04",
+      "window_count": 352,
+      "duration_s": 707.0,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "lyc_focus_202609141717_raw.edf",
+      "edf_sha256": "5efe932729caf83e6a28997e7524fdcf7047417a1f5993ce4a0a18b9fe56e244",
+      "window_count": 398,
+      "duration_s": 798.0,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "lyc_focus_202609141800_raw.edf",
+      "edf_sha256": "1cab948410c450dc31ee1bf69fb3d9f237d9c73f6581dccdc5792562bd6b68fb",
+      "window_count": 634,
+      "duration_s": 1271.0,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "lyc_focus_202609141959_raw.edf",
+      "edf_sha256": "c56eecad75fd050d6b9099ff2e0f20601684729c2e54cbe9c75ea8eabff15cf4",
+      "window_count": 107,
+      "duration_s": 217.5,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "lyc_focus_202609142023_raw.edf",
+      "edf_sha256": "20a5b6d253c6948bad798924cf574bb94fb1658455f3bb975f2de9fa7e697db0",
+      "window_count": 347,
+      "duration_s": 697.0,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "lyc_unfocus_202609141825_raw.edf",
+      "edf_sha256": "232a676394896075ea748bcf061661ebf486a926f025ee9e53342df6c052e903",
+      "window_count": 568,
+      "duration_s": 1139.5,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "zyf_focus_202609141752.edf",
+      "edf_sha256": "b50578764b95b435c8c3b37405359a26f695b67c5e79393028d3122c700f9741",
+      "window_count": 358,
+      "duration_s": 719.5,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "zyf_focus_202609141810.edf",
+      "edf_sha256": "2533d3c9fc2707a3eb2a6ec7128b72acd8e9c0c2e83d52eb9e16c512e6c9721e",
+      "window_count": 419,
+      "duration_s": 841.0,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "zyf_unfocus_202609141641.edf",
+      "edf_sha256": "625bc1831eb097ee03031cae007d6c9805adc6f7d39eb7234f6ad091d53dd9a6",
+      "window_count": 461,
+      "duration_s": 925.5,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    },
+    {
+      "filename": "zyf_unfocus_202609141707.edf",
+      "edf_sha256": "22d65f5e96e3ae8e70a6e5e20a50f8eae68ed4470833d2445107392fef5838d7",
+      "window_count": 604,
+      "duration_s": 1210.0,
+      "raw_sampling_rate_hz": 300.0,
+      "processing_sampling_rate_hz": 128.0,
+      "feature_dimensions": {
+        "pooled": 240,
+        "personal": 240,
+        "mixed_common6": 60
+      },
+      "fit_calls": 0,
+      "models": [
+        "pooled",
+        "personal",
+        "mixed-common6"
+      ]
+    }
+  ],
+  "model_artifact_sha256": {
+    "pooled": "2c67ed005d3821f712771d3412bcad0a5b67a2638e89393d1d505460635488cc",
+    "lyc personal": "7270a2dbf0f04f490b48dc52db4eb694df698d2b1636234abd65534505a9c0fa",
+    "zyf personal": "5343939b19d0bfde7aa2ff8915c43bf8be8169d020b48932f586bcb93d690ff4",
+    "mixed-common6": "5f171c20e61b7ad827d08494f283fa6612d3eabbddb012b8389699a392881db8"
+  },
+  "training_performed": false,
+  "prediction_only": true,
+  "fit_calls": 0,
+  "calibration_performed": false,
+  "threshold_tuning_performed": false,
+  "canonical_label_source": "metadata.csv: .md note > field/manual record > filename label",
+  "feedback_round_policy": "unknown unless reliable explicit record; no chronological inference",
+  "output_files": [
+    "session_model_summary.csv",
+    "session_consistency.csv",
+    "session_stability.csv",
+    "chronological_session_sequence.csv",
+    "REPORT.md"
+  ]
+}
