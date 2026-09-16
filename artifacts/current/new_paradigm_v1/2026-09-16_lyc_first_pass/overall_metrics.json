@@ -1,0 +1,34 @@
+{
+  "labels": [
+    "unfocus",
+    "focus"
+  ],
+  "n_folds": 6,
+  "n_heldout_windows": 1656,
+  "n_sessions": 6,
+  "run_id": "2026-09-16_lyc_first_pass",
+  "session_confusion_matrix": [
+    [
+      3,
+      0
+    ],
+    [
+      0,
+      3
+    ]
+  ],
+  "session_level_accuracy": 1.0,
+  "session_level_balanced_accuracy": 1.0,
+  "window_confusion_matrix": [
+    [
+      915,
+      24
+    ],
+    [
+      8,
+      709
+    ]
+  ],
+  "window_level_accuracy": 0.9806763285024155,
+  "window_level_balanced_accuracy": 0.981641646726465
+}

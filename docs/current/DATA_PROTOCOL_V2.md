@@ -21,7 +21,7 @@
 
 ## 4. Manifest schema
 
-权威清单：[session_manifest.csv](../../data/current/new_paradigm_v1/session_manifest.csv)。当前只有表头，不包含未来 session。
+权威清单：[session_manifest.csv](../../data/current/new_paradigm_v1/session_manifest.csv)。当前登记 2026-09-16 的 7 条 lyc session，其中 6 条二分类 session 可进入当前 first-pass，1 条 observe 为 reference/control。
 
 | 字段 | 规则 |
 |---|---|
@@ -29,7 +29,7 @@
 | `subject_id` | 明确受试者标识。 |
 | `recorded_date`, `recorded_time`, `timezone` | 真实现场时间。 |
 | `day_id` | subject × recording day 稳定分组。 |
-| `canonical_label` | 仅 `focus` 或 `unfocus`。 |
+| `canonical_label` | 主任务仅 `focus` 或 `unfocus`；明确的非二分类控制条件可用 `observe`，但必须是 `reference/excluded`。 |
 | `task` | 标准化任务名称。 |
 | `paradigm_version` | 固定为 `new_paradigm_v1`。 |
 | `dataset_role` | `train_candidate`、`validation_candidate`、`final_holdout`、`reference` 或 `excluded`。 |
@@ -50,6 +50,8 @@
 - `final_holdout`：预测前预先指定，`split_role=final_test` 且 `status=frozen_before_prediction`。
 - `reference`：用于说明或诊断，不进入主训练。
 - `excluded`：保留原始记录和排除原因。
+
+`observe` 是控制条件，不得重标为 focus/unfocus；必须使用 `dataset_role=reference`、`split_role=excluded`，只允许 prediction-only 描述，不计入训练、模型选择或 accuracy。
 
 任何角色变化都必须在预测前完成，并保留 Git 历史。不能依据模型结果把 session 从 validation/final 改成 training，也不能从已看过结果的数据中挑 final holdout。
 

@@ -28,7 +28,8 @@ manifest、原始EDF/MAT和artifacts中的已保存模型。
 
 | 文件 | 普通人解释 | 手写/生成 | 是否允许修改 |
 |---|---|---|---|
-| [validate_new_paradigm_data.py](validate_new_paradigm_data.py) | 只读检查 New Paradigm v1 manifest schema、session 角色、final 冻结状态、路径和可选 EDF 哈希；允许 0 条 session，输出 `fit_calls=0`。 | 手写维护 | 随 v2 schema 同步维护 |
+| [validate_new_paradigm_data.py](validate_new_paradigm_data.py) | 只读检查 New Paradigm v1 manifest schema、角色、observe reference 保护、路径、全部文件哈希及 EDF 时长/采样率/信号数，输出 `fit_calls=0`。 | 手写维护 | 随 v2 schema 同步维护 |
+| [run_new_paradigm_first_pass.py](run_new_paradigm_first_pass.py) | 固定运行 2026-09-16 lyc 的 6-session LOSO first pass；冻结二分类 baseline 后再对 observe 做 prediction-only。 | 手写维护 | 不调参；只读 CURRENT manifest 指定数据 |
 | [validate_historical_integrity.py](validate_historical_integrity.py) | 只读检查 9/14 的 11 条 metadata/sidecar/hash/标签冲突/资格、未进入旧/新 manifest，以及七个冻结模型哈希和 `fit_calls=0`。 | 手写维护 | 与冻结哈希和 pilot schema 同步维护 |
 | [validate_markdown_links.py](validate_markdown_links.py) | 只读检查仓库 Markdown 的相对文件/目录链接。 | 手写维护 | 可维护 |
 | [annotated/](annotated/README.md) | 这里是三个核心脚本的中文教学注释副本，只用于阅读，不是第二套正式算法。 | 目录 | 按子目录规则 |

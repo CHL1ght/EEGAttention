@@ -8,7 +8,7 @@
 
 | 路径 | 用途 |
 |---|---|
-| [session_manifest.csv](session_manifest.csv) | New Paradigm v1 唯一 session 清单；当前只有表头。 |
+| [session_manifest.csv](session_manifest.csv) | New Paradigm v1 唯一 session 清单；当前含 2026-09-16 的 7 条 lyc session。 |
 | [raw/](raw/README.md) | 设备导出的原始 EDF/CSV/DSI；按 subject 归档。 |
 | [notes/](notes/README.md) | 与 session 一一对应的现场 notes。 |
 | [protocols/](protocols/README.md) | 指向当前正式协议和实验说明。 |

@@ -1,0 +1,24 @@
+{
+  "artifact_sha256": {
+    "REPORT.md": "83d49d27d9cb161df38dee0dab191409622688f014bd663d4984e587b2a622d5",
+    "baseline_freeze_manifest.json": "42b5f46fecf5f2f9713d3124af37ccc047a6e3005704f73c7fd5e7e722ec1fd2",
+    "binary_model.joblib": "2b7b97f9f2399bcd3595df63a406fd66adfb470edc7f9390d8d67d45431d8e24",
+    "config.json": "a88db15b292574ad4f283f3255834214c60d4dcb1ceab5ef1dfa3d9126b91e24",
+    "fold_confusion_matrices.csv": "eecf0f47c1ccdc038acd6fdc1f28576aa5e79ba8fd421eee02f2e328206fdcac",
+    "fold_metrics.csv": "182ccba618f4eb2913e0e8e49019bcb4f2b9892dfaf8b348566f6cf83ebce72d",
+    "input_sessions.csv": "4781c20609dbdca7f5cb115d720a946ad2fa564c5b39ebbad7efe811b423f28e",
+    "observe_predictions.csv": "6c7c09e09138ad1734cb63efd2c0aa7aa225fb9993808f260476aa14206322e7",
+    "observe_summary.json": "d5d2ab4c85fdce7e35bca772bd0be3f99deda2a0a9fa1cbce0bd97c596a2c45d",
+    "overall_metrics.json": "618767ab754011173ab896cb91cbbfaaf98374ca73e963f2b5950cedcb6de5e8",
+    "session_confusion_matrix.csv": "03df4d64b8a853bbd48d29de9553773b3f4e6da4ebcd4ae5a20835f5ebfbf2c0",
+    "window_confusion_matrix.csv": "b93560cd7ba1946ecd942db4d888be21d43c5798354bd4f5b50defe988d6d016",
+    "window_predictions.csv": "90eecbfd03c7b6427c8ac73019bb126ad1da99d722d788899b0518ea6a0db715"
+  },
+  "baseline_frozen_before_observe": true,
+  "completed_at_utc": "2026-09-16T06:04:04.970597+00:00",
+  "fit_calls_after_observe_loaded": 0,
+  "interpretation_boundary": "这是单日 6-session exploratory result，不代表跨日泛化。",
+  "observe_prediction_only": true,
+  "run_id": "2026-09-16_lyc_first_pass",
+  "total_fit_calls": 7
+}

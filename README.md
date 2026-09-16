@@ -4,7 +4,7 @@
 
 当前研究目标是建立受控、可重复、按完整 session 隔离的新采集范式，并在**新范式数据内部**开发三类未来模型：`lyc-new personal`、`zyf-new personal` 与 `new-paradigm pooled`。
 
-当前状态：目录、协议和 schema 已建立，`data/current/new_paradigm_v1/session_manifest.csv` 只有表头，尚无真实 session，也尚未训练任何 New Paradigm 模型。第一轮 pilot 目标为 lyc/zyf 各至少 4 条，正式阶段目标为各至少 6 条并覆盖 2–3 天；最终留出必须在预测前冻结，任何窗口都不能跨 session 泄漏。
+当前状态：`data/current/new_paradigm_v1/session_manifest.csv` 已登记 2026-09-16 的 lyc focus ×3、unfocus ×3 和 observe control ×1。首次单日 6-session LOSO 探索结果位于 `artifacts/current/new_paradigm_v1/2026-09-16_lyc_first_pass/`；它不代表跨日泛化。正式阶段仍需每人 focus/unfocus 各至少 6 条并覆盖 2–3 天；最终留出必须在预测前冻结，任何窗口都不能跨 session 泄漏。
 
 - 当前数据入口：[data/current/new_paradigm_v1/](data/current/new_paradigm_v1/README.md)
 - 当前协议：[DATA_PROTOCOL_V2.md](docs/current/DATA_PROTOCOL_V2.md)

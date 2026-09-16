@@ -1,0 +1,27 @@
+{
+  "condition": "observe",
+  "focus_probability": {
+    "max": 0.9196209511296178,
+    "mean": 0.02861835191951635,
+    "median": 5.535675784572351e-06,
+    "min": 4.689392003523596e-11,
+    "q25": 6.643397913653252e-07,
+    "q75": 0.003981481915959063,
+    "std": 0.11997453559786976
+  },
+  "ground_truth_binary_label": null,
+  "included_in_accuracy": false,
+  "included_in_fit": false,
+  "included_in_model_selection": false,
+  "model_sha256": "2b7b97f9f2399bcd3595df63a406fd66adfb470edc7f9390d8d67d45431d8e24",
+  "n_windows": 280,
+  "pred_focus_proportion": 0.02142857142857143,
+  "pred_focus_windows": 6,
+  "pred_unfocus_proportion": 0.9785714285714285,
+  "pred_unfocus_windows": 274,
+  "predicted_label": "unfocus",
+  "prediction_only": true,
+  "session_id": "20260916_lyc_observe_01",
+  "task": "认真观战王者、减少主动手部操作，用于运动/操作干扰对照",
+  "vote_method": "majority_vote"
+}

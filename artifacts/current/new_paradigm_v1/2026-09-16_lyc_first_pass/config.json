@@ -1,0 +1,114 @@
+{
+  "data_scope": {
+    "binary_session_ids": [
+      "20260916_lyc_focus_01",
+      "20260916_lyc_focus_02",
+      "20260916_lyc_focus_03",
+      "20260916_lyc_unfocus_01",
+      "20260916_lyc_unfocus_02",
+      "20260916_lyc_unfocus_03"
+    ],
+    "forbidden_sources": [
+      "historical",
+      "2026-09-14",
+      "author",
+      "common6",
+      "locked-test"
+    ],
+    "observe_session_id": "20260916_lyc_observe_01",
+    "paradigm_version": "new_paradigm_v1",
+    "recorded_date": "2026-09-16",
+    "subject_id": "lyc"
+  },
+  "evaluation": {
+    "folds": 6,
+    "method": "leave-one-session-out",
+    "same_edf_cross_split": false,
+    "unit": "complete session/EDF"
+  },
+  "model": {
+    "calibration_added": false,
+    "implementation": "scripts/legacy_baseline_v0.py:build_baseline_pipeline",
+    "parameter_search": false,
+    "pca_n_components": 0.95,
+    "steps": [
+      "StandardScaler",
+      "PCA",
+      "SVC"
+    ],
+    "svc": {
+      "C": 10.0,
+      "class_weight": "balanced",
+      "gamma": "scale",
+      "kernel": "rbf",
+      "probability": true,
+      "random_state": 42
+    },
+    "threshold_tuning": false
+  },
+  "observe_policy": "prediction-only after binary baseline freeze; excluded from fit and accuracy",
+  "preprocessing_and_features": {
+    "bands_hz": {
+      "alpha": [
+        8.0,
+        13.0
+      ],
+      "beta": [
+        13.0,
+        30.0
+      ],
+      "delta": [
+        1.0,
+        4.0
+      ],
+      "gamma": [
+        30.0,
+        43.0
+      ],
+      "theta": [
+        4.0,
+        8.0
+      ]
+    },
+    "channel_order": [
+      "P3-Pz",
+      "C3-Pz",
+      "F3-Pz",
+      "Fz-Pz",
+      "F4-Pz",
+      "C4-Pz",
+      "P4-Pz",
+      "Cz-Pz",
+      "CM-Pz",
+      "A1-Pz",
+      "Fp1-Pz",
+      "Fp2-Pz",
+      "T3-Pz",
+      "T5-Pz",
+      "O1-Pz",
+      "O2-Pz",
+      "X3-Pz",
+      "X2-Pz",
+      "F7-Pz",
+      "F8-Pz",
+      "X1-Pz",
+      "A2-Pz",
+      "T6-Pz",
+      "T4-Pz"
+    ],
+    "features": [
+      "log_absolute_power",
+      "relative_power"
+    ],
+    "filter_h_hz": 43.0,
+    "filter_l_hz": 0.5,
+    "implementation": "scripts/eeg_pipeline_utils.py",
+    "n_features": 240,
+    "step_sec": 2.0,
+    "target_sampling_rate_hz": 128.0,
+    "welch_nperseg_sec": 2.0,
+    "window_sec": 4.0
+  },
+  "purpose": "single-day exploratory leave-one-session-out first pass",
+  "run_id": "2026-09-16_lyc_first_pass"
+}

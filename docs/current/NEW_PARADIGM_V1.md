@@ -1,6 +1,6 @@
 # New Paradigm v1
 
-状态：`CURRENT`。当前尚无新 session，尚未训练新模型。
+状态：`CURRENT`。已登记 2026-09-16 lyc focus ×3、unfocus ×3、observe control ×1，并完成单日 6-session leave-one-session-out first pass。该结果仅为探索性单日结果，不代表跨日泛化。
 
 ## 研究目标
 

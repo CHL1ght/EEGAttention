@@ -1,0 +1,34 @@
+candidate,decision,reason,source
+lyc_focus_202609141641,included,明确记录为玩王者/排位,data/exploratory/lab_feedback/2026-09-14/metadata.csv
+lyc_focus_202609141702,included,明确记录为玩王者/排位,data/exploratory/lab_feedback/2026-09-14/metadata.csv
+lyc_focus_202609141717,included,明确记录为玩王者/排位,data/exploratory/lab_feedback/2026-09-14/metadata.csv
+lyc_focus_202609141800,included,明确记录为玩王者/排位,data/exploratory/lab_feedback/2026-09-14/metadata.csv
+lyc_focus_202609141959,included,明确记录为玩王者/排位,data/exploratory/lab_feedback/2026-09-14/metadata.csv
+lyc_focus_202609142023,included,明确记录为玩王者/排位,data/exploratory/lab_feedback/2026-09-14/metadata.csv
+lyc_unfocus_202609141825,included,明确记录为玩王者/排位,data/exploratory/lab_feedback/2026-09-14/metadata.csv
+20260907_lyc_focus_02,included,明确记录为王者荣耀专注录制,data/session_manifest.csv
+legacy_lyc_focus_07,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_focus_08,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_focus_09,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_focus_03,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_focus_04,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_focus_05,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_focus_06,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_iu_03,included,lyc 早期自录分心 gaming（iu/ou 合并）；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_iu_04,included,lyc 早期自录分心 gaming（iu/ou 合并）；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_ou_03,included,lyc 早期自录分心 gaming（iu/ou 合并）；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_focus_01,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_focus_02,included,lyc 早期自录专注 gaming；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_iu_01,included,lyc 早期自录分心 gaming（iu/ou 合并）；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_iu_02,included,lyc 早期自录分心 gaming（iu/ou 合并）；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_ou_01,included,lyc 早期自录分心 gaming（iu/ou 合并）；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+legacy_lyc_ou_02,included,lyc 早期自录分心 gaming（iu/ou 合并）；具体游戏名称未记录,notebooks/legacy/self_recorded/eeg_three_class_self_record_merged_iu_ou.ipynb
+20260907_lyc_focus_01,excluded,任务明确为课堂视频专注，不是游戏/王者,data/session_manifest.csv
+20260907_lyc_unfocus_01,excluded,任务明确为课堂视频不专注，不是游戏/王者,data/session_manifest.csv
+20260907_lyc_rest_01,excluded,静息态，不是游戏/王者,data/session_manifest.csv
+legacy_lyc_daze_01|legacy_lyc_daze_02,excluded,legacy rest/daze，不是打游戏任务,data/legacy_manifest.csv
+legacy_lyc_mixed_demo_00,excluded,2.5 秒 setup/demo，短于一个 4 秒窗口，且任务未知,data/legacy_manifest.csv
+legacy_lyc_mixed_01|legacy_lyc_mixed_02|legacy_lyc_mixed_03,excluded,只能确认 focus/unfocus 分段顺序，无法从可靠 metadata/notes 确认是打游戏,data/legacy_manifest.csv; legacy notebooks
+2026-09-14 non-lyc sessions,excluded,subject_id 不是 lyc,data/exploratory/lab_feedback/2026-09-14/metadata.csv
+zyf/zqd/author/common6 and other non-lyc data,excluded,超出只测 lyc 本人录制数据的范围,repository manifests
+2026-09-16 current New Paradigm v1 sessions,excluded,属于冻结模型训练日数据，不是 historical replay 输入,data/current/new_paradigm_v1/session_manifest.csv
