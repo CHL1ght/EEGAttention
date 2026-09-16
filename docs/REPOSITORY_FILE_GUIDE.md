@@ -21,7 +21,7 @@
 | 文件/目录 | 作用 |
 |---|---|
 | `README.md` | 数据入口、清单优先级、原始文件保护规则。 |
-| `current/new_paradigm_v1/` | **CURRENT**：新范式 raw/notes/protocols 骨架及 schema-only session manifest。 |
+| `current/new_paradigm_v1/` | **CURRENT**：新范式 raw/notes/protocols、7 条已登记 session、唯一 session manifest 与控制实验空模板。 |
 | `historical/` | **HISTORICAL**：指向 legacy、locked 与 2026-09-14 pilot 原位路径的逻辑索引。 |
 | `DATA_PROTOCOL.md` | 正式数据协议：标签、活动区间、窗口、session 划分和 LOCKED_TEST 规则。 |
 | `legacy_manifest.csv` | `legacy_dataset_v0` 的唯一旧数据清单；包括 subject、逻辑片段、标签、session group、用途、路径和 SHA-256。 |
@@ -83,7 +83,7 @@ artifacts 是实验产物，不是新的原始数据入口。
 
 | 目录 | 作用 |
 |---|---|
-| `current/new_paradigm_v1/` | **CURRENT**：未来新范式模型/结果位置；当前只有 README，无模型。 |
+| `current/new_paradigm_v1/` | **CURRENT**：2026-09-16 单日 first-pass frozen baseline、observe prediction-only 与 historical gaming replay；解释仍限于 exploratory。 |
 | `historical/` | **HISTORICAL**：七个旧模型、旧评估和 9/14 pilot 产物的逻辑索引。 |
 | `legacy_baseline_v0/` | 旧 pooled baseline 的冻结 pipeline、配置、split、validation 预测和冻结证明。不得覆盖。 |
 | `locked_test/2026-09-07/` | 已完成的旧 pooled LOCKED_TEST 结果；用作回归基线。 |
@@ -110,6 +110,7 @@ artifacts 是实验产物，不是新的原始数据入口。
 |---|---|
 | `README.md` | 文档目录导航。 |
 | `current/NEW_PARADIGM_V1.md` | **CURRENT** 研究目标、采集规模、模型边界、session/day 划分和里程碑。 |
+| `current/ENGAGEMENT_CONTROL_ROADMAP.md` | **CURRENT** task engagement 构念边界、混杂因素族与 C1–C5 control ladder。 |
 | `current/DATA_PROTOCOL_V2.md` | **CURRENT** 采集、标签、manifest、split 与最终留出规则。 |
 | `REPOSITORY_FILE_GUIDE.md` | 本仓库递归文件总览。 |
 | `methodology/legacy_baseline_v0.md` | 旧 baseline 的方法、冻结和指标解释。 |
@@ -155,11 +156,14 @@ artifacts 是实验产物，不是新的原始数据入口。
 
 | 路径 | 用途 |
 |---|---|
-| `data/current/new_paradigm_v1/session_manifest.csv` | v2 schema 的唯一当前 session 登记；现为 0 行，不伪造 session。 |
-| `data/current/new_paradigm_v1/raw/lyc/`、`raw/zyf/` | 未来原始 session 的受试者目录；当前只有 README。 |
+| `data/current/new_paradigm_v1/session_manifest.csv` | v2 schema 的唯一当前 session 登记；现有 2026-09-16 lyc 的 7 条真实 session。 |
+| `data/current/new_paradigm_v1/control_experiment_log_template.csv` | 只有 header 的控制实验辅助模板；不代表真实 session，不替代 manifest。 |
+| `data/current/new_paradigm_v1/raw/lyc/`、`raw/zyf/` | 本地原始 session 的受试者目录；原始 EDF/CSV/DSI 由 `.gitignore` 排除。 |
 | `data/current/new_paradigm_v1/notes/` | 与 session 对应的现场记录；标签来源必须可追溯。 |
 | `data/current/new_paradigm_v1/protocols/` | 具体采集任务与版本化执行说明。 |
 | `scripts/validate_new_paradigm_data.py` | 只读 schema、角色、路径、final 冻结和可选哈希检查。 |
-| `artifacts/current/new_paradigm_v1/` | 未来模型和结果；当前为空，不存在训练产物。 |
+| `artifacts/current/new_paradigm_v1/` | 单日 first pass、frozen model、observe prediction-only 与 historical replay；不代表跨日泛化。 |
 
 首轮允许的未来模型只有 `lyc-new personal`、`zyf-new personal` 与 `new-paradigm pooled`。旧数据迁移和跨来源训练必须另建 ablation，不得静默混入。
+
+控制实验模板只补充 planned/actual condition、recording order、motor、active/passive、内部状态和采集异常。fatigue、sleepiness、mood、arousal 等是 confound metadata / auxiliary measures，不是标签真值；canonical label、文件路径、角色与哈希仍只以 session manifest 为准。

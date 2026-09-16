@@ -57,7 +57,7 @@
 
 ## 6. 当前可训练范围
 
-当前 manifest 无 session，因此 New Paradigm v1 暂无可训练数据。未来只有同时满足以下条件的记录才允许进入主训练：
+当前 manifest 已登记 6 条符合以下条件的二分类 train candidate；另有 1 条 `observe` reference，仅允许 prediction-only。允许进入主训练的记录必须同时满足：
 
 - `paradigm_version=new_paradigm_v1`
 - `dataset_role=train_candidate`

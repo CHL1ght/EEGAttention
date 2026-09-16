@@ -2,13 +2,14 @@
 
 ## CURRENT：New Paradigm v1
 
-当前研究目标是建立受控、可重复、按完整 session 隔离的新采集范式，并在**新范式数据内部**开发三类未来模型：`lyc-new personal`、`zyf-new personal` 与 `new-paradigm pooled`。
+当前核心研究构念是 **task engagement / cognitive engagement（任务认知投入状态）**：未来面向工作/学习场景，按时间轴估计用户是否持续、主动地投入当前任务。`focus` / `unfocus` 目前仍是 New Paradigm v1 的实验操作标签，不等于已经验证的普适 engagement 真值；当前 `focus` 也不得直接解释为 flow。行为正确率、反应时间和完成量可作为未来 external validation，但不是唯一标签定义。
 
-当前状态：`data/current/new_paradigm_v1/session_manifest.csv` 已登记 2026-09-16 的 lyc focus ×3、unfocus ×3 和 observe control ×1。首次单日 6-session LOSO 探索结果位于 `artifacts/current/new_paradigm_v1/2026-09-16_lyc_first_pass/`；它不代表跨日泛化。正式阶段仍需每人 focus/unfocus 各至少 6 条并覆盖 2–3 天；最终留出必须在预测前冻结，任何窗口都不能跨 session 泄漏。
+当前状态：`data/current/new_paradigm_v1/session_manifest.csv` 已登记 2026-09-16 的 lyc focus ×3、unfocus ×3 和 observe control ×1。首次单日 6-session LOSO 达到 session 6/6、window accuracy 98.07%，但录制顺序为 `F-F-F → U-U-U`，标签与时间/顺序完全混杂；这是很强的**单日 exploratory** 结果，不能解释为跨日 attention 或 engagement 泛化。下一阶段首要任务不是调参或继续刷准确率，而是系统控制混杂因素、使用 frozen model 做跨日 prediction-only，并开展 task engagement 构念验证。
 
 - 当前数据入口：[data/current/new_paradigm_v1/](data/current/new_paradigm_v1/README.md)
 - 当前协议：[DATA_PROTOCOL_V2.md](docs/current/DATA_PROTOCOL_V2.md)
 - 当前研究计划：[NEW_PARADIGM_V1.md](docs/current/NEW_PARADIGM_V1.md)
+- 控制实验路线：[ENGAGEMENT_CONTROL_ROADMAP.md](docs/current/ENGAGEMENT_CONTROL_ROADMAP.md)
 - 当前产物入口：[artifacts/current/new_paradigm_v1/](artifacts/current/new_paradigm_v1/README.md)
 
 ## HISTORICAL：已冻结实验
@@ -32,8 +33,10 @@ Stage 8 已完成 11 条 EDF 的归档和 prediction-only 三模型分析。它�
 - New Paradigm v1 首轮训练只允许使用其 manifest 中明确登记且符合协议的 `new_paradigm_v1` session。
 - legacy、author、2026-09-14 LAB_FEEDBACK、旧 LOCKED_TEST 和 common6 数据不得默认混入新模型；未来若做迁移/合并，必须作为单独 ablation 并留下新版本记录。
 - 划分单位是完整 session；推荐 leave-one-day-out，最终留出在预测前冻结。
+- 不做全部混杂变量的全因子组合；按 control ladder 一次优先检验一个最大混杂，其余条件尽量固定。
 - 原始 EDF/CSV/DSI/notes 不就地修改或重命名；标签来源和冲突必须显式登记。
 - 历史模型与历史报告保留用于比较，不代表当前最佳模型或最终结论。
+- 下一系统开发方向是 **Attention Dashboard**，用于未来展示 engagement 状态时间轴；它不改变当前证据边界。
 
 ## 导航
 
@@ -42,6 +45,7 @@ Stage 8 已完成 11 条 EDF 的归档和 prediction-only 三模型分析。它�
 - 仓库路径用途：[REPOSITORY_FILE_GUIDE.md](docs/REPOSITORY_FILE_GUIDE.md)
 - 2026-09-14 pilot 清单：[LAB_FEEDBACK README](data/exploratory/lab_feedback/2026-09-14/README.md)
 - 历史进度记录：[docs/progress/](docs/progress/README.md)
+- 2026-09-16 阶段简报：[EEG项目推进简报_2026-09-16.md](docs/progress/EEG项目推进简报_2026-09-16.md)
 
 ## 只读验收
 
